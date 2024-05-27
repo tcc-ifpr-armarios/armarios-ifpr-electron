@@ -1,0 +1,27 @@
+{
+  "name": "electron-suap-authentication",
+  "version": "1.0.0",
+  "description": "System developed to authenticate the user on suap BR",
+  "main": "main.js",
+  "scripts": {
+    "test": "test",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/OAllanFernando/electron-suap-authentication"
+  },
+  "keywords": [
+    "SUAP",
+    "IFPR",
+    "IFRN"
+  ],
+  "author": "Allan Fernando Oliveira de Andrade",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.6"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
