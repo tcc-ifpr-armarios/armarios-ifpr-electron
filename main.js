@@ -14,7 +14,8 @@ function createWindow() {
   });
 
   win.maximize();
-  win.loadFile('./screens/loan/index.html');
+  win.loadFile('./screens/authentication/index.html');
+  // win.loadFile('./screens/home/index.html');
 }
 
 app.whenReady().then(() => {
