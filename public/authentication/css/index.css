@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1A5724;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Garantir que a div logo ocupe toda a largura do contêiner pai */
+    margin-bottom: 20px; /* Espaço abaixo da logo */
+}
+
+.logo img {
+    width: 100px; /* Defina a largura desejada */
+    height: auto; /* Ajusta a altura automaticamente para manter a proporção */
+}
+
+.button {
+    background-color: #ffffff;
+    color: #1A5724;
+    border: 2px solid #1A5724;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: block; /* Alterado para block para ocupar a largura total */
+    width: 100%;
+    margin-bottom: 10px; /* Aumentado o espaço abaixo do botão */
+}
+
+.button {
+    background-color: #ffffff;
+    color: #1A5724;
+    border: 2px solid #1A5724;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: inline-block; /* Ensures proper sizing for anchor elements */
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.buttonCancel {
+    background-color: #ffffff;
+    color: #ac1616;
+    border: 2px solid #ac1616;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: inline-block; /* Ensures proper sizing for anchor elements */
+    width: 100%;
+}
+
+.button:hover {
+    background-color: #1A5724;
+    color: #ffffff;
+    border-color: #1A5724;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+.buttonCancel:hover {
+    background-color: #ac1616;
+    color: #ffffff;
+    border-color: #ac1616;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+
+.register {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    border: none;
+    text-decoration: underline;
+    background-color: #ffffff;
+    margin-top: 10px; /* Espaço acima do link de registro */
+}
+
+.input-container {
+    width: 100%;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}

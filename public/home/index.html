@@ -12,13 +12,16 @@
 
     <div class="content">
         <div class="logo">
-            <img src="../assets/iflogo.png" alt="Logo" />
+            <img src="../../src/assets/iflogo.png" alt="Logo" />
         </div>
 
-        
-        <button class="button" id="login" href="">Realizar Empréstimo</button>
-        <!-- <button class="button" id="register" class="btn">Recuperar Conta</button> -->
-        <button class="button" id="administer">Área Administrativa</button>
+        <div class="buttons">
+            <button class="button" id="login" href="">Realizar Empréstimo</button>
+            <!-- <button class="button" id="register" class="btn">Recuperar Conta</button> -->
+            <button class="button" id="administer">Área Administrativa</button>
+
+            <button class="register" id="register">Quero me cadastrar</button>
+        </div>
 
         <!-- <h1>Hello World!</h1> -->
         <!-- <p>
@@ -33,7 +36,7 @@
 
     </div>
 </body>
-<script src="./javascript/jquery-3.6.0.min.js"></script>
+<!-- <script src="./javascript/jquery-3.6.0.min.js"></script>
 <script src="./javascript/client.js"></script>
 <script src="./javascript/js.cookie.js"></script>
 <script src="./javascript/settings.js"></script>
@@ -47,8 +50,15 @@
             // suap.register();
             console.log("Quero acessar como administrador");
         });
+        $('#register').click(function () {
+            // Redirecionar para outra tela
+            window.location.href = '../register/index.html'; // Altere para o URL desejado
+            console.log("Redirecionando para a tela de cadastro");
+        });
+
     });
-</script>
+</script> -->
+<script src="./javascript/index.js"></script>
 
 
 
