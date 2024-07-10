@@ -1,11 +1,9 @@
-// sequelize.js
-
+require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
-// Replace 'your_database_name', 'your_username', and 'your_password' with your PostgreSQL database credentials
-const database = new Sequelize('armarios_ifpr', 'postgres', 'allanrafaela123', {
-  host: 'localhost',
-  port: 5432, 
+const database = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT, 
   dialect: 'postgres'
 });
 

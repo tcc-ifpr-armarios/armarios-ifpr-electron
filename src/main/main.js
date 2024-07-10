@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { initModels } = require('../models/index.js');
+const authMiddleware = require('../middleware/auth-servidor.js');
 
 let mainWindow;
 
@@ -29,10 +30,14 @@ app.on('ready', async () => {
 
   // Configuração do servidor Express
   const express = require('express');
-  const server = express(); // Definindo a variável 'server' corretamente
-  server.use(express.json()); // Middleware para parsing de JSON
-  const routes = require('../routes'); // Importando as rotas corretamente
-  server.use('/api', routes); // Usando as rotas
+  const server = express(); 
+  server.use(express.json()); 
+
+  // importando rotas
+  const routesSecured = require('../routes');
+  const routesPublic = require('../routes/auth-servidor.js');
+  server.use('/api/servidor', routesPublic);
+  server.use('/api', authMiddleware, routesSecured);
 
   // Escutando apenas em localhost para segurança
   server.listen(3000, '127.0.0.1', () => {

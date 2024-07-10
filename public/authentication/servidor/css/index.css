@@ -131,3 +131,12 @@ p {
     line-height: 1.5;
     color: #666;
 }
+
+
+.text-msg{
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+}

@@ -9,4 +9,8 @@ router.get('/localizacoes/:id', localizacaoController.getLocalizacaoById);
 router.put('/localizacoes/:id', localizacaoController.updateLocalizacao);
 router.delete('/localizacoes/:id', localizacaoController.deleteLocalizacao);
 
+router.get('/teste', (req, res) => {
+  res.send('Teste OK');
+});
+
 module.exports = router;

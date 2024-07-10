@@ -5,6 +5,6 @@ document.getElementById('register').addEventListener('click', function () {
 });
 
 document.getElementById('administer').addEventListener('click', function () {
-    window.location.href = '../authentication/index.html'; // Altere para o URL desejado
+    window.location.href = '../authentication/servidor/index.html'; // Altere para o URL desejado
     console.log("Redirecionando para a tela de login");
 });

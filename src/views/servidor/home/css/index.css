@@ -1,0 +1,118 @@
+/* index.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1A5724;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h1 {
+    color: #333;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Garantir que a div logo ocupe toda a largura do contêiner pai */
+    margin-bottom: 20px; /* Espaço abaixo da logo */
+}
+
+.logo img {
+    width: 100px; /* Defina a largura desejada */
+    height: auto; /* Ajusta a altura automaticamente para manter a proporção */
+}
+
+.button {
+    background-color: #ffffff;
+    color: #1A5724;
+    border: 2px solid #1A5724;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: inline-block; /* Ensures proper sizing for anchor elements */
+    width: 70%;
+}
+
+.button:hover {
+    background-color: #1A5724;
+    color: #ffffff;
+    border-color: #1A5724;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+.buttonConfirm {
+    background-color: #ffffff;
+    color: #1A5724;
+    border: 2px solid #1A5724;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: inline-block; /* Ensures proper sizing for anchor elements */
+    width: 100%;
+}
+
+.buttonConfirm:hover {
+    background-color: #1A5724;
+    color: #ffffff;
+    border-color: #1A5724;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+.buttonCancel {
+    background-color: #ffffff;
+    color: #ac1616;
+    border: 2px solid #ac1616;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: inline-block; /* Ensures proper sizing for anchor elements */
+    width: 100%;
+}
+
+.buttonCancel:hover {
+    background-color: #ac1616;
+    color: #ffffff;
+    border-color: #ac1616;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
