@@ -1,4 +1,4 @@
-/* index.css */
+/* index.css  aqui nos temos o css de todos os arquivos dinamicos em screens*/
 
 body {
     font-family: Arial, sans-serif;
@@ -124,18 +124,6 @@ body {
     margin-bottom: 10px; /* Espaço abaixo da linha */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .rigth-gradient {
     flex-direction: column;
     align-items: flex-start;
@@ -170,15 +158,7 @@ body {
 }
 
 
-.rigth-gradient-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: auto;
-    height: 84%;
-    background-color: #a7a7a7;
-}
+
 
 
 .date {
@@ -207,3 +187,101 @@ body {
 .padding {
     padding: 10px;
 }
+
+
+/* ========================================================= */
+/* ======================== Gradiente pai  ============================= */
+
+.rigth-gradient-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 84%;
+    background-color: #a7a7a7;
+}
+
+
+/* ============================================================ */
+/* ======================== CSS GENERICOS PARA AREA DINAMICA ============================= */
+
+.generic-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 10%;
+    border-radius: 10px;
+    background-color: rgb(0, 129, 28);
+    color: #dedede;
+    font-size: 15px;
+    font-family: Segoe UI;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para um efeito de profundidade */
+}
+
+.generic-header-buttons {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 50%;
+    justify-content: flex-end;
+    align-items:  center;
+}
+
+.rigth-gradient-generic-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 98%;
+    height: 98%;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+.search-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:  flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.pluss-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:  25%;
+    height: 100%;
+}
+
+.pluss-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.btn btn-primary {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* ============================================================ */
+/* ======================== CSS DE LOCALIZAÇÂO ============================= */
+
+
+
+
+
+
+
+
+
+
+/* ======================== fim CSS DE LOCALIZAÇÂO ============================= */
+/* ============================================================ */

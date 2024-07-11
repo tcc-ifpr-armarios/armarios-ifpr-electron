@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
+// função para carregar conteúdo das páginas dinamixamente na div com a classe .rigth-gradient-content
 document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("inicio").addEventListener("click", function () {
@@ -49,6 +49,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     document.getElementById("localizacoes").addEventListener("click", function () {
         loadContent("../screens/localizacao/index.html");
+    });
+    document.getElementById("servidores").addEventListener("click", function () {
+        loadContent("../screens/servidor/index.html");
+    });
+    document.getElementById("cursos").addEventListener("click", function () {
+        loadContent("../screens/curso/index.html");
+    });
+    document.getElementById("armarios").addEventListener("click", function () {
+        loadContent("../screens/armario/index.html");
+    });
+    document.getElementById("emprestimos").addEventListener("click", function () {
+        loadContent("../screens/emprestimo/index.html");
+    });
+    document.getElementById("concessoes").addEventListener("click", function () {
+        loadContent("../screens/concessao/index.html");
     });
    
     function loadContent(url) {
