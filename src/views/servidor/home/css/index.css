@@ -20,99 +20,190 @@ body {
     width: 90%;
     height: 90%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-h1 {
-    color: #333;
+.left-gradient {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+
+    background-color: rgb(0, 129, 28);
+
 }
 
-.logo {
+.left-gradient-header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Garantir que a div logo ocupe toda a largura do contêiner pai */
-    margin-bottom: 20px; /* Espaço abaixo da logo */
+    width: auto;
+    height: 15%;
 }
 
-.logo img {
-    width: 100px; /* Defina a largura desejada */
-    height: auto; /* Ajusta a altura automaticamente para manter a proporção */
-}
 
-.button {
-    background-color: #ffffff;
-    color: #1A5724;
-    border: 2px solid #1A5724;
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
-    width: 70%;
-}
-
-.button:hover {
-    background-color: #1A5724;
-    color: #ffffff;
-    border-color: #1A5724;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
-}
-
-.buttonConfirm {
-    background-color: #ffffff;
-    color: #1A5724;
-    border: 2px solid #1A5724;
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
+.left-gradient-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
+    height: 77%;
 }
 
-.buttonConfirm:hover {
-    background-color: #1A5724;
-    color: #ffffff;
-    border-color: #1A5724;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
-}
-
-.buttonCancel {
-    background-color: #ffffff;
-    color: #ac1616;
-    border: 2px solid #ac1616;
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
+.left-gradient-content-item {
+    display: flex;
+    flex-direction: row;
     width: 100%;
-}
-
-.buttonCancel:hover {
-    background-color: #ac1616;
+    height: 10%;
+    background-color: #108600;
     color: #ffffff;
-    border-color: #ac1616;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+    font-size: 18px;
+    cursor: pointer;
 }
 
-p {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #666;
+.left-gradient-content-item:hover {
+    background-color: #f2f2f2;
+}
+
+.logo-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.text-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.text-item:hover {
+    color: #555555;
+}
+
+.padding-item {
+    padding: 18px;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-gradient-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 8%;
+    background-color: #108600;
+    color: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.left-gradient-footer:hover {
+    background-color: #f2f2f2;
+}
+
+
+.separator {
+    width: 80%; /* Ajuste a largura conforme necessário */
+    border: 1px solid #ffffff; /* Cor da linha */
+    margin-top: 10px; /* Espaço acima da linha */
+    margin-bottom: 10px; /* Espaço abaixo da linha */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rigth-gradient {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 75%;
+    height: 100%;
+    background-color: rgb(161, 161, 161);
+    font-family: Segoe UI;
+
+}
+
+.rigth-gradient-header-above {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: auto;
+    height: 8%;
+    background-color: #ffffff;
+}
+
+.rigth-gradient-header-below {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: auto;
+    height: 8%;
+    background-color: #4d4a4a;
+
+    font-size: 15px;
+    color: #ffffff;
+}
+
+
+.rigth-gradient-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: auto;
+    height: 84%;
+    background-color: #a7a7a7;
+}
+
+
+.date {
+    font-size: 12px;
+    color: #2dc200;
+    padding: 10px;
+}
+
+.time {
+    font-size: 12px;
+    color: #353535;
+    padding: 10px;
+}
+
+.user-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+    color: #ffffff;
+    text-transform: capitalize; 
+    padding: 10px;
+    
+}
+
+.padding {
+    padding: 10px;
 }

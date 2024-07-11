@@ -29,7 +29,7 @@ router.post('/login', async (req, res) => {
   try {
     const user = await servidor.findOne({ where: { siape } });
     if (user && await bcrypt.compare(password, user.senha)) {
-      const token = jwt.sign({ servidorId: user.id }, secret, { expiresIn: '1h' });
+      const token = jwt.sign({ servidorId: user.id, servidorNome: user.nome}, secret, { expiresIn: '1h' });
       res.status(200).json({ token });
     } else {
       res.status(401).json({ error: 'Credenciais inválidas' });
