@@ -11,23 +11,130 @@
 <body>
 
     <div class="content">
-        <div class="logo">
-            <img src="../../../assets/iflogo.png" alt="Logo" />
-        </div>
+        <div class="left-gradient">
 
-        <div class="form">
-            <p><strong> Nome: </strong> <span id="nome"></span></p>
-            <p><strong> Email: </strong> <span id="email"></span></p>
-            <div>
-                <button class="buttonConfirm" id="confirm" href="">Confirmar</button>
-                <button class="buttonCancel" id="cancel" href="">Cancelar</button>
-                <p>
-                    Desenvolvimento por IFPR - Campus Paranavaí
-                </p>
+            <div class="left-gradient-header">
+                <img src="../../../assets/icons/painelcontrole/armario-branco-64px.png" alt="Armário" id="imgArmario">
+            </div>
+            <hr class="separator" />
+
+            <div class="left-gradient-content">
+                <div id="inicio" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/home-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Inicio</h4>
+                    </div>
+                </div>
+
+                <div id="estudantes" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/estudante-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Estudantes</h4>
+                    </div>
+                </div>
+
+                <div id="armarios" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/armario-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Armários</h4>
+                    </div>
+                </div>
+
+                <div id="localizacoes" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/localizacao-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Localizações</h4>
+                    </div>
+                </div>
+
+                <div id="cursos" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/curso-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Cursos</h4>
+                    </div>
+                </div>
+
+                <div id="servidores" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/servidores-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Servidores</h4>
+                    </div>
+                </div>
+                <div id="emprestimos" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/historico-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Empréstimos</h4>
+                    </div>
+                </div>
+                <div id="concessoes" class="left-gradient-content-item">
+                    <div class="logo-item">
+                        <img src="../../../assets/icons/painelcontrole/historico-branco-24px.png" alt="Home" id="imgHome">
+                    </div>
+                    <div class="text-item">
+                        <h4>Concessões</h4>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="left-gradient-footer">
+                <div class="logo-item">
+                    <img src="../../../assets/icons/painelcontrole/sair-branco-24px.png" alt="Home" id="imgHome">
+                </div>
+                <div class="text-item">
+                    <h4>Sair</h4>
+                </div>
             </div>
 
 
         </div>
+
+        <div class="rigth-gradient">
+            <div class="rigth-gradient-header-above">
+                <div>
+                    <h3 class="padding">Sistema de Gerenciamento de Armários IF</h3>
+                </div>
+                <div>
+                    <h4 class="date" id="dataLocal">Data local</h4>
+                </div>
+                <div>
+                    <h4 class="time" id="horaLocal">Hora local</h4>
+                </div>
+            </div>
+            <div class="rigth-gradient-header-below">
+                <div>
+                    <h3 class="padding">BEM VINDO AO SISTEMA DE GERENCIAMENTO DE ARMÁRIOS</h3>
+                </div>
+                <div class="user-content">
+                    <img src="../../../assets/icons/painelcontrole/usuario-branco-25px.png" alt="Usuário" id="imgUser">
+                    <h4 id="nameUser">Usuario</h4>
+                </div>
+            </div>
+
+            <div class="rigth-gradient-content">
+                <!-- Aqui é a parte onde renderizamos as tabelas/cadastros. são carregados em outros arquivos em ../screens  -->
+            </div>
+        </div>
 </body>
+
+<script src="./javascript/index.js"></script>
+
+
 
 </html>
