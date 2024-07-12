@@ -11,7 +11,7 @@
                     Buscar
                 </div>
             </div>
-            <div id="add" class="pluss-btn">
+            <div id="add-me" class="pluss-btn">
                 <img src="../../../assets/icons/plus-36px.png" alt="plus" id="plus-36" />
                 Novo
             </div>
@@ -25,3 +25,11 @@
 
 
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("add-me").addEventListener("click", function () {
+            console.log("Adicionar");
+        });
+    });
+</script>

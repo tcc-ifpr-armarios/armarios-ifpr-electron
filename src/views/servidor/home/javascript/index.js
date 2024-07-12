@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(atualizarDataHora, 1000);
 });
 
-
 // função para carregar conteúdo das páginas dinamixamente na div com a classe .rigth-gradient-content
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -77,4 +76,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadContent("../screens/inicio/index.html");
 });
+
 
