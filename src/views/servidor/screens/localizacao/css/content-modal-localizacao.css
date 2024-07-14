@@ -1,0 +1,73 @@
+/* ======================== CSS DE LOCALIZAÇÂO ============================= */
+
+.localizacao-modal { 
+    background-color: #108600;
+    width: 450px;
+    height: 450px;
+}
+
+.localizacao-modal-header {
+    background-color: #108600;
+    color: #ffffff;
+    font-size: 18px;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.localizacao-modal-content {
+    background-color: #f2f2f2;
+    color: #000000;
+    font-size: 18px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.form-group-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-group-description input[type="text"] {
+    width: 100%;
+    box-sizing: border-box; /* Para incluir padding e border no width total */
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.form-group-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.checkbox-side-by-side {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.form-group-description > * {
+    padding: 5px 0; /* Adiciona padding vertical aos itens dentro de .form-group-description */
+}

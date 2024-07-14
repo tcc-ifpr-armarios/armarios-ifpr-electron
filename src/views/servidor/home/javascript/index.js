@@ -19,62 +19,101 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function atualizarNomeUsuario() {
-        // pega o jwt do localStorage
         const jwt = localStorage.getItem('token');
-        // decodifica o jwt
-        console.log(jwt);
         const dados = jwt && JSON.parse(atob(jwt.split('.')[1]));
         const nomeUsuario = dados && dados.servidorNome;
         userName.textContent = nomeUsuario;
     }
 
     atualizarNomeUsuario();
-
-    // Atualiza a data e hora imediatamente ao carregar a página
     atualizarDataHora();
-
-    // Atualiza a data e hora a cada segundo
     setInterval(atualizarDataHora, 1000);
-});
 
-// função para carregar conteúdo das páginas dinamixamente na div com a classe .rigth-gradient-content
-document.addEventListener("DOMContentLoaded", function () {
+    const menuItems = {
+        inicio: "../screens/inicio/index.html",
+        estudantes: "../screens/estudante/index.html",
+        localizacoes: "../screens/localizacao/index.html",
+        servidores: "../screens/servidor/index.html",
+        cursos: "../screens/curso/index.html",
+        armarios: "../screens/armario/index.html",
+        emprestimos: "../screens/emprestimo/index.html",
+        concessoes: "../screens/concessao/index.html"
+    };
 
-    document.getElementById("inicio").addEventListener("click", function () {
-        loadContent("../screens/inicio/index.html");
-    });
-    document.getElementById("estudantes").addEventListener("click", function () {
-        loadContent("../screens/estudante/index.html");
-    });
-    document.getElementById("localizacoes").addEventListener("click", function () {
-        loadContent("../screens/localizacao/index.html");
-    });
-    document.getElementById("servidores").addEventListener("click", function () {
-        loadContent("../screens/servidor/index.html");
-    });
-    document.getElementById("cursos").addEventListener("click", function () {
-        loadContent("../screens/curso/index.html");
-    });
-    document.getElementById("armarios").addEventListener("click", function () {
-        loadContent("../screens/armario/index.html");
-    });
-    document.getElementById("emprestimos").addEventListener("click", function () {
-        loadContent("../screens/emprestimo/index.html");
-    });
-    document.getElementById("concessoes").addEventListener("click", function () {
-        loadContent("../screens/concessao/index.html");
-    });
-   
+    for (const [key, url] of Object.entries(menuItems)) {
+        document.getElementById(key).addEventListener("click", function () {
+            loadContent(url);
+        });
+    }
+
     function loadContent(url) {
         fetch(url)
             .then(response => response.text())
             .then(data => {
                 document.querySelector(".rigth-gradient-content").innerHTML = data;
+                addModalEventListeners();
             })
             .catch(error => console.error('Error loading content:', error));
     }
 
-    loadContent("../screens/inicio/index.html");
+    function addModalEventListeners() {
+        const modalButtons = {
+            "btn-add-localizacao": "../screens/localizacao/content-modal-localizacao.html",
+            "btn-add-servidor": "../screens/servidor/content-modal-servidor.html",
+            "btn-add-estudante": "../screens/estudante/content-modal-estudante.html",
+            "btn-add-curso": "../screens/curso/content-modal-curso.html",
+            "btn-add-armario": "../screens/armario/content-modal-armario.html",
+            "btn-add-emprestimo": "../screens/emprestimo/content-modal-emprestimo.html",
+            "btn-add-concessao": "../screens/concessao/content-modal-concessao.html"
+        };
+
+        for (const [btnId, url] of Object.entries(modalButtons)) {
+            const button = document.getElementById(btnId);
+            if (button) {
+                button.addEventListener("click", function () {
+                    loadModalContent(url);
+                });
+            }
+        }
+    }
+
+    function loadModalContent(url) {
+        openModal();
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector(".modal-dinamic-content").innerHTML = data;
+                addCloseModalEvent();
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+
+    function openModal() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+    function addCloseModalEvent() {
+        const buttonCancel = document.getElementsByClassName("buttonCancel")[0];
+        const span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+            closeModal();
+        }
+        buttonCancel.onclick = function() {
+            closeModal();
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    }
+
+    loadContent(menuItems.inicio);
 });
-
-

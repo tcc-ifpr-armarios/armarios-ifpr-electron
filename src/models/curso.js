@@ -5,7 +5,8 @@ const database = require('../config/database');
 const Curso = database.define('Curso', {
   nome: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   ativo: {
     type: DataTypes.BOOLEAN,

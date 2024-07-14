@@ -10,7 +10,8 @@ const Localizacao = require('./localizacao');
 const Armario = database.define('Armario', {
   numero: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   status: {
     type: DataTypes.ENUM('ATIVO', 'INATIVO', 'EM_MANUTENCAO', 'OCUPADO'),
