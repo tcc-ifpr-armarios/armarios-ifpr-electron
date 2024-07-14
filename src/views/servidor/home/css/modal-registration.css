@@ -1,0 +1,102 @@
+
+
+/* Modal container */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fixo no viewport */
+    z-index: 1; /* Fica na frente */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgb(0, 0, 0); /* Fallback para cor de fundo */
+    background-color: rgba(0, 0, 0, 0.4); /* Preto com opacidade */
+
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto; /* 15% do topo e centrado horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+/* Botão de fechar */
+.close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.button {
+    background-color: #ffffff;
+    color: #747474;
+    border: 2px solid #747474;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: inline-block; /* Ensures proper sizing for anchor elements */
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.buttonCancel {
+    background-color: #ffffff;
+    color: #747474;
+    border: 2px solid #747474;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Remove underline if it's an anchor */
+    display: inline-block; /* Ensures proper sizing for anchor elements */
+    width: 100%;
+}
+
+
+.button:hover {
+    background-color: #1A5724;
+    color: #ffffff;
+    border-color: #1A5724;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+.buttonCancel:hover {
+    background-color: #ac1616;
+    color: #ffffff;
+    border-color: #ac1616;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+}
+
+
+.msg-return {
+    color: #646464;
+    font-family: 'Segoe UI';
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}

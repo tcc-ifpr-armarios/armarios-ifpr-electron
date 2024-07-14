@@ -54,8 +54,8 @@ body {
 
 .button {
     background-color: #ffffff;
-    color: #1A5724;
-    border: 2px solid #1A5724;
+    color: #747474;
+    border: 2px solid #747474;
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;
@@ -71,8 +71,8 @@ body {
 
 .buttonCancel {
     background-color: #ffffff;
-    color: #ac1616;
-    border: 2px solid #ac1616;
+    color: #747474;
+    border: 2px solid #747474;
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;

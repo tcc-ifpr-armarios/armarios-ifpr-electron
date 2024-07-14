@@ -6,7 +6,8 @@ const database = require('../config/database');
 const Localizacao = database.define('Localizacao', {
   descricao: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
     ativo: {
         type: DataTypes.BOOLEAN,

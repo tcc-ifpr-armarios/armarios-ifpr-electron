@@ -99,8 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addCloseModalEvent() {
+        const buttonCancel = document.getElementsByClassName("buttonCancel")[0];
         const span = document.getElementsByClassName("close")[0];
         span.onclick = function() {
+            closeModal();
+        }
+        buttonCancel.onclick = function() {
             closeModal();
         }
         window.onclick = function(event) {

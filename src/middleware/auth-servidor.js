@@ -14,7 +14,8 @@ const authMiddleware = (req, res, next) => {
     if (err) {
       return res.status(401).json({ error: 'Token inválido' });
     }
-
+  
+    // Injeta o ID do usuário na requisição
     req.userId = decoded.userId;
     next();
   });

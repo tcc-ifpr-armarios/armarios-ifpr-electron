@@ -1,13 +1,20 @@
 const Localizacao = require('../models/localizacao');
+const externalization = require('../externalization/request');
 
 // Cria uma nova localização
 const createLocalizacao = async (req, res) => {
+  console.log(externalization.successCreatingLocation);
   try {
     const { descricao, ativo } = req.body;
     const localizacao = await Localizacao.create({ descricao, ativo });
-    res.status(201).json(localizacao);
+    res.status(201).json({ message: externalization.successCreatingLocation });
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar a localização' });
+    if (error.name === 'SequelizeUniqueConstraintError' && error.parent && error.parent.code === '23505') {
+      // Erro de chave duplicada, no PostgreSQL esse código é 23505 (SequelizeUniqueConstraintError)
+      res.status(400).json({ error: externalization.duplicateDescription });
+    }
+    console.error('Erro ao criar localizacao:', error);
+    res.status(500).json({ error: externalization.errorCreatingLocation });
   }
 };
 
