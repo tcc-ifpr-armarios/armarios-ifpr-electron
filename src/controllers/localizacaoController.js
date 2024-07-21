@@ -20,11 +20,32 @@ const createLocalizacao = async (req, res) => {
 
 // Retorna todas as localizações
 const getAllLocalizacoes = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+
+  const pageNumber = parseInt(page, 10);
+  const limitNumber = parseInt(limit, 10);
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const localizacoes = await Localizacao.findAll();
-    res.status(200).json(localizacoes);
+    const { count, rows } = await Localizacao.findAndCountAll({
+      limit: limitNumber,
+      offset: offset,
+      order: [['descricao', 'ASC']]
+    });
+    
+    const totalPages = Math.ceil(count / limitNumber);
+
+    res.status(200).json({
+      data: rows,
+      pagination: {
+        totalItems: count,
+        totalPages: totalPages,
+        currentPage: pageNumber,
+        itemsPerPage: limitNumber
+      }
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar as localizações' });
+    res.status(500).json({ error: externalization.errorFetchingLocations });
   }
 };
 
@@ -54,12 +75,16 @@ const updateLocalizacao = async (req, res) => {
 
     if (updated) {
       const updatedLocalizacao = await Localizacao.findByPk(id);
-      res.status(200).json(updatedLocalizacao);
+      res.status(200).json({ message: externalization.successEditingLocation });
     } else {
-      res.status(404).json({ error: 'Localização não encontrada' });
+      res.status(404).json({ error: externalization.notFoundLocation });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao atualizar a localização' });
+    if (error.name === 'SequelizeUniqueConstraintError' && error.parent && error.parent.code === '23505') {
+      // Erro de chave duplicada, no PostgreSQL esse código é 23505 (SequelizeUniqueConstraintError)
+      res.status(400).json({ error: externalization.duplicateDescription });
+    }
+    res.status(500).json({ error: externalization.errorEditingLocation });
   }
 };
 

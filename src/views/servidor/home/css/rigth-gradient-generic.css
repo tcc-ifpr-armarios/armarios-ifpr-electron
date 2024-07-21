@@ -42,6 +42,7 @@
     justify-content:  flex-end;
     width: 100%;
     height: 100%;
+    
 }
 
 .pluss-btn {
@@ -51,10 +52,12 @@
     justify-content: center;
     width:  25%;
     height: 100%;
+    cursor: pointer;
 }
 
 .pluss-btn:hover {
     background-color: #f2f2f2;
+    color: #000000;
 }
 
 .btn btn-primary {

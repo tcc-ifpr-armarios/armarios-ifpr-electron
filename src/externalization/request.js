@@ -6,6 +6,10 @@ const messages = {
     duplicateDescription: 'Descrição de localização já existe.',
     errorFetchingLocations: 'Erro ao buscar as localizações.',
     successCreatingLocation: 'Localização criada com sucesso.',
+    successEditingLocation: 'Localização editada com sucesso.',
+    errorUpdatingLocation: 'Erro ao atualizar a localização.',
+    notFoundLocation: 'Localização não encontrada.',
+    errorEditingLocation: 'Erro ao editar a localização.',
 
 
 
