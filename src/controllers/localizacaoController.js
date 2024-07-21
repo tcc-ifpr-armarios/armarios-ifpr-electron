@@ -20,9 +20,29 @@ const createLocalizacao = async (req, res) => {
 
 // Retorna todas as localizações
 const getAllLocalizacoes = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+
+  const pageNumber = parseInt(page, 10);
+  const limitNumber = parseInt(limit, 10);
+  const offset = (pageNumber - 1) * limitNumber;
+
   try {
-    const localizacoes = await Localizacao.findAll();
-    res.status(200).json(localizacoes);
+    const { count, rows } = await Localizacao.findAndCountAll({
+      limit: limitNumber,
+      offset: offset
+    });
+    
+    const totalPages = Math.ceil(count / limitNumber);
+
+    res.status(200).json({
+      data: rows,
+      pagination: {
+        totalItems: count,
+        totalPages: totalPages,
+        currentPage: pageNumber,
+        itemsPerPage: limitNumber
+      }
+    });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao buscar as localizações' });
   }

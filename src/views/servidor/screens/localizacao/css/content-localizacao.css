@@ -71,3 +71,14 @@
 .form-group-description > * {
     padding: 5px 0; /* Adiciona padding vertical aos itens dentro de .form-group-description */
 }
+
+/* ======================== CSS DE LOCALIZAÇÂO ============================= */
+
+.localizacao-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
