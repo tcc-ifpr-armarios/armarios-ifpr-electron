@@ -29,7 +29,8 @@ const getAllLocalizacoes = async (req, res) => {
   try {
     const { count, rows } = await Localizacao.findAndCountAll({
       limit: limitNumber,
-      offset: offset
+      offset: offset,
+      order: [['descricao', 'ASC']]
     });
     
     const totalPages = Math.ceil(count / limitNumber);
@@ -44,7 +45,7 @@ const getAllLocalizacoes = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar as localizações' });
+    res.status(500).json({ error: externalization.errorFetchingLocations });
   }
 };
 
@@ -74,12 +75,16 @@ const updateLocalizacao = async (req, res) => {
 
     if (updated) {
       const updatedLocalizacao = await Localizacao.findByPk(id);
-      res.status(200).json(updatedLocalizacao);
+      res.status(200).json({ message: externalization.successEditingLocation });
     } else {
-      res.status(404).json({ error: 'Localização não encontrada' });
+      res.status(404).json({ error: externalization.notFoundLocation });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao atualizar a localização' });
+    if (error.name === 'SequelizeUniqueConstraintError' && error.parent && error.parent.code === '23505') {
+      // Erro de chave duplicada, no PostgreSQL esse código é 23505 (SequelizeUniqueConstraintError)
+      res.status(400).json({ error: externalization.duplicateDescription });
+    }
+    res.status(500).json({ error: externalization.errorEditingLocation });
   }
 };
 

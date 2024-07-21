@@ -93,3 +93,14 @@ caption {
     background-color: #f2f2f2;
     color: #000000;
 }
+
+.action-buttons button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+.action-buttons button:hover {
+    background-color: #e2e2e2;
+}
