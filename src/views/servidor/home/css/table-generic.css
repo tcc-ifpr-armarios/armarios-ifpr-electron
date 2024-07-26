@@ -94,13 +94,35 @@ caption {
     color: #000000;
 }
 
-.action-buttons button {
-    margin-right: 5px;
+.action-container {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+    justify-content: flex-end;
+}
+
+.action-buttons-edit button,
+.action-buttons-exclude button {
     padding: 5px 10px;
     border: 1px solid #ddd;
-    background-color: #f2f2f2;
     cursor: pointer;
+    border-radius: 5px;
 }
-.action-buttons button:hover {
-    background-color: #e2e2e2;
+
+.action-buttons-edit button {
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.action-buttons-edit button:hover {
+    background-color: rgb(0, 129, 28);
+    color: #ffffff;
+}
+
+.action-buttons-exclude button {
+    background-color: #ffffff;
+}
+
+.action-buttons-exclude button:hover {
+    background-color: #8f1c1c;
+    color: #ffffff;
 }

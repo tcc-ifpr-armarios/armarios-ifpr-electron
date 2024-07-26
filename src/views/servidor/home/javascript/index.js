@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addModalEventListeners() {
         const modalButtons = {
-            "btn-add-localizacao": "../screens/localizacao/content-modal-localizacao.html",
+            "btn-add-localizacao": "../screens/localizacao/save-edit-modal-localizacao.html",
             "btn-add-servidor": "../screens/servidor/content-modal-servidor.html",
             "btn-add-estudante": "../screens/estudante/content-modal-estudante.html",
             "btn-add-curso": "../screens/curso/content-modal-curso.html",

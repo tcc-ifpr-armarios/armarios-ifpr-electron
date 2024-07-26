@@ -10,6 +10,8 @@ const messages = {
     errorUpdatingLocation: 'Erro ao atualizar a localização.',
     notFoundLocation: 'Localização não encontrada.',
     errorEditingLocation: 'Erro ao editar a localização.',
+    successDeletingLocation: 'Localização deletada com sucesso.',
+    errorDeletingLocation: 'Erro ao deletar a localização.',
 
 
 

@@ -90,19 +90,20 @@ const updateLocalizacao = async (req, res) => {
 
 // Deleta uma localização por ID
 const deleteLocalizacao = async (req, res) => {
+  console.log(req.params);
   try {
     const { id } = req.params;
     const deleted = await Localizacao.destroy({
       where: { id }
     });
-
+    
     if (deleted) {
-      res.status(204).json();
+      res.status(200).json({ message: externalization.successDeletingLocation });
     } else {
-      res.status(404).json({ error: 'Localização não encontrada' });
+      res.status(404).json({ error: externalization.notFoundLocation });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao deletar a localização' });
+    res.status(500).json({ error: externalization.errorDeletingLocation });
   }
 };
 
