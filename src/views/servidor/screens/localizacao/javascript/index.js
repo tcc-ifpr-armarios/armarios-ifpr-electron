@@ -1,5 +1,5 @@
 
-const apiUrl = process.env.API_URL;  // Obtém a URL da API do arquivo .env
+const apiUrl = process.env.API_URL; 
 
 const messages = {
     saving: 'Salvando...',
@@ -158,12 +158,21 @@ async function getLocalizacoes(page, limit) {
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Excluir';
-                deleteButton.onclick = () => deleteItem(item.id);
+                deleteButton.onclick = () => confirmDelete(item);
 
                 const actionContainer = document.createElement('div');
-                actionContainer.classList.add('action-buttons');
-                actionContainer.appendChild(editButton);
-                actionContainer.appendChild(deleteButton);
+                actionContainer.classList.add('action-container');
+
+                const actionContainerEdit = document.createElement('div');
+                actionContainerEdit.classList.add('action-buttons-edit');
+                actionContainerEdit.appendChild(editButton);
+
+                const actionContainerExclude = document.createElement('div');
+                actionContainerExclude.classList.add('action-buttons-exclude');
+                actionContainerExclude.appendChild(deleteButton);
+
+                actionContainer.appendChild(actionContainerEdit);
+                actionContainer.appendChild(actionContainerExclude);
 
                 acoesCell.appendChild(actionContainer);
 
@@ -184,7 +193,7 @@ async function getLocalizacoes(page, limit) {
 // edição de localização
 
 function editItem(item) {
-    const editModal = { "url": "../screens/localizacao/content-modal-localizacao.html" };
+    const editModal = { "url": "../screens/localizacao/save-edit-modal-localizacao.html" };
     openModal();
 
     fetch(editModal.url)
@@ -212,6 +221,59 @@ function closeModal() {
 }
 
 
+async function deleteItem() {
+
+    const token = localStorage.getItem('token');
+    const id = document.querySelector("#item-id").value;
+
+    try {
+        if (id) {
+            const response = await fetch(`${apiUrl}/localizacoes/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                }
+            });
+            const data = await response.json();
+
+            console.log('Resposta:', data);
+            if (!response.ok) {
+                if (response.status === 400) {
+                    document.querySelector('.msg-return').innerHTML = data.error || messages.unknownError;
+                } else {
+                    document.querySelector('.msg-return').innerHTML = data.error || messages.unknownError;
+                }
+            } else {
+                document.querySelector('.msg-return').innerHTML = data.message || 'Sucesso';
+                await getLocalizacoes(currentPage, limit);
+                setTimeout(() => {
+                    document.querySelector('.modal').setAttribute('style', 'display: none');
+                }, 1000);
+            }
+        } else {
+            closeModal();
+        }
+    } catch (error) {
+        document.querySelector('.msg-return').innerHTML = messages.internalError;
+    }
+}
+
+function confirmDelete(item) {
+    const deleteModal = { "url": "../screens/localizacao/exclude-confirm-modal-localizacao.html" };
+    openModal();
+
+    fetch(deleteModal.url)
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector(".modal-dinamic-content").innerHTML = data;
+            document.querySelector("#item-id").value = item.id;
+            document.querySelector(".nome-localizacao").textContent = item.descricao;
+            addCloseModalEvent();
+        })
+}
+
+
 function addCloseModalEvent() {
     const buttonCancel = document.getElementsByClassName("buttonCancel")[0];
     const span = document.getElementsByClassName("close")[0];
@@ -227,10 +289,4 @@ function addCloseModalEvent() {
             closeModal();
         }
     }
-}
-
-
-function deleteItem(id) {
-    // Lógica para excluir item com o id fornecido
-    console.log('Excluindo item com id:', id);
 }

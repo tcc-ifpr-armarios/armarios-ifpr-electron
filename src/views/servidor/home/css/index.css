@@ -1,7 +1,7 @@
 /* index.css  aqui nos temos o css de todos os arquivos dinamicos em screens*/
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI';
     background-color: #1A5724;
     display: flex;
     justify-content: center;
