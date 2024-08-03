@@ -4,7 +4,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     const siape = document.getElementById('login-siape').value;
     const password = document.getElementById('login-password').value;
 
-    const response = await fetch('http://127.0.0.1:3000/api/servidor/login', {
+    const response = await fetch(`${process.env.API_URL}/servidor/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ siape, password })

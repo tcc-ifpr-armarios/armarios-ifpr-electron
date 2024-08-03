@@ -34,10 +34,13 @@ app.on('ready', async () => {
   server.use(express.json()); 
 
   // importando rotas
-  const routesSecured = require('../routes');
-  const routesPublic = require('../routes/auth-servidor.js');
-  server.use('/api/servidor', routesPublic);
-  server.use('/api', authMiddleware, routesSecured);
+  const rotasSeguras = require('../routes');
+  const rotasPublicasServidor = require('../routes/auth-servidor.js');
+  const rotasPublicasEstudante = require('../routes/auth-estudante.js');
+
+  server.use('/api/servidor', rotasPublicasServidor);
+  server.use('/api/estudante', rotasPublicasEstudante);
+  server.use('/api', authMiddleware, rotasSeguras);
 
   // Escutando apenas em localhost para segurança
   server.listen(3000, '127.0.0.1', () => {

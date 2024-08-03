@@ -3,171 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Cadastro Cronos</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <link rel="stylesheet" type="text/css" href="./css/index.css">
 </head>
 
 <body>
-
     <div class="content">
         <div class="logo">
             <img src="../../src/assets/iflogo.png" alt="Logo" />
         </div>
-
-        <div class="form">
-            <p><strong> Nome: </strong> <span id="nome"></span></p>
-            <p><strong> Email: </strong> <span id="email"></span></p>
-            <div>
-                <button class="buttonConfirm" id="confirm" href="">Confirmar</button>
-                <button class="buttonCancel" id="cancel" href="">Cancelar</button>
-                <p>
-                    Desenvolvimento por IFPR - Campus Paranavaí
-                </p>
+        <form id="cad-form-cronos">
+            <div class="input-container">
+                <div class="text-msg" id="message">Cadastro com Cronos</div>
+                <input type="text" id="ra-cronos" placeholder="RA" required />
+                <input type="password" id="password-cronos" placeholder="Senha" required />
             </div>
-
-
-        </div>
-</body>
-<script src="../authentication/javascript/jquery-3.6.0.min.js"></script>
-<script src="./javascript/client.js"></script>
-<script src="./javascript/js.cookie.js"></script>
-<script src="./javascript/settings.js"></script>
-<script>
-    var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
-    console.log(suap);
-    suap.init();
-    if (suap.isAuthenticated()) {
-        var scope = suap.getToken().getScope();
-        var callback = function (data) {
-            console.log(data);
-            $('#nome').text(data.nome);
-            $('#email').text(data.email);
-            // aqui vai tudo o que precisar fazer com os dados do usuário
-        };
-        suap.getResource(scope, callback);
-
-    } else {
-        suap.logout();
-    }
-
-</script>
-
-
-
-</html>
-
-<!-- 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" type="text/css" href="./css/index.css">
-</head>
-
-<body>
-
-    <div class="content">
-        <div class="logo">
-            <img src="../../src/assets/iflogo.png" alt="Logo" />
-        </div>
-
-        <div class="form">
-            <p><strong> Nome: </strong> <span id="nome"></span></p>
-            <p><strong> Email: </strong> <span id="email"></span></p>
-            <div>
-                <button class="buttonConfirm" id="confirm" href="">Confirmar</button>
-                <button class="buttonCancel" id="cancel" href="">Cancelar</button>
-                <p>
-                    Desenvolvimento por IFPR - Campus Paranavaí
-                </p>
+            <div class="buttons">
+                <button class="button" type="submit">Entrar</button>
+                
             </div>
+        </form>
+        <button class="buttonCancel" id="cancel" href="">Cancelar</button>
+        <div id="message"></div>
 
+        <p>Desenvolvimento por IFPR - Campus Paranavaí</p>
+    </div>
 
-        </div>
-</body>
-<script src="../authentication/javascript/jquery-3.6.0.min.js"></script>
-<script src="./javascript/client.js"></script>
-<script src="./javascript/js.cookie.js"></script>
-<script src="./javascript/settings.js"></script>
-<script>
-    var suap = new SuapClient(SUAP_URL, CLIENT_ID, REDIRECT_URI, SCOPE);
-    console.log(suap);
-    suap.init();
-    if (suap.isAuthenticated()) {
-        var scope = suap.getToken().getScope();
-        var callback = function (data) {
-            console.log(data);
-            $('#nome').text(data.nome);
-            $('#email').text(data.email);
-            // aqui vai tudo o que precisar fazer com os dados do usuário
-        };
-        suap.getResource(scope, callback);
+    <script src="./javascript/index.js"></script>
 
-    } else {
-        suap.logout();
-    }
-
-</script>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Localizações</title>
-    <style>
-        /* Adicione estilos aqui */
-    </style>
-</head>
-
-<body>
-    <h1>Localizações</h1>
-    <button id="create-btn">Criar Localização</button>
-    <ul id="localizacoes-list"></ul>
-
-    <script>
-        document.getElementById('create-btn').addEventListener('click', async () => {
-            const descricao = "Biblioteca";
-            const ativo = true;
-            const response = await fetch('http://localhost:3000/api/localizacoes', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ descricao, ativo }),
-            });
-            const result = await response.json();
-            if (response.status === 201) {
-                alert('Localização criada com sucesso');
-                loadLocalizacoes();
-            } else {
-                alert(result.error);
-            }
-        });
-
-        async function loadLocalizacoes() {
-            const response = await fetch('http://localhost:3000/api/localizacoes');
-            const result = await response.json();
-            if (response.status === 200) {
-                const list = document.getElementById('localizacoes-list');
-                list.innerHTML = '';
-                result.forEach(localizacao => {
-                    const item = document.createElement('li');
-                    item.textContent = `${localizacao.descricao} - ${localizacao.ativo ? 'Ativo' : 'Inativo'}`;
-                    list.appendChild(item);
-                });
-            } else {
-                alert(result.error);
-            }
-        }
-
-        window.onload = loadLocalizacoes;
-    </script>
 </body>
 
 </html>
-
-
-</html> -->
