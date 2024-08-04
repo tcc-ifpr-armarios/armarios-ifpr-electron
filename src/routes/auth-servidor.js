@@ -24,6 +24,7 @@ const secret = process.env.JWT_SECRET; // Substitua por uma variável de ambient
 // Login de servidor
 router.post('/login', async (req, res) => {
   const { siape, password } = req.body;
+console.log(siape);
 
   try {
     const user = await servidor.findOne({ where: { siape } });

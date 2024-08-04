@@ -1,5 +1,5 @@
 
-const apiUrl = process.env.API_URL; 
+const apiUrl = process.env.API_SECURE_SERVER; 
 
 const messages = {
     saving: 'Salvando...',

@@ -3,12 +3,13 @@ document.getElementById('cancel').addEventListener('click', function () {
 });
 
 
+
 document.getElementById('cad-form-cronos').addEventListener('submit', async function (event) {
     event.preventDefault();
     const ra = document.getElementById('ra-cronos').value;
     const password = document.getElementById('password-cronos').value;
 
-    const response = await fetch(`${process.env.API_URL}/estudante/create/login`, {
+    const response = await fetch(`${process.env.API_PUBLIC_STUDENT}/create/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ra, password })
@@ -63,7 +64,7 @@ async function loginCronos(raForm, passwordForm, telefoneForm) {
 }
 
 
-async function buscaRaLocal(raForm){
-   
-    
+async function buscaRaLocal(raForm) {
+
+
 }

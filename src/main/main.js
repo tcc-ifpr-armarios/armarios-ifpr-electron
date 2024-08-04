@@ -5,6 +5,10 @@ const authMiddleware = require('../middleware/auth-servidor.js');
 
 let mainWindow;
 
+const rotasSeguras = require('../routes/index.js');
+const rotasPublicasServidor = require('../routes/auth-servidor.js');
+const rotasPublicasEstudante = require('../routes/auth-estudante.js');
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
@@ -34,13 +38,11 @@ app.on('ready', async () => {
   server.use(express.json()); 
 
   // importando rotas
-  const rotasSeguras = require('../routes');
-  const rotasPublicasServidor = require('../routes/auth-servidor.js');
-  const rotasPublicasEstudante = require('../routes/auth-estudante.js');
 
-  server.use('/api/servidor', rotasPublicasServidor);
-  server.use('/api/estudante', rotasPublicasEstudante);
-  server.use('/api', authMiddleware, rotasSeguras);
+
+  server.use('/api/public/server', rotasPublicasServidor);
+  server.use('/api/public/student', rotasPublicasEstudante);
+  server.use('/api/secure/server', authMiddleware, rotasSeguras);
 
   // Escutando apenas em localhost para segurança
   server.listen(3000, '127.0.0.1', () => {
