@@ -71,19 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const button = document.getElementById(btnId);
             if (button) {
                 button.addEventListener("click", function () {
-                    loadModalContent(url);
+                    carregaConteudoModal(url);
                 });
             }
         }
     }
 
-    function loadModalContent(url) {
+    function carregaConteudoModal(url) {
         openModal();
         fetch(url)
             .then(response => response.text())
             .then(data => {
                 document.querySelector(".modal-dinamic-content").innerHTML = data;
-                addCloseModalEvent();
+                eventoFechamentoModal();
             })
             .catch(error => console.error('Error loading content:', error));
     }
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = "none";
     }
 
-    function addCloseModalEvent() {
+    function eventoFechamentoModal() {
         const buttonCancel = document.getElementsByClassName("buttonCancel")[0];
         const span = document.getElementsByClassName("close")[0];
         span.onclick = function() {
