@@ -31,6 +31,7 @@ const messages = {
     unauthorized: 'Não autorizado.',
     invalidCredentials: 'Credenciais inválidas.',
     cronosAirOut: 'Cronos pode não estar disponível. Tente novamente mais tarde.',
+    userAlreadyExists: "Usuário já cadastrado.",
 
 
 

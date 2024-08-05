@@ -15,7 +15,7 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
-    height: 400px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,14 +63,15 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
-    text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
+    text-decoration: none; 
+    display: inline-block;
     width: 100%;
     margin-bottom: 5px;
 }
 
 .buttonCancel {
     background-color: #ffffff;
+    margin-top: -10px;
     color: #747474;
     border: 2px solid #747474;
     border-radius: 10px;
@@ -80,8 +81,8 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
-    text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
+    text-decoration: none;  
+    display: inline-block;  
     width: 100%;
 }
 
