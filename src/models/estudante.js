@@ -20,12 +20,6 @@ const Estudante = database.define('Estudante', {
     email: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
-            isEmail: {
-                args: true,
-                msg: 'O email fornecido não é válido'
-            }
-        }
     },
     ativo: {
         type: DataTypes.BOOLEAN,
@@ -34,17 +28,6 @@ const Estudante = database.define('Estudante', {
     telefone: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
-            isTelefone: {
-                args: true,
-                msg: 'O telefone fornecido não é válido'
-            },
-            isTelefoneCustom(value) {
-                if (!/^\([1-9]{2}\) [2-9][0-9]{3,4}-[0-9]{4}$/.test(value)) {
-                    throw new Error('Formato de telefone inválido');
-                }
-            }
-        }
     },
     senha: {
         type: DataTypes.STRING,

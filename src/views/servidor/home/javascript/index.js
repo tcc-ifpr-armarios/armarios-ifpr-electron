@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalButtons = {
             "btn-add-localizacao": "../screens/localizacao/save-edit-modal-localizacao.html",
             "btn-add-servidor": "../screens/servidor/content-modal-servidor.html",
-            "btn-add-estudante": "../screens/estudante/content-modal-estudante.html",
+            "btn-add-estudante": "../screens/estudante/save-edit-modal-estudante.html",
             "btn-add-curso": "../screens/curso/content-modal-curso.html",
             "btn-add-armario": "../screens/armario/content-modal-armario.html",
             "btn-add-emprestimo": "../screens/emprestimo/content-modal-emprestimo.html",

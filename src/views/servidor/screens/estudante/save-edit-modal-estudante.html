@@ -1,0 +1,43 @@
+<div class="estudante-modal">
+    <div class="estudante-modal-header">
+        <h2>Novo Estudante</h2>
+    </div>
+    <div class="estudante-modal-content">
+        <div class="form-container">
+            <input type="hidden" id="item-id">
+            <div class="form-group-description">
+                <label for="ra">RA:</label>
+                <input type="text" name="ra-estudante" id="ra-estudante" class="form-control" required>
+
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome-estudante" id="nome-estudante" class="form-control" required>
+
+                <label for="sobrenome">Sobrenome:</label>
+                <input type="text" name="sobrenome-estudante" id="sobrenome-estudante" class="form-control" required>
+
+                <label for="email">E-mail:</label>
+                <input type="text" name="email-estudante" id="email-estudante" class="form-control" required>
+
+                
+                <label for="telefone">Telefone:</label>
+                <input type="text" name="telefone-estudante" id="telefone-estudante" class="form-control" required>
+
+                
+                <label for="senha">Senha:</label>
+                <input type="text" name="senha-estudante" id="senha-estudante" class="form-control" required>
+
+
+                <!-- Checkbox para verificar se está ativo -->
+                <div class="checkbox-side-by-side">
+                    <label for="ativo">Ativo</label>
+                    <input type="checkbox" name="ativo" id="ativo" value="1" checked>
+                </div>
+            </div>
+            <div class="form-group-buttons">
+                <div class="msg-return"></div>
+                <button class="button" type="button" onclick="salvarEstudante()" class="btn btn-primary">Salvar</button>
+                <button class="buttonCancel" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div> 

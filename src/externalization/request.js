@@ -13,6 +13,18 @@ const messages = {
     successDeletingLocation: 'Localização deletada com sucesso.',
     errorDeletingLocation: 'Erro ao deletar a localização.',
 
+    // Estudante
+    errorCreatingStudent: 'Erro ao criar estudante.',
+    duplicateDescriptionStudent: 'Descrição do estudante já existe.',
+    errorFetchingStudents: 'Erro ao buscar os Estudantes.',
+    successCreatingStudent: 'Estudante criado com sucesso.',
+    successEditingStudent: 'Estudante editado com sucesso.',
+    errorUpdatingStudent: 'Erro ao atualizar estudante.',
+    notFoundStudent: 'Estudante não encontrado.',
+    errorEditingStudent: 'Erro ao editar estudante.',
+    successDeletingStudent: 'Estudante deletado com sucesso.',
+    errorDeletingStudent: 'Erro ao deletar estudante.',
+
 
 
     // generic
