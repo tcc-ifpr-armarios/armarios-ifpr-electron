@@ -2,14 +2,20 @@ document.getElementById('cancel').addEventListener('click', function () {
     window.location.href = '../home/index.html';
 });
 
+const messages = {
+    registering: 'Cadastrando conta...',
+    alreadyRegistered: 'RA já cadastrado! Tente recuperar sua senha.',
+    error: 'Erro ao cadastrar conta. Tente novamente mais tarde.',
+    credentialError: 'RA ou senha incorretos. Tente novamente.',
+    success: 'Sucesso! Redirecionando para a página de login...'
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const telefoneInput = document.getElementById('telefone-cronos');
 
     telefoneInput.addEventListener('input', () => {
         let value = telefoneInput.value;
-
         value = value.replace(/\D/g, '');
-
 
         if (value.length <= 7) {
             telefoneInput.value = value;
@@ -20,16 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
         }
-
-        console.log(value.length);
-
-
         telefoneInput.value = value;
     });
 });
 
-
 document.getElementById('cad-form-cronos').addEventListener('submit', async function (event) {
+    document.querySelector('.msg-return').innerHTML = messages.registering;
+    document.getElementById('registerButton').disabled = true;
+
     event.preventDefault();
     const ra = document.getElementById('ra-cronos').value;
     const password = document.getElementById('password-cronos').value;
@@ -42,15 +46,28 @@ document.getElementById('cad-form-cronos').addEventListener('submit', async func
     });
 
     if (!response.ok) {
-        console.error(`HTTP error! status: ${response.status}`);
+        if (response.status === 401) {
+            document.getElementById('registerButton').disabled = false;
+            document.querySelector('.msg-return').innerHTML = messages.credentialError;
+        } else {
+            document.getElementById('registerButton').disabled = false;
+            document.querySelector('.msg-return').innerHTML = messages.error;
+        }
     } else {
         const data = await response.json();
         console.log(data);
+        if (response.status === 200) {
+            document.getElementById('registerButton').disabled = false;
+            document.querySelector('.msg-return').innerHTML = messages.alreadyRegistered;
+        } else if (response.status === 201) {
+            document.getElementById('registerButton').disabled = false;
+            document.querySelector('.msg-return').innerHTML = messages.success;
+            setTimeout(() => {
+                window.location.href = '../login/index.html';
+            }, 3000);
+        } else {
+            document.getElementById('registerButton').disabled = false;
+            document.querySelector('.msg-return').innerHTML = messages.error;
+        }
     }
-
-    const data = await response.json();
-
-    console.log(data + "Aqui no front");
-
-
 });

@@ -11,41 +11,13 @@ const externalization = require('../externalization/request');
 
 router.post('/create/login', async (req, res) => {
   const { ra, password, telefone } = req.body;
-
-  console.log("daqui eu passo ", ra, password, telefone);
-
-
   try {
     const user = await Estudante.findOne({ where: { ra } });
-    console.log(user + "já possuo user");
 
     if (user) {
-      // if (await bcrypt.compare(password, user.senha)) {
-      //   const token = jwt.sign({ sestudanteId: user.id, estudanteNome: user.nome }, secret, { expiresIn: '1h' });
-      //   res.status(200).json({ token });
-      // } else {
-      //   res.status(401).json({ error: 'Credenciais inválidas' });
-      // }
       return res.status(200).json({ message: externalization.userAlreadyExists })
     } else {
-      
-      console.log(" Reposta do cronos");
-
-      // jogar essa requisição para uma função separada
-      const response = await fetch(`${process.env.API_CRONOS}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ra: ra,
-          senha: password,
-        }),
-      });
-
-      console.log(response + " Reposta do cronos");
-
-
+      const response = await cronosRequisicao(ra, password);
       if (response.status === 401) {
         return res.status(401).json({ error: externalization.invalidCredentials });
       } else if (!response.ok) {
@@ -61,19 +33,11 @@ router.post('/create/login', async (req, res) => {
         // const curso = await buscaCursoOuCriaCurso(testeVoce);
         try {
           const curso = await buscaCursoOuCriaCurso(data.alunoTurma[0].curso);
-
-          console.log(curso + " meu curso");
           const estudante = await criaEstudante(ra, primeiroNome, nomeRestante, data.email, encriptedPassword, curso.id, telefone);
-
-          console.log(estudante + " estudantes");
           return res.status(201).json(estudante);
         } catch (innerError) {
-          console.log(innerError);
-          
           return res.status(500).json({ error: innerError.message });
         }
-
-
       };
     }
   } catch (error) {
@@ -144,7 +108,33 @@ const levenshteinMath = async (curso) => {
   }
 };
 
+const cronosRequisicao = async (ra, password) => {
+  try {
+    const response = await fetch(`${process.env.API_CRONOS}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ra: ra,
+        senha: password,
+      }),
+    });
+    return response;
+  } catch (error) {
+    throw new Error(`Erro na requisição ao Cronos: ${error.message}`);
+  }
+}
 
 
 
 module.exports = router;
+
+
+
+// if (await bcrypt.compare(password, user.senha)) {
+//   const token = jwt.sign({ sestudanteId: user.id, estudanteNome: user.nome }, secret, { expiresIn: '1h' });
+//   res.status(200).json({ token });
+// } else {
+//   res.status(401).json({ error: 'Credenciais inválidas' });
+// }
