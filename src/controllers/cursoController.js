@@ -14,11 +14,32 @@ const createCurso = async (req, res) => {
 
 
 const getCursos = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query;
+
+    const pageNumber = parseInt(page, 10);
+    const limitNumber = parseInt(limit, 10);
+    const offset = (pageNumber - 1) * limitNumber;
+
     try {
-        const cursos = await Curso.findAll();
-        res.status(200).json(cursos);
+        const { count, rows } = await Curso.findAndCountAll({
+            limit: limitNumber,
+            offset: offset,
+            order: [['nome', 'ASC']]
+        });
+
+        const totalPages = Math.ceil(count / limitNumber);
+
+        res.status(200).json({
+            data: rows,
+            pagination: {
+                totalItems: count,
+                totalPages: totalPages,
+                currentPage: pageNumber,
+                itemsPerPage: limitNumber
+            }
+        });
     } catch (error) {
-        res.status(500).json({ error: externalization.errorFetchingCourses });
+        res.status(500).json({ error: externalization.errorFetchingCourse });
     }
 };
 

@@ -18,6 +18,15 @@ router.get('/estudante/:ra', estudanteController.getEstudanteByRa);
 router.put('/estudantes/:ra', estudanteController.updateEstudante);
 router.delete('/estudantes/:ra', estudanteController.deleteEstudante);
 
+const cursoController = require('../controllers/cursoController');
+
+router.post('/cursos', cursoController.createCurso);
+router.get('/cursos', cursoController.getCursos);
+router.get('/cursos/:id', cursoController.getCursoById);
+router.put('/cursos/:id', cursoController.updateCurso);
+router.delete('/cursos/:id', cursoController.deleteCurso);
+
+
 router.get('/teste', (req, res) => {
   res.send('Teste OK');
 });

@@ -24,6 +24,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
+    "electron-suap-authentication": "file:",
     "express": "^4.19.2",
     "fast-levenshtein": "^3.0.0",
     "jsonwebtoken": "^9.0.2",
