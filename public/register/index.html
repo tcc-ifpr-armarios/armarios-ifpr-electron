@@ -15,13 +15,13 @@
         </div>
         <form id="cad-form-cronos">
             <div class="input-container">
-                <div class="text-msg" id="message">Cadastro com Cronos</div>
+                <div class="msg-return" id="message">Cadastro com Cronos</div>
                 <input type="text" id="ra-cronos" placeholder="RA" required />
+                <input type="text" id="telefone-cronos" maxlength="15" placeholder="Telefone" required />
                 <input type="password" id="password-cronos" placeholder="Senha" required />
             </div>
             <div class="buttons">
-                <button class="button" type="submit">Entrar</button>
-                
+                <button id="registerButton" class="button" type="submit">Entrar</button>
             </div>
         </form>
         <button class="buttonCancel" id="cancel" href="">Cancelar</button>
