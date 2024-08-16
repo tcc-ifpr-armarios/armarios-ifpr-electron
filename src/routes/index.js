@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 // Rotas para Localizacao
-const localizacaoController = require('../controllers/localizacaoController');
-
-router.post('/localizacoes', localizacaoController.createLocalizacao);
-router.get('/localizacoes', localizacaoController.getAllLocalizacoes);
-router.get('/localizacoes/:id', localizacaoController.getLocalizacaoById);
-router.put('/localizacoes/:id', localizacaoController.updateLocalizacao);
-router.delete('/localizacoes/:id', localizacaoController.deleteLocalizacao);
+const localizacaoService = require('../service/localizacaoService');
+router.post('/localizacoes', localizacaoService.inserir);
+router.get('/localizacoes', localizacaoService.buscarTodos);
+router.get('/localizacoes/:id', localizacaoService.buscarUnicoPorId);
+router.put('/localizacoes/:id', localizacaoService.atualizar);
+router.delete('/localizacoes/:id', localizacaoService.excluir);
 
 // rotas para estudante
 const estudanteController = require('../controllers/estudanteController');
