@@ -1,14 +1,11 @@
 // armario.js
 
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
-
-const Concessao = require('./concessao');
-const Emprestimo = require('./emprestimo');
+const { sequelize } = require('../config/database');
 const Localizacao = require('./localizacao');
 const StatusArmario = require('./statusArmario');
 
-const Armario = database.define(
+const Armario = sequelize.define(
   'Armario',
   {
     id: {

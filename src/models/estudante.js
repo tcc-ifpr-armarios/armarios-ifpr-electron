@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
+const { sequelize } = require('../config/database');
 // const Emprestimo = require('./emprestimo');
 // const Curso = require('./curso');
 
-const Estudante = database.define('Estudante', {
+const Estudante = sequelize.define('Estudante', {
     ra: {
         type: DataTypes.STRING,
         allowNull: false,

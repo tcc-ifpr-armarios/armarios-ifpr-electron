@@ -4,9 +4,10 @@
   "description": "System developed to authenticate the user on suap BR",
   "main": "./src/main/main.js",
   "scripts": {
-    "test": "jest",
-    "test:w": "jest --watchAll",
-    "start": "electron ."
+    "test": "cross-env NODE_ENV=test jest",
+    "test-w": "cross-env NODE_ENV=test jest --watchAll",
+    "start": "cross-env NODE_ENV=prod electron .",
+    "dev": "cross-env NODE_ENV=dev electron ."
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "author": "Allan Fernando Oliveira de Andrade",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "electron": "^30.0.6"
   },
   "dependencies": {

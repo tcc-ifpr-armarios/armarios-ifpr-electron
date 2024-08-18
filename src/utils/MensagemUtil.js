@@ -27,7 +27,9 @@ module.exports = class MensagemUtil {
     static CURSO_REMOVIDO = "Não foi possível realizar essa operação! Este curso já foi removido!";
     static CURSO_VINCULADO_ESTUDANTE = "Impossível excluir esse curso, pois existem estudantes vinculados a ele!";
 
-    static ERRO_CONFIGURACAO_BANCO = "Não foi possível iniciar a aplicação!\nVerifique as configurações de conexão com o Banco de Dados!";
+    static BANCO_ERRO_CONFIGURACAO = "Não foi possível iniciar a aplicação!\nVerifique as configurações de conexão com o Banco de Dados!";
+    static BANCO_SUCESSO_CONEXAO = "Banco de Dados conectado com sucesso!";
+    static BANCO_SUCESSO_CARREGAMENTO = "Banco de Dados carregado com sucesso!";
 
     static EMPRESTIMO_ARMARIO_POSSUI_EMPRESTIMO_ATIVO = "Armário possui empréstimo ativo!";
     static EMPRESTIMO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o empréstimo";

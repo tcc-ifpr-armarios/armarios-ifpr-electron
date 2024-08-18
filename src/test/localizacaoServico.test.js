@@ -4,10 +4,15 @@ const ArmarioServico = require("../service/ArmarioServico");
 const LocalizacaoServico = require("../service/LocalizacaoServico");
 const MensagemUtil = require("../utils/MensagemUtil");
 const statusArmario = require("../models/statusArmario");
+const { initModels } = require("../models");
 
 describe('Teste Localização Serviço', () => {
     const DESCRICAO = "TESTE-LOCALIZACAO-01";
     let localizacao;
+
+    beforeAll(async () => {
+        await initModels();
+    });
 
     beforeEach(() => {
         localizacao = { descricao: DESCRICAO };

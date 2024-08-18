@@ -2,9 +2,9 @@
 "use strict";
 
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
+const { sequelize } = require('../config/database');
 
-const Localizacao = database.define(
+const Localizacao = sequelize.define(
   'Localizacao',
   {
     id: {

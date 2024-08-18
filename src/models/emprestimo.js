@@ -1,11 +1,11 @@
 // emprestimo.js
 
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
+const { sequelize } = require('../config/database');
 const Estudante = require('./estudante');
 const Armario = require('./armario');
 
-const Emprestimo = database.define('Emprestimo', {
+const Emprestimo = sequelize.define('Emprestimo', {
   numero: {
     type: DataTypes.STRING,
     allowNull: false

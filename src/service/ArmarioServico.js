@@ -1,5 +1,4 @@
 const ArmarioDaoImpl = require('../dao/impl/armarioDaoImpl');
-const MensagemUtil = require('../utils/MensagemUtil');
 const armarioDao = new ArmarioDaoImpl();
 
 module.exports = class ArmarioServico {
