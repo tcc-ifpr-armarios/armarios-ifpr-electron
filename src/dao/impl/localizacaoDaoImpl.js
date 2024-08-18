@@ -53,7 +53,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
 
       return { count, rows };
     } catch (error) {
-      throw new Error('Erro ao buscar localizações paginadas');
+      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
     }
   }
 
@@ -102,11 +102,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
       const novaLocalizacao = await Localizacao.create(localizacao);
       return novaLocalizacao;
     } catch (error) {
-      console.log(error);
-      if (error.name === 'SequelizeUniqueConstraintError' && error.parent && error.parent.code === '23505') {
-        throw new Error('Descrição duplicada');
-      }
-      throw new Error('Erro ao criar localização');
+      throw new Error(MensagemUtil.LOCALIZACAO_INSERCAO_ERRO_PADRAO);
     }
   }
 }

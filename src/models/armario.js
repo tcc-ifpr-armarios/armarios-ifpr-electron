@@ -38,6 +38,7 @@ const Armario = database.define(
 Armario.belongsTo(Localizacao, {
   as: 'localizacao',
   foreignKey: {
+    name: 'idLocalizacao',     // Nome da chave estrangeira no Sequelize
     field: 'id_localizacao', // Nome da coluna no banco de dados
     allowNull: false         // A chave estrangeira não pode ser NULL
   },

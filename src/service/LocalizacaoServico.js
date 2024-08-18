@@ -1,4 +1,5 @@
 "use strict";
+const ArmarioDaoImpl = require('../dao/impl/armarioDaoImpl');
 const LocalizacaoDaoImpl = require('../dao/impl/localizacaoDaoImpl');
 const LocalizacaoException = require('../excecoes/LocalizacaoException');
 const externalization = require('../externalization/request');
@@ -29,6 +30,7 @@ module.exports = class LocalizacaoServico {
 
   static async excluir(localizacao) {
     await this.verificaSeFoiRemovido(localizacao);
+    await this.verificaSeExistemVinculos(localizacao);
     return await localizacaoDao.excluir(localizacao);
   }
 
@@ -52,6 +54,14 @@ module.exports = class LocalizacaoServico {
     let l = await localizacaoDao.buscarUnicoPorId(localizacao.id);
     if (l == null) {
       throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_REMOVIDA);
+    }
+  }
+
+  static async verificaSeExistemVinculos(localizacao) {
+    let armarioDao = new ArmarioDaoImpl();
+    let a = await armarioDao.buscarTodosPorIdLocalizacao(localizacao.id);
+    if (a && a.length > 0) {
+      throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_VINCULADA_ARMARIO);
     }
   }
 

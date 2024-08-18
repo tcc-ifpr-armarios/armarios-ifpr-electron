@@ -2,6 +2,8 @@
 
 const LocalizacaoException = require("../excecoes/LocalizacaoException");
 const Localizacao = require("../models/localizacao");
+const statusArmario = require("../models/statusArmario");
+const ArmarioServico = require("../service/ArmarioServico");
 const LocalizacaoServico = require("../service/LocalizacaoServico");
 const MensagemUtil = require("../utils/MensagemUtil");
 
@@ -174,6 +176,19 @@ describe('Teste Localização Serviço', () => {
     });
 
     test('Não deve excluir localização vinculada a um armário', async () => {
-        // TODO
+        let armario = { numero: 'TESTE-LOCALIZACAO', status: statusArmario.ATIVO };
+        let message = '';
+
+        try {
+            localizacao = await LocalizacaoServico.inserir(localizacao);
+            armario.idLocalizacao = localizacao.id;
+            armario = await ArmarioServico.inserir(armario);
+            await LocalizacaoServico.excluir(localizacao);
+        } catch (error) {
+            message = error.message;
+        }
+
+        expect(message).toBe(MensagemUtil.LOCALIZACAO_VINCULADA_ARMARIO);
+        await ArmarioServico.excluir(armario);
     });
 });
