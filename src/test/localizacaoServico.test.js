@@ -5,6 +5,7 @@ const LocalizacaoServico = require("../service/LocalizacaoServico");
 const MensagemUtil = require("../utils/MensagemUtil");
 const statusArmario = require("../models/statusArmario");
 const { initModels } = require("../models");
+const { sequelize } = require('../config/database');
 
 describe('Teste Localização Serviço', () => {
     const DESCRICAO = "TESTE-LOCALIZACAO-01";
@@ -19,19 +20,8 @@ describe('Teste Localização Serviço', () => {
     });
 
     afterEach(async () => {
-        if (localizacao) {
-            if (localizacao.id > 0) {
-                let l = await LocalizacaoServico.buscarUnicoPorId(localizacao.id);
-                if (l != null) {
-                    await LocalizacaoServico.excluir(l);
-                }
-            } else {
-                let l = await LocalizacaoServico.buscarUnicoPorDescricaoExata(localizacao.descricao);
-                if (l != null) {
-                    await LocalizacaoServico.excluir(l);
-                }
-            }
-        }
+        // Remove todos os dados do banco de dados após cada teste
+        await sequelize.truncate({ cascade: true });
     });
 
     test('Deve inserir uma nova localização', async () => {
