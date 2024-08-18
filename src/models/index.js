@@ -1,4 +1,4 @@
-const { sequelize, envConfig } = require('../config/database');
+const { sequelize } = require('../config/database');
 const Localizacao = require('./localizacao');
 const Curso = require('./curso');
 const Armario = require('./armario');

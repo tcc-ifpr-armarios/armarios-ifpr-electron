@@ -78,12 +78,12 @@ module.exports = class LocalizacaoServico {
     const totalPaginas = Math.ceil(count / itensPorPagina);
 
     return {
-      dados: rows,
-      paginacao: {
-        totalItens: count,
-        totalPaginas: totalPaginas,
-        numeroPagina: numeroPagina,
-        itensPorPagina: itensPorPagina
+      data: rows,
+      pagination: {
+        totalItems: count,
+        totalPages: totalPaginas,
+        currentPage: numeroPagina,
+        itemsPerPage: itensPorPagina
       }
     };
   }

@@ -198,9 +198,9 @@ describe('Teste Localização Serviço', () => {
     test('Buscar todos com paginação', async () => {
         localizacao = await LocalizacaoServico.inserir(localizacao);
         let r = await LocalizacaoServico.buscarTodosPaginado(1, 10);
-        expect(r.paginacao.totalItens).toBeGreaterThan(0);
-        expect(r.paginacao.numeroPagina).toBe(1);
-        expect(r.dados.length).toBeGreaterThan(0);
-        expect(r.dados.length).toBeLessThan(10);
+        expect(r.pagination.totalItems).toBeGreaterThan(0);
+        expect(r.pagination.currentPage).toBe(1);
+        expect(r.data.length).toBeGreaterThan(0);
+        expect(r.data.length).toBeLessThan(10);
     });
 });

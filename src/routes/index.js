@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 // Rotas para Localizacao
 const LocalizacaoControle = require('../controllers/LocalizacaoControle');
 router.post('/localizacoes', LocalizacaoControle.inserir);
-router.get('/localizacoes', LocalizacaoControle.buscarTodos);
+router.get('/localizacoes', LocalizacaoControle.buscarTodosPaginado);
 router.get('/localizacoes/:id', LocalizacaoControle.buscarUnicoPorId);
 router.put('/localizacoes/:id', LocalizacaoControle.atualizar);
 router.delete('/localizacoes/:id', LocalizacaoControle.excluir);

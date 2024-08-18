@@ -7,7 +7,8 @@
     "test": "cross-env NODE_ENV=test jest",
     "test-w": "cross-env NODE_ENV=test jest --watchAll",
     "start": "cross-env NODE_ENV=prod electron .",
-    "dev": "cross-env NODE_ENV=dev electron ."
+    "dev": "cross-env NODE_ENV=dev electron .",
+    "dev:nodemon": "nodemon --watch main.js --exec npm start"
   },
   "repository": {
     "type": "git",
