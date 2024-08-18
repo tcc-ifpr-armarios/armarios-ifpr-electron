@@ -82,6 +82,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
         id: { [Op.not]: idLocalizacao },
       }
     });
+    return resultado;
   }
 
   async excluir(localizacao) {
@@ -101,7 +102,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
       const novaLocalizacao = await Localizacao.create(localizacao);
       return novaLocalizacao;
     } catch (error) {
-      console.log(error.errors);
+      console.log(error);
       if (error.name === 'SequelizeUniqueConstraintError' && error.parent && error.parent.code === '23505') {
         throw new Error('Descrição duplicada');
       }

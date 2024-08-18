@@ -117,7 +117,7 @@ describe('Teste Localização Serviço', () => {
 
     test('Deve atualizar a localização com o id inserido', async () => {
         localizacao = await LocalizacaoServico.inserir(localizacao);
-        localizacao.descricao = DESCRICAO + "atualizada";
+        localizacao.descricao = DESCRICAO + " atualizada";
         localizacao.ativo = false;
         await LocalizacaoServico.atualizar(localizacao);
         let l = await LocalizacaoServico.buscarUnicoPorId(localizacao.id);
@@ -158,7 +158,19 @@ describe('Teste Localização Serviço', () => {
     });
 
     test('Não deve atualizar para descrição duplicada', async () => {
-        // TODO
+        localizacao = await LocalizacaoServico.inserir(localizacao);
+        let localizacaoDuplicada = { descricao: DESCRICAO + " duplicada" };
+        localizacaoDuplicada = await LocalizacaoServico.inserir(localizacaoDuplicada);
+
+        let message = '';
+        try {
+            localizacaoDuplicada.descricao = localizacao.descricao;
+            await LocalizacaoServico.atualizar(localizacaoDuplicada);
+        } catch (error) {
+            message = error.message;
+        }
+        await LocalizacaoServico.excluir(localizacaoDuplicada);
+        expect(message).toBe(MensagemUtil.LOCALIZACAO_DESCRICAO_DUPLICADA);
     });
 
     test('Não deve excluir localização vinculada a um armário', async () => {
