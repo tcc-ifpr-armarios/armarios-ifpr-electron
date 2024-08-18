@@ -12,6 +12,10 @@ class LocalizacaoDao {
     throw new Error('Método buscarTodos() deve ser implementado');
   }
 
+  buscarTodosPaginado(numeroPagina, itensPorPagina) {
+    throw new Error('Método buscarTodosPaginado() deve ser implementado');
+  }
+
   buscarUnicoPorId(idLocalizacao) {
     throw new Error('Método buscarUnicoPorId() deve ser implementado');
   }
