@@ -72,6 +72,21 @@ module.exports = class LocalizacaoServico {
   static async buscarAtivos() {
     return await localizacaoDao.buscarAtivos();
   }
+
+  static async buscarTodosPaginado(numeroPagina, itensPorPagina) {
+    const { count, rows } = await localizacaoDao.buscarTodosPaginado(numeroPagina, itensPorPagina);
+    const totalPaginas = Math.ceil(count / itensPorPagina);
+
+    return {
+      dados: rows,
+      paginacao: {
+        totalItens: count,
+        totalPaginas: totalPaginas,
+        numeroPagina: numeroPagina,
+        itensPorPagina: itensPorPagina
+      }
+    };
+  }
 };
 /*
 const inserir = async (req, res) => {

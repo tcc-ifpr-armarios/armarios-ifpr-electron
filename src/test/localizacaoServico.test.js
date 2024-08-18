@@ -1,11 +1,9 @@
 "use strict";
 
-const LocalizacaoException = require("../excecoes/LocalizacaoException");
-const Localizacao = require("../models/localizacao");
-const statusArmario = require("../models/statusArmario");
 const ArmarioServico = require("../service/ArmarioServico");
 const LocalizacaoServico = require("../service/LocalizacaoServico");
 const MensagemUtil = require("../utils/MensagemUtil");
+const statusArmario = require("../models/statusArmario");
 
 describe('Teste Localização Serviço', () => {
     const DESCRICAO = "TESTE-LOCALIZACAO-01";
@@ -190,5 +188,14 @@ describe('Teste Localização Serviço', () => {
 
         expect(message).toBe(MensagemUtil.LOCALIZACAO_VINCULADA_ARMARIO);
         await ArmarioServico.excluir(armario);
+    });
+
+    test('Buscar todos com paginação', async () => {
+        localizacao = await LocalizacaoServico.inserir(localizacao);
+        let r = await LocalizacaoServico.buscarTodosPaginado(1, 10);
+        expect(r.paginacao.totalItens).toBeGreaterThan(0);
+        expect(r.paginacao.numeroPagina).toBe(1);
+        expect(r.dados.length).toBeGreaterThan(0);
+        expect(r.dados.length).toBeLessThan(10);
     });
 });
