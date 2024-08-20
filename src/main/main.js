@@ -43,6 +43,7 @@ app.on('ready', async () => {
   server.use('/api/public/server', rotasPublicasServidor);
   server.use('/api/public/student', rotasPublicasEstudante);
   server.use('/api/secure/server', authMiddleware, rotasSeguras);
+  server.use('/api/secure/student', authMiddleware, rotasSeguras);
 
   // Escutando apenas em localhost para segurança
   server.listen(3000, '127.0.0.1', () => {

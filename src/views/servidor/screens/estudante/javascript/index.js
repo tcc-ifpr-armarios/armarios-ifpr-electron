@@ -1,4 +1,5 @@
 
+const apiURLEstudante = process.env.API_SECURE_STUDENT;
 
 const messagesEstudante = {
     saving: 'Salvando...',
@@ -57,7 +58,7 @@ async function salvarEstudante() {
     try {
         let response;
         if (id) {
-            response = await fetch(`${apiUrl}/estudantes/${id}`, {
+            response = await fetch(`${apiURLEstudante}/estudantes/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -66,6 +67,7 @@ async function salvarEstudante() {
                 body: JSON.stringify({
                     ra: ra,
                     nome: nome,
+
                     sobrenome: sobrenome,
                     emial: email,
                     telefone: telefone,
@@ -74,7 +76,7 @@ async function salvarEstudante() {
                 })
             });
         } else {
-            response = await fetch(`${apiUrl}/estudantes`, {
+            response = await fetch(`${apiURLEstudante}/estudantes`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,10 +86,10 @@ async function salvarEstudante() {
                     ra: ra,
                     nome: nome,
                     sobrenome: sobrenome,
-                    emial: email,
+                    email: email,
+                    ativo: ativo,
                     telefone: telefone,
-                    senha: senha,
-                    ativo: ativo
+                    senha: senha
                 })
             });
         }
@@ -152,7 +154,7 @@ async function getEstudantes(page, limitEstudante) {
     }
 
     try {
-        const response = await fetch(`${apiUrl}/estudantes?page=${page}&limitEstudante=${limitEstudante}`, {
+        const response = await fetch(`${apiURLEstudante}/estudantes?page=${page}&limitEstudante=${limitEstudante}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -216,7 +218,11 @@ async function getEstudantes(page, limitEstudante) {
 
                 acoesCell.appendChild(actionContainer);
 
-                row.appendChild(descricaoCell);
+                row.appendChild(raCell);
+                row.appendChild(nomeCell);
+                row.appendChild(sobrenomeCell);
+                row.appendChild(emailCell);
+                row.appendChild(telefoneCell);
                 row.appendChild(ativoCell);
                 row.appendChild(acoesCell);
                 tbody.appendChild(row);
@@ -240,7 +246,11 @@ function editItem(item) {
         .then(response => response.text())
         .then(data => {
             document.querySelector(".modal-dinamic-content").innerHTML = data;
-            document.querySelector('#nome-estudante').value = item.descricao;
+            document.querySelector('#ra-estudante').value = item.ra;
+            document.querySelector('#nome-estudante').value = item.nome;
+            document.querySelector('#sobrenome-estudante').value = item.sobrenome;
+            document.querySelector('#email-estudante').value = item.email;
+            document.querySelector('#telefone-estudante').value = item.telefone;
             document.querySelector('#ativo').checked = item.ativo;
             document.querySelector("#item-id").value = item.id;
 
@@ -268,7 +278,7 @@ async function deleteItem() {
 
     try {
         if (id) {
-            const response = await fetch(`${apiUrl}/estudantes/${id}`, {
+            const response = await fetch(`${apiURLEstudante}/estudantes/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
