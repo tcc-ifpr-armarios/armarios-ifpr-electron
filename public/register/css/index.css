@@ -1,7 +1,5 @@
-/* index.css */
-
 body {
-    font-family: 'Segoe UI';
+    font-family: Arial, sans-serif;
     background-color: #1A5724;
     display: flex;
     justify-content: center;
@@ -9,7 +7,6 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-
 }
 
 .content {
@@ -22,11 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-}
-
-h1 {
-    color: #333;
+    justify-content: space-around;
 }
 
 .logo {
@@ -46,7 +39,7 @@ h1 {
     background-color: #ffffff;
     color: #1A5724;
     border: 2px solid #1A5724;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
@@ -54,8 +47,43 @@ h1 {
     transition: all 0.3s ease;
     text-align: center;
     text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
-    width: 70%;
+    display: block; /* Alterado para block para ocupar a largura total */
+    width: 100%;
+    margin-bottom: 10px; /* Aumentado o espaço abaixo do botão */
+}
+
+.button {
+    background-color: #ffffff;
+    color: #747474;
+    border: 2px solid #747474;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.buttonCancel {
+    background-color: #ffffff;
+    margin-top: -10px;
+    color: #747474;
+    border: 2px solid #747474;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;  
+    display: inline-block;  
+    width: 100%;
 }
 
 .button:hover {
@@ -65,45 +93,6 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
 }
 
-.buttonConfirm {
-    background-color: #ffffff;
-    color: #1A5724;
-    border: 2px solid #1A5724;
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
-    width: 100%;
-}
-
-.buttonConfirm:hover {
-    background-color: #1A5724;
-    color: #ffffff;
-    border-color: #1A5724;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
-}
-
-.buttonCancel {
-    background-color: #ffffff;
-    color: #ac1616;
-    border: 2px solid #ac1616;
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    text-decoration: none; /* Remove underline if it's an anchor */
-    display: inline-block; /* Ensures proper sizing for anchor elements */
-    width: 100%;
-}
-
 .buttonCancel:hover {
     background-color: #ac1616;
     color: #ffffff;
@@ -111,8 +100,44 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
 }
 
+
+.register {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    border: none;
+    text-decoration: underline;
+    background-color: #ffffff;
+    margin-top: 10px; /* Espaço acima do link de registro */
+}
+
+.input-container {
+    width: 100%;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
 p {
     font-size: 16px;
     line-height: 1.5;
     color: #666;
+}
+
+
+.text-msg{
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
 }
