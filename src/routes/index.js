@@ -11,14 +11,15 @@ router.put('/localizacoes/:id', localizacaoService.atualizar);
 router.delete('/localizacoes/:id', localizacaoService.excluir);
 
 // rotas para estudante
-const estudanteController = require('../controllers/estudanteController');
+const estudanteController = require('../service/estudanteService');
 
 // Rotas para Estudante
-router.post('/estudantes', estudanteController.createEstudante);
-router.get('/estudantes', estudanteController.getAllEstudantes);
-router.get('/estudantes/:id', estudanteController.getEstudanteById);
-router.put('/estudantes/:id', estudanteController.updateEstudante);
-router.delete('/estudantes/:id', estudanteController.deleteEstudante);
+router.post('/estudantes', estudanteController.inserir);
+router.get('/estudantes', estudanteController.buscarTodos);
+router.get('/estudantes/:id', estudanteController.buscarUnicoPorId);
+router.get('/estudantes/:id', estudanteController.buscarUnicoPorRa);
+router.put('/estudantes/:id', estudanteController.atualizar);
+router.delete('/estudantes/:id', estudanteController.excluir);
 
 router.get('/teste', (req, res) => {
   res.send('Teste OK');
