@@ -1,10 +1,10 @@
 // servidor.js
 
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
+const { sequelize } = require('../config/database');
 //const Concessao = require('./concessao');
 
-const Servidor = database.define('Servidor', {
+const Servidor = sequelize.define('Servidor', {
     nome: {
         type: DataTypes.STRING,
         allowNull: false

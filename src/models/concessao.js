@@ -1,11 +1,11 @@
 // concessao.js
 
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
+const { sequelize } = require('../config/database');
 const Servidor = require('./servidor');
 const Armario = require('./armario');
 
-const Concessao = database.define('Concessao', {
+const Concessao = sequelize.define('Concessao', {
   descricao: {
     type: DataTypes.STRING,
     allowNull: false

@@ -1,5 +1,5 @@
 
-const apiUrl = process.env.API_SECURE_SERVER; 
+const apiUrl = process.env.API_SECURE_SERVER;
 
 const messages = {
     saving: 'Salvando...',
@@ -129,6 +129,8 @@ async function getLocalizacoes(page, limit) {
         });
 
         const data = await response.json();
+
+        console.log('Resposta:', data);
 
         if (!response.ok) {
             if (response.status === 400) {

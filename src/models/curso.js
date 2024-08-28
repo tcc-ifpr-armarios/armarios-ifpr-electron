@@ -1,8 +1,8 @@
 // Curso.js
 
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
-const Curso = database.define('Curso', {
+const { sequelize } = require('../config/database');
+const Curso = sequelize.define('Curso', {
   nome: {
     type: DataTypes.STRING,
     allowNull: false,

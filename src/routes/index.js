@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const localizacaoController = require('../controllers/localizacaoController');
 
 // Rotas para Localizacao
 const localizacaoService = require('../service/localizacaoService');
