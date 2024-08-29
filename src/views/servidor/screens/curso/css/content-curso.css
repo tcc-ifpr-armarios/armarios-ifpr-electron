@@ -1,12 +1,12 @@
-/* ======================== CSS DE LOCALIZAÇÂO ============================= */
+/* ======================== CSS DE curso ============================= */
 
-.localizacao-modal { 
+.curso-modal { 
     background-color: #108600;
     width: 450px;
     height: 450px;
 }
 
-.localizacao-modal-header {
+.curso-modal-header {
     background-color: #108600;
     color: #ffffff;
     font-size: 18px;
@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.localizacao-modal-content {
+.curso-modal-content {
     background-color: #f2f2f2;
     color: #000000;
     font-size: 18px;
@@ -72,7 +72,7 @@
     padding: 5px 0; /* Adiciona padding vertical aos itens dentro de .form-group-description */
 }
 
-/* ======================== CSS DE LOCALIZAÇÂO ============================= */
+/* ======================== CSS DE curso ============================= */
 
 .curso-body{
     display: flex;
@@ -85,7 +85,7 @@
 
 /*============================== CSS DE MODAL DE EXCLUSAO ÇLOCALIZACAO =============================*/
 
-.localizacao-modal-content-exclude{
+.curso-modal-content-exclude{
     
     color: #000000;
     font-size: 18px;

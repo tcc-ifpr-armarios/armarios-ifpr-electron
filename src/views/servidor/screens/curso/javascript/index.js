@@ -1,5 +1,5 @@
 
-const apiUrll = process.env.API_SECURE_SERVER; 
+const apiSecureUrl = process.env.API_SECURE_SERVER; 
 
 const messages = {
     saving: 'Salvando...',
@@ -8,15 +8,15 @@ const messages = {
     unknownError: 'Erro desconhecido'
 };
 
-async function salvarLocalizacao() {
+async function salvarCurso() {
     document.querySelector('.msg-return').innerHTML = messages.saving;
     document.querySelector('.button').setAttribute('disabled', 'disabled');
 
-    const descricao = document.querySelector('#nome-localizacao').value;
+    const nome = document.querySelector('#nome-curso').value;
     const ativo = document.querySelector('#ativo').checked ? 1 : 0;
     const id = document.querySelector("#item-id").value;
 
-    if (descricao === '') {
+    if (nome === '') {
         document.querySelector('.msg-return').innerHTML = messages.descriptionRequired;
         document.querySelector('.button').removeAttribute('disabled');
         return;
@@ -35,26 +35,26 @@ async function salvarLocalizacao() {
     try {
         let response;
         if (id) {
-            response = await fetch(`${apiUrll}/localizacoes/${id}`, {
+            response = await fetch(`${apiSecureUrl}/cursos/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
                 },
                 body: JSON.stringify({
-                    descricao: descricao,
+                    nome: nome,
                     ativo: ativo
                 })
             });
         } else {
-            response = await fetch(`${apiUrll}/localizacoes`, {
+            response = await fetch(`${apiSecureUrl}/cursos`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': token
                 },
                 body: JSON.stringify({
-                    descricao: descricao,
+                    nome: nome,
                     ativo: ativo
                 })
             });
@@ -118,7 +118,7 @@ async function getCursos(page, limit) {
     }
 
     try {
-        const response = await fetch(`${apiUrll}/cursos?page=${page}&limit=${limit}`, {
+        const response = await fetch(`${apiSecureUrl}/cursos?page=${page}&limit=${limit}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -143,8 +143,8 @@ async function getCursos(page, limit) {
             tbody.innerHTML = '';
             data.data.forEach(item => {
                 const row = document.createElement('tr');
-                const descricaoCell = document.createElement('td');
-                descricaoCell.textContent = item.nome;
+                const nomeCell = document.createElement('td');
+                nomeCell.textContent = item.nome;
                 const ativoCell = document.createElement('td');
                 ativoCell.textContent = item.ativo ? 'Sim' : 'Não';
                 const acoesCell = document.createElement('td');
@@ -174,7 +174,7 @@ async function getCursos(page, limit) {
 
                 acoesCell.appendChild(actionContainer);
 
-                row.appendChild(descricaoCell);
+                row.appendChild(nomeCell);
                 row.appendChild(ativoCell);
                 row.appendChild(acoesCell);
                 tbody.appendChild(row);
@@ -191,14 +191,15 @@ async function getCursos(page, limit) {
 // edição de localização
 
 function editItem(item) {
-    const editModal = { "url": "../screens/localizacao/save-edit-modal-localizacao.html" };
+    const editModal = { "url": "../screens/curso/save-edit-modal-curso.html" };
     openModal();
-
+    console.log('Editando:', item);
+    
     fetch(editModal.url)
         .then(response => response.text())
         .then(data => {
             document.querySelector(".modal-dinamic-content").innerHTML = data;
-            document.querySelector('#nome-localizacao').value = item.descricao;
+            document.querySelector('#nome-curso').value = item.nome;
             document.querySelector('#ativo').checked = item.ativo;
             document.querySelector("#item-id").value = item.id;
 
@@ -226,7 +227,7 @@ async function deleteItem() {
 
     try {
         if (id) {
-            const response = await fetch(`${apiUrll}/localizacoes/${id}`, {
+            const response = await fetch(`${apiSecureUrl}/cursos/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -258,7 +259,7 @@ async function deleteItem() {
 }
 
 function confirmDelete(item) {
-    const deleteModal = { "url": "../screens/localizacao/exclude-confirm-modal-localizacao.html" };
+    const deleteModal = { "url": "../screens/curso/exclude-confirm-modal-curso.html" };
     openModal();
 
     fetch(deleteModal.url)
@@ -266,7 +267,7 @@ function confirmDelete(item) {
         .then(data => {
             document.querySelector(".modal-dinamic-content").innerHTML = data;
             document.querySelector("#item-id").value = item.id;
-            document.querySelector(".nome-localizacao").textContent = item.descricao;
+            document.querySelector(".nome-curso").textContent = item.nome;
             addCloseModalEvent();
         })
 }

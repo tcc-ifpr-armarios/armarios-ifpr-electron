@@ -18,12 +18,13 @@ router.put('/estudantes/:ra', estudanteController.updateEstudante);
 router.delete('/estudantes/:ra', estudanteController.deleteEstudante);
 
 const cursoController = require('../controllers/cursoController');
+const cursoService = require('../service/cursoService');
 
-router.post('/cursos', cursoController.createCurso);
-router.get('/cursos', cursoController.getCursos);
-router.get('/cursos/:id', cursoController.getCursoById);
-router.put('/cursos/:id', cursoController.updateCurso);
-router.delete('/cursos/:id', cursoController.deleteCurso);
+router.post('/cursos', cursoService.inserir);
+router.get('/cursos', cursoService.buscarTodos);
+router.get('/cursos/:id', cursoService.buscarUnicoPorId);
+router.put('/cursos/:id', cursoService.atualizar);
+router.delete('/cursos/:id', cursoService.excluir);
 
 
 router.get('/teste', (req, res) => {
