@@ -1,44 +1,40 @@
-// armario.js
-
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../config/database');
-const Localizacao = require('./localizacao');
-const StatusArmario = require('./statusArmario');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database').sequelize; // Ajuste o caminho para o seu arquivo de configuração do Sequelize
+const Localizacao = require('./localizacao'); // Ajuste o caminho para o modelo Localizacao
+const StatusArmario = require('./statusArmario'); // Ajuste o caminho para a enumeração StatusArmario, se necessário
 
 const Armario = sequelize.define(
-  'Armario',
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      field: 'id_armario',
-    },
-    numero: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    status: {
-      type: DataTypes.ENUM,
-      values: Object.values(StatusArmario),
-      allowNull: false,
-      defaultValue: StatusArmario.ATIVO
-    },
+  'Armario',{
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    field: 'id_armario'
   },
-  {
-    tableName: 'tb_armario',
-    timestamps: false,
+  numero: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: 'numero'
   },
-);
+  status: {
+    type: DataTypes.ENUM(...Object.values(StatusArmario)),
+    allowNull: false,
+    defaultValue: 'ATIVO',
+    field: 'status'
+  }
+}, {
+  sequelize,
+  modelName: 'Armario',
+  tableName: 'tb_armario',
+  timestamps: false
+});
 
+// Definição das associações
 Armario.belongsTo(Localizacao, {
-  as: 'localizacao',
   foreignKey: {
-    name: 'idLocalizacao',     // Nome da chave estrangeira no Sequelize
-    field: 'id_localizacao', // Nome da coluna no banco de dados
-    allowNull: false         // A chave estrangeira não pode ser NULL
-  },
+    name: 'id_localizacao',
+    allowNull: false
+  }
 });
 
 module.exports = Armario;
