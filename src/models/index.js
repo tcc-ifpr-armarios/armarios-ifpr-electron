@@ -27,7 +27,7 @@ const initModels = async () => {
         await sequelize.authenticate();
         console.log(MensagemUtil.BANCO_SUCESSO_CONEXAO);
         // await sequelize.sync(); com essa linha criamos as tabelas no banco de dados
-        await sequelize.sync({ force: false, alter: false })
+        await sequelize.sync()
         console.log(MensagemUtil.BANCO_SUCESSO_CARREGAMENTO);
     } catch (error) {
         console.error(MensagemUtil.BANCO_ERRO_CONFIGURACAO, error);

@@ -63,6 +63,7 @@ module.exports = class MensagemUtil {
     static ESTUDANTE_RA_DUPLICADO = "Ra já cadastrado";
     static ESTUDANTE_REMOVIDO = "Não foi possível realizar essa operação! Este estudante já foi removido!";
     static ESTUDANTE_VINCULADO_EMPRESTIMO = "Impossível excluir esse estudante, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+    static ESTUDANTE_RA_DUPLICADA = "Ra do estudante duplicado";
 
     static LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
     static LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";
