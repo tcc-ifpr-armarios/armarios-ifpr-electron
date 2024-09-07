@@ -108,4 +108,7 @@ module.exports = class MensagemUtil {
     static TITULO_AREA_SERVIDORES = "Gerenciamento de Servidores";
     static TITULO_AREA_SISTEMA = "Gerenciamento do Sistema";
     static TITULO_SISTEMA = "Sistema de Gestão de Armários";
+
+
+    static INTERNAL_SERVER_ERROR = "Erro interno do servidor";
 }

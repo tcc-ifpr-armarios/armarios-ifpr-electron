@@ -4,6 +4,8 @@ document.getElementById('login-form').addEventListener('submit', async function 
     const siape = document.getElementById('login-siape').value;
     const password = document.getElementById('login-password').value;
 
+    console.log(siape, password);
+    
     const response = await fetch(`${process.env.API_PUBLIC_SERVER}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
