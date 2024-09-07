@@ -1,28 +1,40 @@
-// armario.js
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/database').sequelize; // Ajuste o caminho para o seu arquivo de configuração do Sequelize
+const Localizacao = require('./localizacao'); // Ajuste o caminho para o modelo Localizacao
+const StatusArmario = require('./statusArmario'); // Ajuste o caminho para a enumeração StatusArmario, se necessário
 
-const { DataTypes } = require('sequelize');
-const database = require('../config/database');
-
-const Concessao = require('./concessao');
-const Emprestimo = require('./emprestimo');
-const Localizacao = require('./localizacao');
-
-const Armario = database.define('Armario', {
+const Armario = sequelize.define(
+  'Armario',{
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    field: 'id_armario'
+  },
   numero: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
+    field: 'numero'
   },
   status: {
-    type: DataTypes.ENUM('ATIVO', 'INATIVO', 'EM_MANUTENCAO', 'OCUPADO'),
+    type: DataTypes.ENUM(...Object.values(StatusArmario)),
     allowNull: false,
-    defaultValue: 'ATIVO'
-  },
-  
+    defaultValue: 'ATIVO',
+    field: 'status'
+  }
+}, {
+  sequelize,
+  modelName: 'Armario',
+  tableName: 'tb_armario',
+  timestamps: false
 });
 
-// Armario.belongsTo(Localizacao, { as: 'localizacao' });
-// Armario.hasMany(Emprestimo, { as: 'emprestimos' });
-// Armario.hasMany(Concessao, { as: 'concessoes' });
+// Definição das associações
+Armario.belongsTo(Localizacao, {
+  foreignKey: {
+    name: 'id_localizacao',
+    allowNull: false
+  }
+});
 
 module.exports = Armario;

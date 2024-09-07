@@ -1,13 +1,7 @@
-const bcrypt = require('bcrypt');
+const { converteSenhaParaSha256Hex } = require("./src/utils/autenticacaoUtil");
 
-async function generateHash(password) {
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
-  } catch (error) {
-    console.error(error);
-  }
-}
+const senha = '123456';
 
-// Gera o hash para a senha "123456"
-generateHash('123456');
+const senhaCriptografada = converteSenhaParaSha256Hex(senha);
+
+console.log(senhaCriptografada);

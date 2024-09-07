@@ -1,25 +1,41 @@
-// emprestimo.js
+"use strict";
 
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
-const Estudante = require('./estudante');
+const sequelize = require('../config/database').sequelize; 
+const Estudante = require('./estudante'); 
 const Armario = require('./armario');
 
-const Emprestimo = database.define('Emprestimo', {
-  numero: {
-    type: DataTypes.STRING,
-    allowNull: false
+const Emprestimo = sequelize.define(
+  'Emprestimo',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      field: 'id_emprestimo',
+    },
+    dataEmprestimo: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+      field: 'data_emprestimo',
+    },
+    dataDevolucao: {
+      type: DataTypes.DATE,
+      field: 'data_devolucao',
+      allowNull: true,
+    },
   },
-  data_devolucao: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  data_emprestimo: {
-    type: DataTypes.DATE,
-    allowNull: false
+  {
+    sequelize,
+    modelName: 'Emprestimo',
+    tableName: 'tb_emprestimo',
+    timestamps: false,
   }
-});
+);
 
+Emprestimo.belongsTo(Estudante, { foreignKey: 'id_estudante', allowNull: false });
+Emprestimo.belongsTo(Armario, { foreignKey: 'id_armario', allowNull: false });
 
 
 module.exports = Emprestimo;

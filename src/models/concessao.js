@@ -1,23 +1,50 @@
-// concessao.js
-
 const { DataTypes } = require('sequelize');
-const database = require('../config/database');
-const Servidor = require('./servidor');
-const Armario = require('./armario');
+const sequelize = require('../config/database').sequelize; // Ajuste o caminho para o seu arquivo de configuração do Sequelize
+const Servidor = require('./servidor'); // Ajuste o caminho para o modelo Servidor
+const Armario = require('./armario'); // Ajuste o caminho para o modelo Armario
 
-const Concessao = database.define('Concessao', {
-  descricao: {
-    type: DataTypes.STRING,
-    allowNull: false
+const Concessao = sequelize.define(
+  'Concessao',{
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    field: 'id_concessao'
   },
-  ativo: {
-    type: DataTypes.BOOLEAN,
+  descricao: {
+    type: DataTypes.STRING(100),
+    field: 'descricao'
+  },
+  dataConcessao: {
+    type: DataTypes.DATE,
+    field: 'data_concessao',
+    defaultValue: DataTypes.NOW
+  },
+  dataDevolucao: {
+    type: DataTypes.DATE,
+    field: 'data_devolucao',
+    allowNull: true
+  }
+}, {
+  sequelize,
+  modelName: 'Concessao',
+  tableName: 'tb_concessao',
+  timestamps: false
+});
+
+// Definição das associações
+Concessao.belongsTo(Servidor, {
+  foreignKey: {
+    name: 'id_servidor',
     allowNull: false
   }
 });
 
-
-// Concessao.belongsTo(Servidor, { as: 'servidor' });
-// Concessao.belongsTo(Armario, { as: 'armario' });
+Concessao.belongsTo(Armario, {
+  foreignKey: {
+    name: 'id_armario',
+    allowNull: false
+  }
+});
 
 module.exports = Concessao;

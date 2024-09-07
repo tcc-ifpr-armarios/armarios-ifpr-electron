@@ -1,0 +1,1 @@
+GET localhost:3000/localizacao HTTP/1.1
