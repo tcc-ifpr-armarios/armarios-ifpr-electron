@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const MensagemUtil = require('../utils/MensagemUtil');
+const MensagemUtil = require('../utils/mensagemUtil');
 const { verificaAdm } = require('../service/loginService');
 require('dotenv').config();
 

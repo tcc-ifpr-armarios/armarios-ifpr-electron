@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "crypto-js": "^4.2.0",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "electron-suap-authentication": "file:",
     "express": "^4.19.2",

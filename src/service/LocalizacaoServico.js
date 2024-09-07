@@ -3,7 +3,8 @@ const ArmarioDaoImpl = require('../dao/impl/armarioDaoImpl');
 const LocalizacaoDaoImpl = require('../dao/impl/localizacaoDaoImpl');
 const LocalizacaoException = require('../excecoes/LocalizacaoException');
 const externalization = require('../externalization/request');
-const MensagemUtil = require('../utils/MensagemUtil');
+const MensagemUtil = require('../utils/mensagemUtil');
+
 const localizacaoDao = new LocalizacaoDaoImpl();
 
 module.exports = class LocalizacaoServico {

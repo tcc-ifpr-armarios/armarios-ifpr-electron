@@ -6,7 +6,7 @@ const Emprestimo = require('./emprestimo');
 const Estudante = require('./estudante');
 const Servidor = require('./servidor');
 const Concessao = require('./concessao');
-const MensagemUtil = require('../utils/MensagemUtil');
+const MensagemUtil = require('../utils/mensagemUtil');
 
 // Definindo os relacionamentos entre os modelos
 // Armario.hasMany(Emprestimo, { as: 'emprestimos' });
