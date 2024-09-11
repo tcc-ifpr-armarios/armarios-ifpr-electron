@@ -1,12 +1,10 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const servidor = require('../models/servidor');
+const MensagemUtil = require('../utils/MensagemUtil');
+const { verificaAdm } = require('../service/loginService');
 require('dotenv').config();
 
 const router = express.Router();
-
-const secret = process.env.JWT_SECRET; // Substitua por uma variável de ambiente segura
 
 // Registro de usuário
 // router.post('/register', async (req, res) => {
@@ -22,20 +20,18 @@ const secret = process.env.JWT_SECRET; // Substitua por uma variável de ambient
 // });
 
 // Login de servidor
+
 router.post('/login', async (req, res) => {
   const { siape, password } = req.body;
-console.log(siape);
-
   try {
-    const user = await servidor.findOne({ where: { siape } });
-    if (user && await bcrypt.compare(password, user.senha)) {
-      const token = jwt.sign({ servidorId: user.id, servidorNome: user.nome}, secret, { expiresIn: '1h' });
-      res.status(200).json({ token });
-    } else {
-      res.status(401).json({ error: 'Credenciais inválidas' });
-    }
+      const resultado = await verificaAdm(siape, password);
+      if (resultado.sucesso) {
+          res.status(200).json({ token: resultado.token }); 
+      } else {
+          res.status(401).json({ error: resultado.mensagem }); 
+      }
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao fazer login' });
+    res.status(500).json({ error: MensagemUtil.INTERNAL_SERVER_ERROR }); 
   }
 });
 

@@ -1,6 +1,6 @@
 const Armario = require('../../models/armario');
 const ArmarioDao = require('../armarioDao');
-const MensagemUtil = require('../../utils/MensagemUtil');
+const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
 
 class ArmarioDaoImpl extends ArmarioDao {
