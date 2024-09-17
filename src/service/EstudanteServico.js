@@ -43,10 +43,19 @@ module.exports = class EstudanteServico {
     if (!estudante || !estudante.nome || estudante.nome.trim() === '') {
       throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
     }
+    if (!estudante || !estudante.sobrenome || estudante.sobrenome.trim() === '') {
+      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+    }
     if (!estudante || !estudante.telefone || estudante.telefone.trim() === '') {
       throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
     }
     if (!estudante || !estudante.ra || estudante.ra.trim() === '') {
+      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+    }
+    if (!estudante || !estudante.senha || estudante.senha.trim() === '') {
+      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+    }
+    if (!estudante || !estudante.id_curso) {
       throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
     }
   }

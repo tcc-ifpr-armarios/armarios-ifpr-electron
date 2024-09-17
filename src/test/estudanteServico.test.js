@@ -8,19 +8,33 @@ const { initModels } = require("../models");
 const { sequelize } = require('../config/database');
 
 describe('Teste Estudante Serviço', () => {
-    const DESCRICAO = "TESTE-ESTUDANTE-01";
+    const RA = "111111";
     let estudante;
+    let estudanteExemplo;
 
     beforeAll(async () => {
         await initModels();
     });
 
-    beforeEach(() => {
+    beforeEach(async () => {
+        // await CursoServico.inserir({ id: 1, nome: 'Engenharia de Software' });
         estudante = { id: 1,
                         nome: 'adrieli',
+                        sobrenome: 'santos',
                         email: 'adrieli',
                         telefone: '44999999',
-                        ra: '111111'};
+                        ra: '111111',
+                        senha: 'teste',
+                        id_curso: 1};
+
+        estudanteExemplo = { id: 1,
+            nome: 'adrieli',
+            sobrenome: 'santos',
+            email: 'adrieli',
+            telefone: '44999999',
+            ra: '111111',
+            senha: 'teste',
+            id_curso: 1};
     });
 
     afterEach(async () => {
@@ -28,10 +42,10 @@ describe('Teste Estudante Serviço', () => {
         await sequelize.truncate({ cascade: true });
     });
 
-    test('Deve inserir uma nova estudante', async () => {
+    test('Deve inserir um novo estudante', async () => {
         estudante = await EstudanteServico.inserir(estudante);
         expect(estudante.id).toBeGreaterThan(0);
-        expect(estudante.descricao).toBe(DESCRICAO);
+        expect(estudante).toBe(estudanteExemplo);
         expect(estudante.ativo).toBe(true);
     });
 

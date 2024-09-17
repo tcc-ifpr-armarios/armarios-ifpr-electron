@@ -1,10 +1,15 @@
 // dao/impl/EstudanteDaoImpl.js
 const Estudante = require('../../models/estudante');
+const Curso = require('../../models/curso');
 const EstudanteDao = require('../EstudanteDao');
 
 class EstudanteDaoImpl extends EstudanteDao {
   async inserir(estudante) {
     try {
+      const cursoExistente = await Curso.findByPk(estudante.id_curso);
+      if (!cursoExistente) {
+        throw new Error('Curso não encontrado');
+      }
       const novoEstudante = await Estudante.create(estudante);
       return novoEstudante;
     } catch (error) {

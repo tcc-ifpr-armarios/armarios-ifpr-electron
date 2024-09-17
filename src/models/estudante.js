@@ -52,7 +52,7 @@ const Estudante = sequelize.define('Estudante', {
             model: Curso,
             key: 'id_curso',
         },
-        allowNull: false,
+        allowNull: true,
     }
 }, {
     tableName: 'tb_estudante',
