@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "btn-add-localizacao": "../screens/localizacao/save-edit-modal-localizacao.html",
             "btn-add-servidor": "../screens/servidor/content-modal-servidor.html",
             "btn-add-estudante": "../screens/estudante/save-edit-modal-estudante.html",
-            "btn-add-curso": "../screens/curso/content-modal-curso.html",
+            "btn-add-curso": "../screens/curso/save-edit-modal-curso.html",
             "btn-add-armario": "../screens/armario/content-modal-armario.html",
             "btn-add-emprestimo": "../screens/emprestimo/content-modal-emprestimo.html",
             "btn-add-concessao": "../screens/concessao/content-modal-concessao.html"

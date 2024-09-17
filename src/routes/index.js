@@ -20,6 +20,16 @@ router.get('/estudantes/:ra', estudanteController.buscarUnicoPorRa);
 router.put('/estudantes/:id', estudanteController.atualizar);
 router.delete('/estudantes/:id', estudanteController.excluir);
 
+const cursoController = require('../controllers/cursoController');
+const cursoService = require('../service/cursoService');
+
+router.post('/cursos', cursoService.inserir);
+router.get('/cursos', cursoService.buscarTodos);
+router.get('/cursos/:id', cursoService.buscarUnicoPorId);
+router.put('/cursos/:id', cursoService.atualizar);
+router.delete('/cursos/:id', cursoService.excluir);
+
+
 router.get('/teste', (req, res) => {
   res.send('Teste OK');
 });

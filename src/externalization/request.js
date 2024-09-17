@@ -1,6 +1,19 @@
 // messages.js
 
 const messages = {
+    //cursos
+    errorCreatingCourse: 'Erro ao criar o curso.',
+    duplicateName: 'Nome de curso já existe.',
+    errorFetchingCourses: 'Erro ao buscar os cursos.',
+    successCreatingCourse: 'Curso criado com sucesso.',
+    successEditingCourse: 'Curso editado com sucesso.',
+    errorUpdatingCourse: 'Erro ao atualizar o curso.',
+    notFoundCourse: 'Curso não encontrado.',
+    errorEditingCourse: 'Erro ao editar o curso.',
+    successDeletingCourse: 'Curso deletado com sucesso.',
+    errorDeletingCourse: 'Erro ao deletar o curso.',
+    errorFetchingCourse: 'Erro ao buscar o curso.',
+    
     // Localização
     errorCreatingLocation: 'Erro ao criar a localização.',
     duplicateDescription: 'Descrição de localização já existe.',
