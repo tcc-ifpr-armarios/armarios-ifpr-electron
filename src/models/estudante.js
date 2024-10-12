@@ -8,8 +8,7 @@ const Estudante = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
-      field: "id_pessoa",
+      primaryKey: true, 
     },
     nome: {
       type: DataTypes.STRING(100),

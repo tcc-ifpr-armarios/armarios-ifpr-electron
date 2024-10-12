@@ -30,7 +30,7 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "electron-suap-authentication": "file:",
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "fast-levenshtein": "^3.0.0",
     "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",

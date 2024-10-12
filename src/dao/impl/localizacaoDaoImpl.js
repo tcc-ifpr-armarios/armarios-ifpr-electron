@@ -58,9 +58,9 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
   }
 
 
-  buscarUnicoPorId(idLocalizacao) {
+  buscarUnicoPorId(id_localizacao) {
     try {
-      const localizacao = Localizacao.findByPk(idLocalizacao);
+      const localizacao = Localizacao.findByPk(id_localizacao);
       return localizacao;
     } catch (error) {
       throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);

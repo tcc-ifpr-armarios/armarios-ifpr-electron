@@ -52,6 +52,7 @@ module.exports = class LocalizacaoServico {
   }
 
   static async verificaSeFoiRemovido(localizacao) {
+    console.log(localizacao)
     let l = await localizacaoDao.buscarUnicoPorId(localizacao.id);
     if (l == null) {
       throw new LocalizacaoException(MensagemUtil.LOCALIZACAO_REMOVIDA);

@@ -48,11 +48,11 @@ class EmprestimoDaoImpl extends EmprestimoDao {
     }
   }
 
-  async buscarAtivosPorIdLocalizacao(idLocalizacao) {
+  async buscarAtivosPorIdLocalizacao(id_localizacao) {
     try {
       return await Emprestimo.findAll({
         where: {
-          idLocalizacao,
+          id_localizacao,
           ativo: true
         }
       });

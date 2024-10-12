@@ -8,7 +8,6 @@ const Servidor = sequelize.define(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-      field: "id_pessoa",
     },
     nome: {
       type: DataTypes.STRING(100),
