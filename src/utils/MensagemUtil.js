@@ -63,6 +63,7 @@ module.exports = class MensagemUtil {
     static ESTUDANTE_RA_DUPLICADO = "Ra já cadastrado";
     static ESTUDANTE_REMOVIDO = "Não foi possível realizar essa operação! Este estudante já foi removido!";
     static ESTUDANTE_VINCULADO_EMPRESTIMO = "Impossível excluir esse estudante, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+    static ESTUDANTE_JA_CADASTRADO = "Estudante já cadastrado!";
 
     static LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
     static LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";
@@ -109,6 +110,9 @@ module.exports = class MensagemUtil {
     static TITULO_AREA_SISTEMA = "Gerenciamento do Sistema";
     static TITULO_SISTEMA = "Sistema de Gestão de Armários";
 
+
+    static CRONOS_AIR_OUT = "Cronos pode não estar disponível. Tente novamente mais tarde.";
+    static CRONOS_SUCESSO = "Sucesso ao cadastrar estudante";
 
     static INTERNAL_SERVER_ERROR = "Erro interno do servidor";
 }
