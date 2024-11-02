@@ -1,0 +1,35 @@
+<div class="servidor-modal">
+    <div class="servidor-modal-header">
+        <h2>Novo Servidor</h2>
+    </div>
+    <div class="servidor-modal-content">
+        <div class="form-container">
+            <input type="hidden" id="item-id">
+            <div class="form-group-description">
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome-servidor" id="nome-servidor" class="form-control" required>
+                <label for="nome">Sobrenome:</label>
+                <input type="text" name="sobrenome-servidor" id="sobrenome-servidor" class="form-control" required>
+                <label for="nome">Siape:</label>
+                <input type="text" name="siape-servidor" id="siape-servidor" class="form-control" required  onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <label for="nome">E-mail:</label>
+                <input type="text" name="email-servidor" id="email-servidor" class="form-control" required>
+                <label for="nome">Telefone:</label>
+                <input type="text" name="telefone-servidor" id="telefone-servidor" maxlength="15" class="form-control" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <label for="nome">Senha:</label>
+                <input type="password" name="senha-servidor" id="senha-servidor" class="form-control" required>
+                <!-- Checkbox para verificar se está ativo -->
+                <div class="checkbox-side-by-side">
+                    <label for="ativo">Ativo</label>
+                    <input type="checkbox" name="ativo" id="ativo" value="1" checked>
+                </div>
+            </div>
+            <div class="form-group-buttons">
+                <div class="msg-return"></div>
+                <button class="button" type="button" onclick="salvarServidor()" class="btn btn-primary">Salvar</button>
+                <button class="buttonCancel" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+ 
+</div> 

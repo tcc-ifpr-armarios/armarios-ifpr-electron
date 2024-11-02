@@ -23,6 +23,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
         console.log(data.token);
         localStorage.setItem('token', data.token);
     } else {
+        console.log(data);
         document.getElementById('message').textContent = 'Erro ao fazer login: ' + data.error;
     }
 });

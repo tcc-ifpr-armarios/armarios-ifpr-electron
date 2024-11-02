@@ -32,7 +32,6 @@ const Concessao = sequelize.define(
   timestamps: false
 });
 
-// Definição das associações
 Concessao.belongsTo(Servidor, {
   foreignKey: {
     name: 'id_servidor',

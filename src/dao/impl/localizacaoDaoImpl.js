@@ -1,6 +1,6 @@
 const Localizacao = require('../../models/localizacao');
-const LocalizacaoDao = require('../localizacaoDao');
 const MensagemUtil = require('../../utils/mensagemUtil');
+const LocalizacaoDao = require('../localizacaoDao');
 const { Op } = require('sequelize');
 
 class LocalizacaoDaoImpl extends LocalizacaoDao {
@@ -27,7 +27,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
         order: [['descricao', 'ASC']]
       });
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
@@ -37,7 +37,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
         order: [['descricao', 'ASC']]
       });
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
@@ -53,17 +53,17 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
 
       return { count, rows };
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
 
-  buscarUnicoPorId(idLocalizacao) {
+  buscarUnicoPorId(id_localizacao) {
     try {
-      const localizacao = Localizacao.findByPk(idLocalizacao);
+      const localizacao = Localizacao.findByPk(id_localizacao);
       return localizacao;
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
@@ -99,13 +99,14 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
 
   async inserir(localizacao) {
     try {
-      const novaLocalizacao = await Localizacao.create(localizacao);
+      const novaLocalizacao = await Localizacao.create(localizacao, { fields: ['id_localizacao', 'descricao', 'ativo']
+      });
       return novaLocalizacao;
     } catch (error) {
+      console.log(error);
       throw new Error(MensagemUtil.LOCALIZACAO_INSERCAO_ERRO_PADRAO);
     }
   }
 }
-
 
 module.exports = LocalizacaoDaoImpl;
