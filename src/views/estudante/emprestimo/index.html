@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Autenticação</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="logo">
+            <img src="../../../../src/assets/iflogo.png" alt="Logo" />
+        </div>
+        <form id="login-form" class="login-form"> 
+                <div class="input-container">
+                    <div class="text-msg" id="message">Olá, <div id="nome"></div></div>
+                    <select id="login-ra" class="input" required>
+                        <option value="" disabled selected>Selecione seu RA</option>
+                        <option value="123456">123456</option>
+                        <option value="654321">654321</option>
+                        <option value="789012">789012</option>
+                        <option value="210987">210987</option>
+                        <!-- Adicione mais opções conforme necessário -->
+                    </select>
+                </div>
+                <div class="buttons">
+                    <button class="button" type="submit">Entrar</button>
+                    <button class="buttonCancel" id="cancel" href="">Cancelar</button>
+                </div>
+        </form>
+
+        <p>Desenvolvimento por IFPR - Campus Paranavaí</p>
+    </div>
+
+    <script src="./javascript/index.js"></script>
+
+</body>
+
+</html>

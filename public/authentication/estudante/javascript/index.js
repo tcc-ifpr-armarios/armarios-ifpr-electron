@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
 
     console.log(ra, password);
     
-    const response = await fetch(`${process.env.API_PUBLIC_SERVER}/login`, {
+    const response = await fetch(`${process.env.API_PUBLIC_STUDENT}/student/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ra, password })
@@ -17,7 +17,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     if (response.ok) {
         document.getElementById('message').textContent = 'Login bem-sucedido! Redirecionando...';
         setTimeout(() => {
-            window.location.href = '../../../src/views/servidor/home/index.html'; 
+            window.location.href = '../../../src/views/estudante/emprestimo/index.html'; 
         }, 2000);
         
         console.log(data.token);

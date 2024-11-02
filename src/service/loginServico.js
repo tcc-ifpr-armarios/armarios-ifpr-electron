@@ -10,11 +10,13 @@ const secret = process.env.JWT_SECRET;
 async function verificaAdm(siape, senha) {
     try {
         const senhaCriptografada = converteSenhaParaSha256Hex(senha);
-        const user = await Servidor.findOne({ where: { siape } });
+        const user = await Servidor.findOne({ where: { siape, ativo: true } });
+                
         if (user) {
             if (senhaCriptografada === user.senha) {
+                const nomeSemAcento = removerAcentos(user.nome);
                 const token = jwt.sign(
-                    { servidorId: user.id, servidorNome: user.nome },
+                    { servidorId: user.id, servidorNome: nomeSemAcento },
                     secret,
                     { expiresIn: '1h' }
                 );
@@ -29,6 +31,10 @@ async function verificaAdm(siape, senha) {
         log.error('Erro ao verificar servidor: ', error);
         return { sucesso: false, mensagem: MensagemUtil.INTERNAL_SERVER_ERROR };
     }
+}
+
+function removerAcentos(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 async function verificaEstudante(ra, senha) {

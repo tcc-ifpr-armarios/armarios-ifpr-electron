@@ -98,6 +98,15 @@ module.exports = class MensagemUtil {
     static SERVIDOR_EXCLUSAO_SUCESSO = "Servidor Excluído com Sucesso!";
     static SERVIDOR_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo servidor";
     static SERVIDOR_INSERCAO_SUCESSO = "Servidor Cadastrado com Sucesso!";
+    static SERVIDOR_ERRO_BUSCANDO = "Erro ao buscar os servidores";
+    static SERVIDOR_NAO_ENCONTRADO = "Não foi possível buscar o servidor";
+    static SERVIDOR_CAMPO_OBRIGATORIO = "Faltam campos no cadastro do servidor"
+    static SERVIDOR_DUPLICADO = "Já existe um servidor com esses dados";
+    static SERVIDOR_SIAPE_DUPLICADO = "Já existe um servidor com esse siape";
+    static SERVIDOR_EMAIL_DUPLICADO = "Já existe um servidor com esse email";
+    static SERVIDOR_SENHA_PEQUENA = "A senha precisa ter ao menos 4 digitos";
+    static SERVIDOR_SENHA_VAZIA =  "A senha não pode ser vazia";
+    static SERVIDOR_EMAIL_SIAPE_DUPLICADO = "Email e siape já utilizados";
 
     static TITULO_AREA_ADMINISTRADOR = "Gerenciamento de Administradores";
     static TITULO_AREA_CONCESSAO = "Gerenciamento de Concessão de Armários";

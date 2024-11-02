@@ -63,7 +63,7 @@ document.getElementById('cad-form-cronos').addEventListener('submit', async func
             document.getElementById('registerButton').disabled = false;
             document.querySelector('.msg-return').innerHTML = messages.success;
             setTimeout(() => {
-                window.location.href = '../login/index.html';
+                window.location.href = '../authentication/estudante/index.html';
             }, 3000);
         } else {
             document.getElementById('registerButton').disabled = false;

@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const MensagemUtil = require('../utils/mensagemUtil');
-const { verificaAdm } = require('../service/loginServico');
+const { verificaAdm, verificaEstudante } = require('../service/loginServico');
 const criaEstudanteCronos = require("../service/cronosServico");
 require('dotenv').config();
 
@@ -24,5 +24,19 @@ router.post('/create/login', async (req, res) => {
         res.status(500).json({ error: MensagemUtil.INTERNAL_SERVER_ERROR });
     }
 });
+
+router.post('/student/login', async (req, res) => {
+    const { ra, password } = req.body;
+    try {
+        const resultado = await verificaEstudante(ra, password);
+        if (resultado.sucesso) {
+            res.status(200).json({ token: resultado.token }); 
+        } else {
+            res.status(401).json({ error: resultado.mensagem }); 
+        }
+    } catch (error) {
+      res.status(500).json({ error: MensagemUtil.INTERNAL_SERVER_ERROR }); 
+    }
+  });
 
 module.exports = router;

@@ -27,7 +27,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
         order: [['descricao', 'ASC']]
       });
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
@@ -37,7 +37,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
         order: [['descricao', 'ASC']]
       });
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
@@ -53,7 +53,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
 
       return { count, rows };
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
@@ -63,7 +63,7 @@ class LocalizacaoDaoImpl extends LocalizacaoDao {
       const localizacao = Localizacao.findByPk(id_localizacao);
       return localizacao;
     } catch (error) {
-      throw new Error(MensagemUtil.ERRO_BUSCAR_LOCALIZACAO);
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 
