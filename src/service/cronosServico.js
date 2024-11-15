@@ -29,7 +29,7 @@ async function criaEstudanteCronos(ra, senha, telefone) {
         // const testeVoce = "ENG DE SOFTWARE";
         // const curso = await buscaCursoOuCriaCurso(testeVoce);
         try {
-          const curso = await buscaCursoOuCriaCurso(data.alunoTurma[0].curso);
+          const curso = await buscaCursoOuCriaCurso(data.alunoTurma[0].curso.toLowerCase());
           console.log(curso.id);
           const estudante = await criaEstudante(ra, primeiroNome, nomeRestante, data.email, encriptedPassword, curso.id, telefone);
           return { sucesso: true, mensagem: MensagemUtil.CRONOS_SUCESSO };

@@ -15,7 +15,7 @@ const levenshteinMath = async (curso) => {
         let maiorSimilaridade = 0;
 
         cursos.forEach(cursoBanco => {
-            let nomeBanco = cursoBanco.nome;
+            let nomeBanco = cursoBanco.nome.toLowerCase();
             let distancia = levenshtein.get(curso, nomeBanco);
             let maxTamanho = Math.max(curso.length, nomeBanco.length);
             let similaridade = 1 - (distancia / maxTamanho);
