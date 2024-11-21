@@ -24,9 +24,9 @@ class ArmarioDaoImpl extends ArmarioDao {
     }
   }
 
-  async buscarTodosPorIdLocalizacao(idLocalizacao) {
+  async buscarTodosPorIdLocalizacao(id_localizacao) {
     const armarios = await Armario.findAll({
-      where: { idLocalizacao: idLocalizacao }
+      where: { id_localizacao: id_localizacao }
     });
     return armarios;
   }

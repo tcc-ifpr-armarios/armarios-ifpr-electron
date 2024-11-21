@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function atualizarNomeUsuario() {
         const jwt = localStorage.getItem('token');
-        const dados = jwt && JSON.parse(atob(jwt.split('.')[1]));
+        const dados = jwt && JSON.parse(window.atob(jwt.split('.')[1]));
         const nomeUsuario = dados && dados.servidorNome;
         userName.textContent = nomeUsuario;
     }
@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addModalEventListeners() {
         const modalButtons = {
-            "btn-add-localizacao": "../screens/localizacao/save-edit-modal-localizacao.html",
-            "btn-add-servidor": "../screens/servidor/content-modal-servidor.html",
+            "btn-add-localizacao": "../screens/localizacao/salva-edita-modal-localizacao.html",
+            "btn-add-servidor": "../screens/servidor/salva-edita-modal-servidor.html",
             "btn-add-estudante": "../screens/estudante/save-edit-modal-estudante.html",
             "btn-add-curso": "../screens/curso/save-edit-modal-curso.html",
             "btn-add-armario": "../screens/armario/content-modal-armario.html",
@@ -84,6 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 document.querySelector(".modal-dinamic-content").innerHTML = data;
                 eventoFechamentoModal();
+                const telefoneInput = document.getElementById('telefone-servidor');
+                if (telefoneInput) {
+                    telefoneInput.removeEventListener('input', aplicarMascaraTelefone);
+                    telefoneInput.addEventListener('input', aplicarMascaraTelefone);
+                }
             })
             .catch(error => console.error('Error loading content:', error));
     }
@@ -117,3 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadContent(menuItems.inicio);
 });
+
+function aplicarMascaraTelefone(event) {
+    const input = event.target;
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    if (value.length > 10) {
+        value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3'); // Formato (XX) XXXXX-XXXX
+    } else {
+        value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3'); // Formato (XX) XXXX-XXXX
+    }
+    input.value = value;
+}

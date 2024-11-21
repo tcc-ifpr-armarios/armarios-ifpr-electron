@@ -5,7 +5,7 @@
         <div></div>
         <div class="generic-header-buttons">
             <div class="search-box">
-                <input type="text" placeholder="Buscar por descrição:" />
+                <input type="text" placeholder="Buscar por nome:" />
                 <div class="pluss-btn">
                     <img src="../../../assets/icons/lupa-36px.png" alt="search" />
                     Buscar
@@ -17,11 +17,41 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="table-container">
+        <div class="localizacao-body">
+            <!-- tabela de Servidores -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Siape</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Ativo</th>
+                        <th class="actions">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
 
+        </div>
     </div>
-
-
-
+    <div class="generic-footer-table">
+        <div class="pagination">
+            <div class="pagination-left" onclick="paginacaoServidor(-1)">
+                <img src="../../../assets/icons/left-35px.png"/>
+                Anterior
+            </div>
+            <div>
+                <label class="pag-indicador">Página</label>
+            </div>
+            <div class="pagination-right" onclick="paginacaoServidor(1)">
+                Próximo
+                <img src="../../../assets/icons/rigth-35px.png"/>
+            </div>
+        </div>
+    </div>
 
 </div>

@@ -4,6 +4,7 @@
     background-color: #108600;
     width: 450px;
     height: 450px;
+    border-radius: 10px;
 }
 
 .localizacao-modal-header {
@@ -15,6 +16,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
 }
 
 .localizacao-modal-content {

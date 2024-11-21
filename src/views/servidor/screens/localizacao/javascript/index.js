@@ -154,7 +154,7 @@ async function getLocalizacoes(page, limitLocations) {
 
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Editar';
-                editButton.onclick = () => editItem(item);
+                editButton.onclick = () => editItemLocalizacao(item);
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Excluir';
@@ -192,8 +192,8 @@ async function getLocalizacoes(page, limitLocations) {
 
 // edição de localização
 
-function editItem(item) {
-    const editModal = { "url": "../screens/localizacao/save-edit-modal-localizacao.html" };
+function editItemLocalizacao(item) {
+    const editModal = { "url": "../screens/localizacao/salva-edita-modal-localizacao.html" };
     openModal();
 
     fetch(editModal.url)
@@ -221,7 +221,7 @@ function closeModal() {
 }
 
 
-async function deleteItem() {
+async function deleteLocalizacao() {
 
     const token = localStorage.getItem('token');
     const id = document.querySelector("#item-id").value;
@@ -260,7 +260,7 @@ async function deleteItem() {
 }
 
 function confirmDelete(item) {
-    const deleteModal = { "url": "../screens/localizacao/exclude-confirm-modal-localizacao.html" };
+    const deleteModal = { "url": "../screens/localizacao/exclusao-modal-localizacao.html" };
     openModal();
 
     fetch(deleteModal.url)

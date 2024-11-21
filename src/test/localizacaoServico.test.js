@@ -1,8 +1,8 @@
 "use strict";
 
-const ArmarioServico = require("../service/ArmarioServico");
-const LocalizacaoServico = require("../service/LocalizacaoServico");
-const MensagemUtil = require("../utils/MensagemUtil");
+const ArmarioServico = require("../service/armarioServico");
+const LocalizacaoServico = require("../service/localizacaoServico");
+const MensagemUtil = require("../utils/mensagemUtil");
 const statusArmario = require("../models/statusArmario");
 const { initModels } = require("../models");
 const { sequelize } = require('../config/database');

@@ -2,23 +2,33 @@ const express = require('express');
 const router = express.Router();
 
 // Rotas para Localizacao
-const localizacaoService = require('../service/LocalizacaoServico');
-router.post('/localizacoes', localizacaoService.inserir);
-router.get('/localizacoes', localizacaoService.buscarTodos);
-router.get('/localizacoes/:id', localizacaoService.buscarUnicoPorId);
-router.put('/localizacoes/:id', localizacaoService.atualizar);
-router.delete('/localizacoes/:id', localizacaoService.excluir);
+const LocalizacaoControle = require('../controles/LocalizacaoControle');
+router.post('/localizacoes', LocalizacaoControle.inserir);
+router.get('/localizacoes', LocalizacaoControle.buscarTodosPaginado);
+router.get('/localizacoes/:id', LocalizacaoControle.buscarUnicoPorId);
+router.put('/localizacoes/:id', LocalizacaoControle.atualizar);
+router.delete('/localizacoes/:id', LocalizacaoControle.excluir);
 
 // rotas para estudante
-const estudanteController = require('../service/EstudanteServico');
+const estudanteControle = require('../controles/estudanteControle');
+router.post('/estudantes', estudanteControle.inserir);
+router.get('/estudantes', estudanteControle.buscarTodosPaginado);
+router.get('/estudante/:nome', estudanteControle.buscarTodosPorNome);
+router.put('/estudantes/:ra', estudanteControle.atualizar);
+router.delete('/estudantes/:ra', estudanteControle.excluir);
 
-// Rotas para Estudante
-router.post('/estudantes', estudanteController.inserir);
-router.get('/estudantes', estudanteController.buscarTodos);
-router.get('/estudantes/:id', estudanteController.buscarUnicoPorId);
-router.get('/estudantes/:ra', estudanteController.buscarUnicoPorRa);
-router.put('/estudantes/:id', estudanteController.atualizar);
-router.delete('/estudantes/:id', estudanteController.excluir);
+const servidorControle = require('../controles/servidorControle')
+router.post('/servidores', servidorControle.inserir);
+router.get('/servidores', servidorControle.buscarTodosPaginado);
+router.get('/servidores:id', servidorControle.buscarUnicoPorId);
+router.put('/servidores/:id', servidorControle.atualizar);
+router.delete('/servidores/:id', servidorControle.excluir);
+
+router.post('/estudantes', estudanteController.createEstudante);
+router.get('/estudantes', estudanteController.getAllEstudantes);
+router.get('/estudante/:ra', estudanteController.getEstudanteByRa);
+router.put('/estudantes/:ra', estudanteController.updateEstudante);
+router.delete('/estudantes/:ra', estudanteController.deleteEstudante);
 
 const cursoController = require('../controllers/cursoController');
 const cursoService = require('../service/cursoService');

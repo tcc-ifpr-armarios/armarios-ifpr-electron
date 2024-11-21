@@ -1,83 +1,169 @@
-// dao/impl/EstudanteDaoImpl.js
 const Estudante = require('../../models/estudante');
-const Curso = require('../../models/curso');
-const EstudanteDao = require('../EstudanteDao');
+const MensagemUtil = require('../../utils/mensagemUtil');
+const EstudanteDao = require('../estudanteDao');
+const { Op } = require('sequelize');
 
 class EstudanteDaoImpl extends EstudanteDao {
-  async inserir(estudante) {
+  async atualizar(estudante) {
     try {
-      const cursoExistente = await Curso.findByPk(estudante.id_curso);
-      if (!cursoExistente) {
-        throw new Error('Curso não encontrado');
+      const [updated] = await Estudante.update(
+        {
+          nome: estudante.nome,
+          email: estudante.email,
+          ra: estudante.ra,
+          ativo: estudante.ativo,
+          cursoId: estudante.cursoId,
+        },
+        { where: { id: estudante.id } }
+      );
+      if (updated === 0) {
+        throw new Error(MensagemUtil.ESTUDANTE_ATUALIZACAO_ERRO_PADRAO);
       }
-      const novoEstudante = await Estudante.create(estudante);
-      return novoEstudante;
-    } catch (error) {
-      if (error.name === 'SequelizeUniqueConstraintError' && error.parent && error.parent.code === '23505') {
-        throw new Error('E-mail duplicado');
-      }
-      throw new Error('Erro ao criar estudante');
-    }
-  }
-
-  async buscarTodos(pageNumber, limitNumber) {
-    const offset = (pageNumber - 1) * limitNumber;
-
-    try {
-      const { count, rows } = await Estudante.findAndCountAll({
-        limit: limitNumber,
-        offset: offset,
-        order: [['nome', 'ASC']]
-      });
-
-      return { count, rows };
-    } catch (error) {
-      throw new Error('Erro ao buscar estudantes paginados');
-    }
-  }
-
-  async buscarUnicoPorId(id) {
-    try {
-      const estudante = await Estudante.findByPk(id);
       return estudante;
     } catch (error) {
-      throw new Error('Erro ao buscar estudante por ID');
+      console.log(error);
+      throw new Error(MensagemUtil.ESTUDANTE_ATUALIZACAO_ERRO_PADRAO);
+    }
+  }
+
+  async buscarAtivos() {
+    try {
+      return await Estudante.findAll({
+        where: { ativo: true },
+        order: [['nome', 'ASC']],
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async buscarTodos() {
+    try {
+      return await Estudante.findAll({
+        order: [['nome', 'ASC']],
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async buscarTodosPorIdCurso(idCurso) {
+    try {
+      return await Estudante.findAll({
+        where: { cursoId: idCurso },
+        order: [['nome', 'ASC']],
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async buscarTodosPorNome(nome) {
+    try {
+      return await Estudante.findAll({
+        where: { nome },
+        order: [['nome', 'ASC']],
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async buscarUnicoPorEmail(email) {
+    try {
+      return await Estudante.findOne({
+        where: { email },
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async buscarUnicoPorId(idEstudante) {
+    try {
+      return await Estudante.findByPk(idEstudante);
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
     }
   }
 
   async buscarUnicoPorRa(ra) {
     try {
-      const estudante = await Estudante.findOne({ where: { ra } });
+      return await Estudante.findOne({
+        where: { ra },
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async buscarUnicoPorRaComIdDiferente(ra, idEstudante) {
+    try {
+      return await Estudante.findOne({
+        where: {
+          ra,
+          id: { [Op.ne]: idEstudante },
+        },
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async excluir(estudante) {
+    try {
+      const deleted = await Estudante.destroy({
+        where: { id: estudante.id },
+      });
+      if (deleted === 0) {
+        throw new Error(MensagemUtil.ESTUDANTE_EXCLUSAO_ERRO_PADRAO);
+      }
       return estudante;
     } catch (error) {
-      throw new Error('Erro ao buscar estudante por RA');
+      throw new Error(MensagemUtil.ESTUDANTE_EXCLUSAO_ERRO_PADRAO);
     }
   }
 
-  async atualizar(estudante) {
+  async inserir(estudante) {
     try {
-      const estudanteDb = await Estudante.findByPk(estudante.ra);
-      if (estudanteDb) {
-        await estudanteDb.update(estudante);
-        return true;
-      } else {
-        return false;
-      }
+      return await Estudante.create(estudante);
     } catch (error) {
-      throw new Error('Erro ao atualizar estudante');
+      console.log(error);
+      throw new Error(MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO);
     }
   }
 
-  async excluir(ra) {
+  async buscarEstudantesPorRa(ra) {
     try {
-      const deleted = await Estudante.destroy({ where: { ra } });
-      if (deleted) {
-        return true;
-      } else {
-        return false;
-      }
+      return await Estudante.findAll({
+        where: { ra },
+      });
     } catch (error) {
-      throw new Error('Erro ao excluir estudante');
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async quantidadeEstudantesAtivos() {
+    try {
+      const count = await Estudante.count({
+        where: { ativo: true },
+      });
+      return count;
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
+    }
+  }
+
+  async buscarTodosPaginado(numeroPagina, itensPorPagina) {
+    try {
+      const { count, rows } = await Estudante.findAndCountAll({
+        limit: itensPorPagina,
+        offset: (numeroPagina - 1) * itensPorPagina,
+        order: [['nome', 'ASC']],
+      });
+      return { count, rows };
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
     }
   }
 }

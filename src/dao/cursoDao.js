@@ -1,4 +1,5 @@
 class CursoDao {
+    // Os métodos são definidos, mas lançam exceções para garantir que sejam implementados
     atualizar(curso) {
       throw new Error('Método atualizar() deve ser implementado');
     }
