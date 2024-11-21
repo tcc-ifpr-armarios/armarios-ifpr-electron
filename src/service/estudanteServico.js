@@ -17,7 +17,8 @@ module.exports = class EstudanteServico {
         return await estudanteDao.buscarUnicoPorId(id);
     }
 
-    async inserir(estudante) {
+    async inse
+    rir(estudante) {
         this.verificaCamposObrigatorios(estudante);
         this.validaCamposRegex(estudante);
 
