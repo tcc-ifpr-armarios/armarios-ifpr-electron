@@ -1,4 +1,4 @@
-const Concessao = require('../../models/concessao');
+const Concessao = require('../../models/Concessao');
 const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
 

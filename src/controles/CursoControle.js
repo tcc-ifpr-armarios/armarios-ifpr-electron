@@ -1,7 +1,8 @@
-const Curso = require('../models/curso');
-const externalization = require('../externalization/request');
+"use strict";
 
-const createCurso = async (req, res) => {
+const cursoServico = require("../service/CursoServico");
+
+const inserir = async (req, res) => {
     const { nome, ativo } = req.body;
 
     try {
@@ -13,7 +14,7 @@ const createCurso = async (req, res) => {
 };
 
 
-const getCursos = async (req, res) => {
+const buscarTodosPaginado = async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
 
     const pageNumber = parseInt(page, 10);
@@ -43,7 +44,7 @@ const getCursos = async (req, res) => {
     }
 };
 
-const getCursoById = async (req, res) => {
+const buscarUnicoPorId = async (req, res) => {
     try {
         const { id } = req.params;
         const curso = await Curso.findByPk(id);
@@ -57,7 +58,7 @@ const getCursoById = async (req, res) => {
     }
 };
 
-const updateCurso = async (req, res) => {
+const atualizar = async (req, res) => {
     try {
         const { id } = req.params;
         const { nome, ativo } = req.body;
@@ -73,7 +74,7 @@ const updateCurso = async (req, res) => {
     }
 };
 
-const deleteCurso = async (req, res) => {
+const excluir = async (req, res) => {
     try {
         const { id } = req.params;
         const curso = await Curso.findByPk(id);
@@ -91,9 +92,9 @@ const deleteCurso = async (req, res) => {
 
 
 module.exports = {
-    createCurso,
-    getCursos,
-    getCursoById,
-    updateCurso,
-    deleteCurso
+    inserir,
+    buscarTodosPaginado,
+    buscarUnicoPorId,
+    atualizar,
+    excluir
 };

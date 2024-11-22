@@ -1,4 +1,4 @@
-const ArmarioDaoImpl = require('../dao/impl/armarioDaoImpl');
+const ArmarioDaoImpl = require('../dao/impl/ArmarioDaoImpl');
 const armarioDao = new ArmarioDaoImpl();
 
 module.exports = class ArmarioServico {

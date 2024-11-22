@@ -1,98 +1,126 @@
-"use strict";
-
-const EstudanteDaoImpl = require('../dao/impl/estudanteDaoImpl');
 const EstudanteException = require('../excecoes/EstudanteException');
-const MensagemUtil = require('../utils/MensagemUtil');
+const OperacaoUtil = require('../utils/OperacaoUtil');
+const MensagemUtil = require('../utils/mensagemUtil');
+const EstudanteDaoImpl = require('../dao/impl/EstudanteDaoImpl');
+const EmprestimoDaoImpl = require('../dao/impl/EmprestimoDaoImpl');
+
 const estudanteDao = new EstudanteDaoImpl();
+const emprestimoDao = new EmprestimoDaoImpl();
 
 module.exports = class EstudanteServico {
 
-
-  static async atualizar(estudante) {
-    await this.verificaCamposObrigatorios(estudante);
-    let l = await estudanteDao.buscarUnicoPorRa(estudante.ra, estudante.id);
-    if (l != null) {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADA);
+    async buscarTodos() {
+        return await estudanteDao.buscarTodos();
     }
-    return await estudanteDao.atualizar(estudante);
-  }
 
-  static async inserir(estudante) {
-    await this.verificaCamposObrigatorios(estudante);
-    await this.verificaDadosDuplicados(estudante);
-    return await estudanteDao.inserir(estudante);
-  }
-
-  static async buscarUnicoPorId(id) {
-    return await estudanteDao.buscarUnicoPorId(id);
-  }
-
-  static async excluir(estudante) {
-    await this.verificaSeFoiRemovido(estudante);
-    return await estudanteDao.excluir(estudante);
-  }
-
-  static async buscarUnicoPorRA(ra) {
-    return await estudanteDao.buscarUnicoPorRa(ra);
-  }
-
-  static verificaCamposObrigatorios(estudante) {
-    if (!estudante || !estudante.email || estudante.email.trim() === '') {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+    async buscarUnicoPorId(id) {
+        return await estudanteDao.buscarUnicoPorId(id);
     }
-    if (!estudante || !estudante.nome || estudante.nome.trim() === '') {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-    }
-    if (!estudante || !estudante.sobrenome || estudante.sobrenome.trim() === '') {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-    }
-    if (!estudante || !estudante.telefone || estudante.telefone.trim() === '') {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-    }
-    if (!estudante || !estudante.ra || estudante.ra.trim() === '') {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-    }
-    if (!estudante || !estudante.senha || estudante.senha.trim() === '') {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-    }
-    if (!estudante || !estudante.id_curso) {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-    }
-  }
-  static async verificaDadosDuplicados(estudante) {
-    let l = await estudanteDao.buscarUnicoPorRa(estudante.ra);
-    if (l != null) {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_DESCRICAO_DUPLICADA);
-    }
-  }
 
-  static async verificaSeFoiRemovido(estudante) {
-    let l = await estudanteDao.buscarUnicoPorId(estudante.id);
-    if (l == null) {
-      throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDA);
+    async inserir(estudante) {
+        this.verificaCamposObrigatorios(estudante);
+        this.validaCamposRegex(estudante);
+
+        const e = await await estudanteDao.buscarUnicoPorRa(estudante.ra);
+        if (e) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
+        }
+
+        return await estudanteDao.inserir(estudante);
     }
-  }
 
-  static async buscarTodos() {
-    return await estudanteDao.buscarTodos();
-  }
+    async atualizar(estudante) {
+        this.verificaCamposObrigatorios(estudante);
+        this.validaCamposRegex(estudante);
 
-  static async buscarAtivos() {
-    return await estudanteDao.buscarAtivos();
-  }
+        const e = await estudanteDao.buscarUnicoPorRaComIdDiferente(estudante.ra, estudante.id);
+        if (e) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
+        }
 
-  static async buscarTodosPaginado(numeroPagina, itensPorPagina) {
-    const { count, rows } = await estudanteDao.buscarTodosPaginado(numeroPagina, itensPorPagina);
-    const totalPaginas = Math.ceil(count / itensPorPagina);
+        return   await estudanteDao.atualizar(estudante);
+    }
 
-    return {
-      data: rows,
-      pagination: {
-        totalItems: count,
-        totalPages: totalPaginas,
-        currentPage: numeroPagina,
-        itemsPerPage: itensPorPagina
+    async excluir(estudante) {
+        const c = await estudanteDao.buscarUnicoPorId(estudante.id);
+        if (!c) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
+        }
+
+        const e = await  emprestimoDao.buscarTodosPorRaDoEstudante(estudante.ra);
+        if (e.length > 0) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
+        }
+
+        return   await estudanteDao.excluir(estudante);
+    }
+
+    async buscarTodosPorNome(nome) {
+        return await estudanteDao.buscarTodosPorNome(nome);
+    }
+
+    async buscarUnicoPorRa(ra) {
+        return await estudanteDao.buscarUnicoPorRa(ra);
+    }
+
+    async buscarEstudantesPorRa(ra) {
+        return await estudanteDao.buscarEstudantesPorRa(ra);
+    }
+
+    async buscarUnicoPorEmail(email) {
+        return await estudanteDao.buscarUnicoPorEmail(email);
+    }
+
+    verificaCamposObrigatorios(estudante) {
+        if (!estudante.nome) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (!estudante.sobrenome) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (!estudante.ra) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (!estudante.email) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (!estudante.senha) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (!estudante.curso || estudante.curso.id === 0) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+        if (!estudante.telefone) {
+            throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
+        }
+    }
+
+    validaCamposRegex(estudante) {
+        if (!OperacaoUtil.ehTelefoneValido(estudante.telefone)) {
+            throw new EstudanteException(MensagemUtil.VALIDACAO_TELEFONE_INVALIDO);
+        }
+        if (!OperacaoUtil.ehEmailValido(estudante.email)) {
+            throw new EstudanteException(MensagemUtil.VALIDACAO_EMAIL_INVALIDO);
+        }
+    }
+
+    async buscarAtivos() {
+        return await estudanteDao.buscarAtivos();
+    }
+
+    static async buscarTodosPaginado(numeroPagina, itensPorPagina) {
+        const { count, rows } = await estudanteDao.buscarTodosPaginado(numeroPagina, itensPorPagina);
+        const totalPaginas = Math.ceil(count / itensPorPagina);
+    
+        return {
+          data: rows,
+          pagination: {
+            totalItems: count,
+            totalPages: totalPaginas,
+            currentPage: numeroPagina,
+            itemsPerPage: itensPorPagina
+          }
+        };
       }
-    };
-  }
-};
+}
+

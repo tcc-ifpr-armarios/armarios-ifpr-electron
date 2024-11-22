@@ -24,8 +24,11 @@ module.exports = class MensagemUtil {
     static CURSO_INSERCAO_ERRO_PADRAO = "Erro não identificado ao inserir um novo curso";
     static CURSO_INSERCAO_SUCESSO = "Curso Cadastrado com Sucesso!";
     static CURSO_NOME_DUPLICADO = "Nome do curso duplicado";
+    static CURSO_NOME_OBRIGATORIO = "Nome do curso obrigatório";
     static CURSO_REMOVIDO = "Não foi possível realizar essa operação! Este curso já foi removido!";
     static CURSO_VINCULADO_ESTUDANTE = "Impossível excluir esse curso, pois existem estudantes vinculados a ele!";
+    static ERRO_BUSCAR_CURSO = "Erro ao buscar curso!";
+    static LOCALIZACAO_ERRO_BUSCANDO = "Não foi possível listar os cursos!";
 
     static BANCO_ERRO_CONFIGURACAO = "Não foi possível iniciar a aplicação!\nVerifique as configurações de conexão com o Banco de Dados!";
     static BANCO_SUCESSO_CONEXAO = "Banco de Dados conectado com sucesso!";

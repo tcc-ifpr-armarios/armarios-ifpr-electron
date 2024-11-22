@@ -1,6 +1,6 @@
 "use strict";
 
-const ServidorServico = require('../service/servidorServico');
+const ServidorServico = require('../service/ServidorServico');
 const MensagemUtil = require('../utils/mensagemUtil');
 
 module.exports = class ServidorControle {

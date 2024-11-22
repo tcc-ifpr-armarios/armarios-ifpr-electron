@@ -5,9 +5,9 @@ const levenshtein = require('fast-levenshtein');
 
 const { Estudante, Curso} = require('../models');
 const externalization = require('../externalization/request');
-const levenshteinMath = require("../utils/levenshtein");
+const levenshteinMath = require("../utils/Levenshtein");
 const MensagemUtil = require("../utils/MensagemUtil");
-const {converteSenhaParaSha256Hex} = require("../utils/autenticacaoUtil");
+const {converteSenhaParaSha256Hex} = require("../utils/AutenticacaoUtil");
 
 
 async function criaEstudanteCronos(ra, senha, telefone) {

@@ -1,10 +1,10 @@
 "use strict";
 
-const ServidorDaoImpl = require('../dao/impl/servidorDaoImpl');
+const ServidorDaoImpl = require('../dao/impl/ServidorDaoImpl');
 const ServidorException = require('../excecoes/ServidorException');
 const MensagemUtil = require('../utils/mensagemUtil');
 
-const { converteSenhaParaSha256Hex } = require("../../src/utils/autenticacaoUtil");
+const { converteSenhaParaSha256Hex } = require("../utils/AutenticacaoUtil");
 
 const servidorDao = new ServidorDaoImpl();
 

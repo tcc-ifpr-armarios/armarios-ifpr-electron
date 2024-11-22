@@ -2,8 +2,8 @@
 
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database').sequelize; 
-const Estudante = require('./estudante'); 
-const Armario = require('./armario');
+const Estudante = require('./Estudante');
+const Armario = require('./Armario');
 
 const Emprestimo = sequelize.define(
   'Emprestimo',

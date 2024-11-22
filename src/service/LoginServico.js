@@ -1,5 +1,5 @@
 const { Servidor, Estudante} = require('../models');
-const { converteSenhaParaSha256Hex } = require('../utils/autenticacaoUtil');
+const { converteSenhaParaSha256Hex } = require('../utils/AutenticacaoUtil');
 const MensagemUtil = require('../utils/mensagemUtil');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();

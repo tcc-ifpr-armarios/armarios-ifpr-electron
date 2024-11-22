@@ -1,6 +1,6 @@
 "use strict";
 
-const LocalizacaoServico = require("../service/localizacaoServico");
+const LocalizacaoServico = require("../service/LocalizacaoServico");
 
 module.exports = class LocalizacaoControle {
     static async buscarTodosPaginado(req, res) {

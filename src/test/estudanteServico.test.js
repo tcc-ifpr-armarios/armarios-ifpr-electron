@@ -3,7 +3,7 @@
 const ArmarioServico = require("../service/ArmarioServico");
 const EstudanteServico = require("../service/EstudanteServico");
 const MensagemUtil = require("../utils/MensagemUtil");
-const statusArmario = require("../models/statusArmario");
+const statusArmario = require("../models/StatusArmario");
 const { initModels } = require("../models");
 const { sequelize } = require('../config/database');
 

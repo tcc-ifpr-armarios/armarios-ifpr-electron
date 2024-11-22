@@ -1,6 +1,6 @@
-const Localizacao = require('../../models/localizacao');
+const Localizacao = require('../../models/Localizacao');
 const MensagemUtil = require('../../utils/mensagemUtil');
-const LocalizacaoDao = require('../localizacaoDao');
+const LocalizacaoDao = require('../LocalizacaoDao');
 const { Op } = require('sequelize');
 
 class LocalizacaoDaoImpl extends LocalizacaoDao {

@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const { initModels } = require('../models/index.js');
+const { initModels } = require('../models');
 const authMiddleware = require('../middleware/authMiddleware.js');
 
 let mainWindow;

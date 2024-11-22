@@ -1,4 +1,4 @@
-const Estudante = require('../models/estudante');
+const Estudante = require('../models/Estudante');
 const externalization = require('../externalization/request');
 
 // Cria um novo estudante

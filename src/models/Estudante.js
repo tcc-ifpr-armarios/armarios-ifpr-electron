@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database").sequelize; // Substitua pelo caminho correto para sua instância do Sequelize
-const Curso = require("./curso"); // Substitua pelo caminho correto para o modelo Curso
+const Curso = require("./Curso"); // Substitua pelo caminho correto para o modelo Curso
 
 const Estudante = sequelize.define(
   "Estudante",
