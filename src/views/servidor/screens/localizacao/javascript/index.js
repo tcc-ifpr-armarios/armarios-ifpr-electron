@@ -1,7 +1,7 @@
 
 const apiUrl = process.env.API_SECURE_SERVER;
 
-const messages = {
+const localizationMessages = {
     saving: 'Salvando...',
     descriptionRequired: 'O campo descrição é obrigatório',
     internalError: 'Erro Interno: Entre novamente no sistema',
@@ -9,7 +9,7 @@ const messages = {
 };
 
 async function salvarLocalizacao() {
-    document.querySelector('.msg-return').innerHTML = messages.saving;
+    document.querySelector('.msg-return').innerHTML = localizationMessages.saving;
     document.querySelector('.button').setAttribute('disabled', 'disabled');
 
     const descricao = document.querySelector('#nome-localizacao').value;
@@ -17,14 +17,14 @@ async function salvarLocalizacao() {
     const id = document.querySelector("#item-id").value;
 
     if (descricao === '') {
-        document.querySelector('.msg-return').innerHTML = messages.descriptionRequired;
+        document.querySelector('.msg-return').innerHTML = localizationMessages.descriptionRequired;
         document.querySelector('.button').removeAttribute('disabled');
         return;
     }
     const token = localStorage.getItem('token');
 
     if (!token) {
-        document.querySelector('.msg-return').innerHTML = messages.internalError;
+        document.querySelector('.msg-return').innerHTML = localizationMessages.internalError;
         localStorage.removeItem('token');
         setTimeout(() => {
             window.location.href = '../../../../public/home/index.html';
@@ -64,10 +64,10 @@ async function salvarLocalizacao() {
 
         if (!response.ok) {
             if (response.status === 400) {
-                document.querySelector('.msg-return').innerHTML = data.error || messages.unknownError;
+                document.querySelector('.msg-return').innerHTML = data.error || localizationMessages.unknownError;
                 document.querySelector('.button').removeAttribute('disabled');
             } else {
-                document.querySelector('.msg-return').innerHTML = data.error || messages.unknownError;
+                document.querySelector('.msg-return').innerHTML = data.error || localizationMessages.unknownError;
                 document.querySelector('.button').removeAttribute('disabled');
             }
         } else {
@@ -76,42 +76,40 @@ async function salvarLocalizacao() {
                 document.querySelector('.modal').setAttribute('style', 'display: none');
             }, 1000);
             // precisamos atualizar a lista de localizações
-            await getLocalizacoes(currentPage, limit);
+            await getLocalizacoes(currentPageLocations, limitLocations);
 
         }
 
     } catch (error) {
         console.error('Erro ao enviar dados:', error);
-        document.querySelector('.msg-return').innerHTML = messages.internalError;
+        document.querySelector('.msg-return').innerHTML = localizationMessages.internalError;
         document.querySelector('.button').removeAttribute('disabled');
     }
 }
 
 
-// listagem de localizações
+let currentPageLocations = 1;
+const limitLocations = 12;
+let maxLocations = 0;
 
-let currentPage = 1;
-const limit = 12;
-let max = 0;
+async function pageFlow(page) {
+    currentPageLocations += page;
 
-async function paginacaoLocalizacao(page) {
-    currentPage += page;
-
-    if (currentPage < 1) {
-        currentPage = 1;
+    if (currentPageLocations < 1) {
+        currentPageLocations = 1;
     }
-    if (currentPage > max) {
-        currentPage = max;
+    if (currentPageLocations > maxLocations) {
+        currentPageLocations = maxLocations;
     }
 
-    await getLocalizacoes(currentPage, limit);
+    await getLocalizacoes(currentPageLocations, limitLocations);
 }
 
-async function getLocalizacoes(page, limit) {
+async function getLocalizacoes(page, limitLocations) {
     const token = localStorage.getItem('token');
 
     if (!token) {
-        document.querySelector('.msg-return').innerHTML = messages.internalError;
+        document.querySelector('.msg-return').innerHTML = localizationMessages.internalError;
         localStorage.removeItem('token');
         setTimeout(() => {
             window.location.href = '../../../../public/home/index.html';
@@ -120,7 +118,7 @@ async function getLocalizacoes(page, limit) {
     }
 
     try {
-        const response = await fetch(`${apiUrl}/localizacoes?page=${page}&limit=${limit}`, {
+        const response = await fetch(`${apiUrl}/localizacoes?page=${page}&limit=${limitLocations}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -134,13 +132,13 @@ async function getLocalizacoes(page, limit) {
 
         if (!response.ok) {
             if (response.status === 400) {
-                document.querySelector('.msg-return').innerHTML = data.error || messages.unknownError;
+                document.querySelector('.msg-return').innerHTML = data.error || localizationMessages.unknownError;
             } else {
-                document.querySelector('.pag-indicador').innerHTML = data.error || messages.unknownError;
+                document.querySelector('.pag-indicador').innerHTML = data.error || localizationMessages.unknownError;
             }
         } else {
 
-            max = Math.ceil(data.pagination.totalItems / limit);
+            maxLocations = Math.ceil(data.pagination.totalItems / limitLocations);
             document.querySelector('.pag-indicador').innerHTML = page || 'Página';
             // precisamos atualizar a lista de localizações
             const tbody = document.querySelector('tbody');
@@ -186,7 +184,7 @@ async function getLocalizacoes(page, limit) {
         }
 
     } catch (error) {
-        document.querySelector('.msg-return').innerHTML = messages.internalError;
+        document.querySelector('.msg-return').innerHTML = localizationMessages.internalError;
     }
 }
 
@@ -242,13 +240,13 @@ async function deleteLocalizacao() {
             console.log('Resposta:', data);
             if (!response.ok) {
                 if (response.status === 400) {
-                    document.querySelector('.msg-return').innerHTML = data.error || messages.unknownError;
+                    document.querySelector('.msg-return').innerHTML = data.error || localizationMessages.unknownError;
                 } else {
-                    document.querySelector('.msg-return').innerHTML = data.error || messages.unknownError;
+                    document.querySelector('.msg-return').innerHTML = data.error || localizationMessages.unknownError;
                 }
             } else {
                 document.querySelector('.msg-return').innerHTML = data.message || 'Sucesso';
-                await getLocalizacoes(currentPage, limit);
+                await getLocalizacoes(currentPageLocations, limitLocations);
                 setTimeout(() => {
                     document.querySelector('.modal').setAttribute('style', 'display: none');
                 }, 1000);
@@ -257,7 +255,7 @@ async function deleteLocalizacao() {
             closeModal();
         }
     } catch (error) {
-        document.querySelector('.msg-return').innerHTML = messages.internalError;
+        document.querySelector('.msg-return').innerHTML = localizationMessages.internalError;
     }
 }
 

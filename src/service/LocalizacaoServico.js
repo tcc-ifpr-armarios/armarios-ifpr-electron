@@ -1,6 +1,6 @@
 "use strict";
-const ArmarioDaoImpl = require('../dao/impl/armarioDaoImpl');
-const LocalizacaoDaoImpl = require('../dao/impl/localizacaoDaoImpl');
+const ArmarioDaoImpl = require('../dao/impl/ArmarioDaoImpl');
+const LocalizacaoDaoImpl = require('../dao/impl/LocalizacaoDaoImpl');
 const LocalizacaoException = require('../excecoes/LocalizacaoException');
 const externalization = require('../externalization/request');
 const MensagemUtil = require('../utils/mensagemUtil');

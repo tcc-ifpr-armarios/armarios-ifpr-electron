@@ -1,4 +1,4 @@
-const Estudante = require('../models/estudante'); // Substitua pelo caminho correto para o modelo Estudante
+const Estudante = require('../models/Estudante'); // Substitua pelo caminho correto para o modelo Estudante
 
 class EstudanteDao {
   async atualizar(estudante) {

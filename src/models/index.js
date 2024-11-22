@@ -1,11 +1,11 @@
 const { sequelize } = require('../config/database');
-const Localizacao = require('./localizacao');
-const Curso = require('./curso');
-const Armario = require('./armario');
-const Emprestimo = require('./emprestimo');
-const Estudante = require('./estudante');
-const Servidor = require('./servidor');
-const Concessao = require('./concessao');
+const Localizacao = require('./Localizacao');
+const Curso = require('./Curso');
+const Armario = require('./Armario');
+const Emprestimo = require('./Emprestimo');
+const Estudante = require('./Estudante');
+const Servidor = require('./Servidor');
+const Concessao = require('./Concessao');
 const MensagemUtil = require('../utils/mensagemUtil');
 
 // Definindo os relacionamentos entre os modelos
@@ -27,7 +27,7 @@ const initModels = async () => {
         await sequelize.authenticate();
         console.log(MensagemUtil.BANCO_SUCESSO_CONEXAO);
         // await sequelize.sync(); com essa linha criamos as tabelas no banco de dados
-        await sequelize.sync({ force: false, alter: false })
+        await sequelize.sync()
         console.log(MensagemUtil.BANCO_SUCESSO_CARREGAMENTO);
     } catch (error) {
         console.error(MensagemUtil.BANCO_ERRO_CONFIGURACAO, error);

@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./css/rigth-gradient-generic.css">
     <link rel="stylesheet" type="text/css" href="./css/modal-registration.css">
     <link rel="stylesheet" type="text/css" href="../screens/localizacao/css/content-localizacao.css">
+    <link rel="stylesheet" type="text/css" href="../screens/estudante/css/content-estudante.css">
     <link rel="stylesheet" type="text/css" href="../screens/servidor/css/content-servidor.css">
 
     <link rel="stylesheet" type="text/css" href="./css/table-generic.css">
@@ -34,7 +35,7 @@
                     </div>
                 </div>
 
-                <div id="estudantes" class="left-gradient-content-item">
+                <div id="estudantes" class="left-gradient-content-item" onclick="getEstudantes(1, 12)">
                     <div class="logo-item">
                         <img src="../../../assets/icons/painelcontrole/estudante-branco-24px.png" alt="Home"
                             id="imgHome">
@@ -63,7 +64,7 @@
                     </div>
                 </div>
 
-                <div id="cursos" class="left-gradient-content-item">
+                <div id="cursos" class="left-gradient-content-item" onclick="getCursos(1, 12)">
                     <div class="logo-item">
                         <img src="../../../assets/icons/painelcontrole/curso-branco-24px.png" alt="Home" id="imgHome">
                     </div>
@@ -155,7 +156,8 @@
 
 <script src="./javascript/index.js"></script>
 <script src="../screens/localizacao/javascript/index.js"></script>
-<script src="../screens/servidor/javascript/index.js"></script> 
+<script src="../screens/estudante/javascript/index.js"></script>
+<script src="../screens/servidor/javascript/index.js"></script>
 
 
 </html>

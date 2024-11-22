@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database').sequelize; // Ajuste o caminho para o seu arquivo de configuração do Sequelize
-const Servidor = require('./servidor'); // Ajuste o caminho para o modelo Servidor
-const Armario = require('./armario'); // Ajuste o caminho para o modelo Armario
+const Servidor = require('./Servidor'); // Ajuste o caminho para o modelo Servidor
+const Armario = require('./Armario'); // Ajuste o caminho para o modelo Armario
 
 const Concessao = sequelize.define(
   'Concessao',{

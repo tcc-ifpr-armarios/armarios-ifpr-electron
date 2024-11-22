@@ -18,7 +18,7 @@
 /* Modal content */
 .modal-content {
     background-color: #ffffff;
-    margin: 15% auto; /* 15% do topo e centrado horizontalmente */
+    margin: 5% auto; /* 15% do topo e centrado horizontalmente */
     padding: 20px;
     border: 1px solid #888;
     width: fit-content;

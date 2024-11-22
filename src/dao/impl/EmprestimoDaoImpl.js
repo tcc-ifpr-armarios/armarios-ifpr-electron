@@ -1,7 +1,7 @@
-const Emprestimo = require('../../models/emprestimo');
+const Emprestimo = require('../../models/Emprestimo');
 const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
-const EmprestimoDao = require('../emprestimoDao');
+const EmprestimoDao = require('../EmprestimoDao');
 
 class EmprestimoDaoImpl extends EmprestimoDao {
   async atualizar(emprestimo) {

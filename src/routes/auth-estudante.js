@@ -1,8 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const MensagemUtil = require('../utils/mensagemUtil');
-const { verificaAdm, verificaEstudante } = require('../service/loginServico');
-const criaEstudanteCronos = require("../service/cronosServico");
+const { verificaAdm, verificaEstudante } = require('../service/LoginServico');
+const criaEstudanteCronos = require("../service/CronosServico");
 require('dotenv').config();
 
 const router = express.Router();

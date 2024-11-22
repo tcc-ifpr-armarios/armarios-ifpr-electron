@@ -1,4 +1,4 @@
-const { converteSenhaParaSha256Hex } = require("./src/utils/autenticacaoUtil");
+const { converteSenhaParaSha256Hex } = require("./src/utils/AutenticacaoUtil");
 
 const senha = '123456';
 

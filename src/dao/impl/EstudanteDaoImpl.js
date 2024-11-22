@@ -1,6 +1,6 @@
-const Estudante = require('../../models/estudante');
+const Estudante = require('../../models/Estudante');
 const MensagemUtil = require('../../utils/mensagemUtil');
-const EstudanteDao = require('../estudanteDao');
+const EstudanteDao = require('../EstudanteDao');
 const { Op } = require('sequelize');
 
 class EstudanteDaoImpl extends EstudanteDao {

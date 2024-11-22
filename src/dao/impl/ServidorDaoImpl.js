@@ -1,7 +1,7 @@
-const Servidor = require('../../models/servidor');
+const Servidor = require('../../models/Servidor');
 const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
-const ServidorDao = require('../servidorDao');
+const ServidorDao = require('../ServidorDao');
 class ServidorDaoImpl extends ServidorDao {
 
   async buscarTodosPaginado(numeroPagina, itensPorPagina) {

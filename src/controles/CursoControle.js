@@ -1,7 +1,8 @@
-const Curso = require('../models/curso');
-const externalization = require('../externalization/request');
+"use strict";
 
-const createCurso = async (req, res) => {
+const cursoServico = require("../service/CursoServico");
+
+const inserir = async (req, res) => {
     const { nome, ativo } = req.body;
 
     try {
@@ -13,16 +14,37 @@ const createCurso = async (req, res) => {
 };
 
 
-const getCursos = async (req, res) => {
+const buscarTodosPaginado = async (req, res) => {
+    const { page = 1, limit = 10 } = req.query;
+
+    const pageNumber = parseInt(page, 10);
+    const limitNumber = parseInt(limit, 10);
+    const offset = (pageNumber - 1) * limitNumber;
+
     try {
-        const cursos = await Curso.findAll();
-        res.status(200).json(cursos);
+        const { count, rows } = await Curso.findAndCountAll({
+            limit: limitNumber,
+            offset: offset,
+            order: [['nome', 'ASC']]
+        });
+
+        const totalPages = Math.ceil(count / limitNumber);
+
+        res.status(200).json({
+            data: rows,
+            pagination: {
+                totalItems: count,
+                totalPages: totalPages,
+                currentPage: pageNumber,
+                itemsPerPage: limitNumber
+            }
+        });
     } catch (error) {
-        res.status(500).json({ error: externalization.errorFetchingCourses });
+        res.status(500).json({ error: externalization.errorFetchingCourse });
     }
 };
 
-const getCursoById = async (req, res) => {
+const buscarUnicoPorId = async (req, res) => {
     try {
         const { id } = req.params;
         const curso = await Curso.findByPk(id);
@@ -36,7 +58,7 @@ const getCursoById = async (req, res) => {
     }
 };
 
-const updateCurso = async (req, res) => {
+const atualizar = async (req, res) => {
     try {
         const { id } = req.params;
         const { nome, ativo } = req.body;
@@ -52,7 +74,7 @@ const updateCurso = async (req, res) => {
     }
 };
 
-const deleteCurso = async (req, res) => {
+const excluir = async (req, res) => {
     try {
         const { id } = req.params;
         const curso = await Curso.findByPk(id);
@@ -70,9 +92,9 @@ const deleteCurso = async (req, res) => {
 
 
 module.exports = {
-    createCurso,
-    getCursos,
-    getCursoById,
-    updateCurso,
-    deleteCurso
+    inserir,
+    buscarTodosPaginado,
+    buscarUnicoPorId,
+    atualizar,
+    excluir
 };

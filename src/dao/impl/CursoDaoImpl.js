@@ -1,4 +1,4 @@
-const Curso = require('../../models/curso');
+const Curso = require('../../models/Curso');
 const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
 
@@ -6,11 +6,11 @@ class CursoDaoImpl extends CursoDao {
   async atualizar(curso) {
     try {
       const [numAffectedRows] = await Curso.update(
-        {
-          nome: curso.nome,
-          ativo: curso.ativo
-        },
-        { where: { id: curso.id } }
+          {
+            nome: curso.nome,
+            ativo: curso.ativo
+          },
+          { where: { id: curso.id } }
       );
       return numAffectedRows;
     } catch (error) {
@@ -87,6 +87,22 @@ class CursoDaoImpl extends CursoDao {
     } catch (error) {
       console.log(error);
       throw new Error(MensagemUtil.CURSO_INSERCAO_ERRO_PADRAO);
+    }
+  }
+
+  async buscarTodosPaginado(numeroPagina, itensPorPagina) {
+    const deslocamento = (numeroPagina - 1) * itensPorPagina;
+
+    try {
+      const { count, rows } = await Curso.findAndCountAll({
+        limit: itensPorPagina,
+        offset: deslocamento,
+        order: [['nome', 'ASC']]
+      });
+
+      return { count, rows };
+    } catch (error) {
+      throw new Error(MensagemUtil.LOCALIZACAO_ERRO_BUSCANDO);
     }
   }
 }

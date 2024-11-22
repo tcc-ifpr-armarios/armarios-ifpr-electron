@@ -1,8 +1,8 @@
 const EstudanteException = require('../excecoes/EstudanteException');
 const OperacaoUtil = require('../utils/OperacaoUtil');
 const MensagemUtil = require('../utils/mensagemUtil');
-const EstudanteDaoImpl = require('../dao/impl/estudanteDaoImpl');
-const EmprestimoDaoImpl = require('../dao/impl/emprestimoDaoImpl');
+const EstudanteDaoImpl = require('../dao/impl/EstudanteDaoImpl');
+const EmprestimoDaoImpl = require('../dao/impl/EmprestimoDaoImpl');
 
 const estudanteDao = new EstudanteDaoImpl();
 const emprestimoDao = new EmprestimoDaoImpl();

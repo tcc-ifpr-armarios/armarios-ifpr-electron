@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalButtons = {
             "btn-add-localizacao": "../screens/localizacao/salva-edita-modal-localizacao.html",
             "btn-add-servidor": "../screens/servidor/salva-edita-modal-servidor.html",
-            "btn-add-estudante": "../screens/estudante/content-modal-estudante.html",
-            "btn-add-curso": "../screens/curso/content-modal-curso.html",
+            "btn-add-estudante": "../screens/estudante/save-edit-modal-estudante.html",
+            "btn-add-curso": "../screens/curso/save-edit-modal-curso.html",
             "btn-add-armario": "../screens/armario/content-modal-armario.html",
             "btn-add-emprestimo": "../screens/emprestimo/content-modal-emprestimo.html",
             "btn-add-concessao": "../screens/concessao/content-modal-concessao.html"
@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 eventoFechamentoModal();
                 const telefoneInput = document.getElementById('telefone-servidor');
                 if (telefoneInput) {
-                    telefoneInput.removeEventListener('input', aplicarMascaraTelefone); 
-                    telefoneInput.addEventListener('input', aplicarMascaraTelefone); 
+                    telefoneInput.removeEventListener('input', aplicarMascaraTelefone);
+                    telefoneInput.addEventListener('input', aplicarMascaraTelefone);
                 }
             })
             .catch(error => console.error('Error loading content:', error));
