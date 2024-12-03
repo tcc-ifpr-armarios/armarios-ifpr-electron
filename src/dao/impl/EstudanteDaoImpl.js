@@ -9,10 +9,11 @@ class EstudanteDaoImpl extends EstudanteDao {
       const [updated] = await Estudante.update(
         {
           nome: estudante.nome,
+          sobrenome: estudante.sobrenome,
           email: estudante.email,
           ra: estudante.ra,
           ativo: estudante.ativo,
-          cursoId: estudante.cursoId,
+          id_curso: estudante.cursoId,
         },
         { where: { id: estudante.id } }
       );
@@ -81,8 +82,10 @@ class EstudanteDaoImpl extends EstudanteDao {
 
   async buscarUnicoPorId(idEstudante) {
     try {
-      return await Estudante.findByPk(idEstudante);
-    } catch (error) {
+      return await Estudante.findOne({
+        where: { id: idEstudante },
+      });
+    }  catch (error) {
       throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
     }
   }
@@ -92,7 +95,7 @@ class EstudanteDaoImpl extends EstudanteDao {
       return await Estudante.findOne({
         where: { ra },
       });
-    } catch (error) {
+    }  catch (error) {
       throw new Error(MensagemUtil.ERRO_BUSCAR_ESTUDANTE);
     }
   }
@@ -129,7 +132,7 @@ class EstudanteDaoImpl extends EstudanteDao {
       return await Estudante.create(estudante);
     } catch (error) {
       console.log(error);
-      throw new Error(MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO);
+      throw new Error(MensagemUtil.ESTUDANTE_INSERCAO_ERRO_PADRAO + error);
     }
   }
 

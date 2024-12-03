@@ -3,9 +3,11 @@ const OperacaoUtil = require('../utils/OperacaoUtil');
 const MensagemUtil = require('../utils/mensagemUtil');
 const EstudanteDaoImpl = require('../dao/impl/EstudanteDaoImpl');
 const EmprestimoDaoImpl = require('../dao/impl/EmprestimoDaoImpl');
+const CursoDaoImpl = require('../dao/impl/CursoDaoImpl');
 
 const estudanteDao = new EstudanteDaoImpl();
 const emprestimoDao = new EmprestimoDaoImpl();
+const cursoDao = new CursoDaoImpl();
 
 module.exports = class EstudanteServico {
 
@@ -26,6 +28,11 @@ module.exports = class EstudanteServico {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
 
+        const c = await cursoDao.buscarUnicoPorId(estudante.id_curso);
+        if (c == null) {
+            throw new EstudanteException(MensagemUtil.CURSO_NAO_ENCONTRADO);
+        }
+
         return await estudanteDao.inserir(estudante);
     }
 
@@ -38,7 +45,7 @@ module.exports = class EstudanteServico {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_RA_DUPLICADO);
         }
 
-        return   await estudanteDao.atualizar(estudante);
+        return await estudanteDao.atualizar(estudante);
     }
 
     async excluir(estudante) {
@@ -47,12 +54,12 @@ module.exports = class EstudanteServico {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
         }
 
-        const e = await  emprestimoDao.buscarTodosPorRaDoEstudante(estudante.ra);
+        const e = await emprestimoDao.buscarTodosPorIdDoEstudante(estudante.id);
         if (e.length > 0) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
         }
 
-        return   await estudanteDao.excluir(estudante);
+        return await estudanteDao.excluir(estudante);
     }
 
     async buscarTodosPorNome(nome) {
@@ -87,7 +94,7 @@ module.exports = class EstudanteServico {
         if (!estudante.senha) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
-        if (!estudante.curso || estudante.curso.id === 0) {
+        if (!estudante.id_curso || estudante.id_curso === 0) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
         if (!estudante.telefone) {
@@ -96,11 +103,16 @@ module.exports = class EstudanteServico {
     }
 
     validaCamposRegex(estudante) {
-        if (!OperacaoUtil.ehTelefoneValido(estudante.telefone)) {
-            throw new EstudanteException(MensagemUtil.VALIDACAO_TELEFONE_INVALIDO);
+        if (estudante.telefone != null) {
+            if (!OperacaoUtil.ehTelefoneValido(estudante.telefone)) {
+                throw new EstudanteException(MensagemUtil.VALIDACAO_TELEFONE_INVALIDO);
+            }
         }
-        if (!OperacaoUtil.ehEmailValido(estudante.email)) {
-            throw new EstudanteException(MensagemUtil.VALIDACAO_EMAIL_INVALIDO);
+
+        if (estudante.email != null) {
+            if (!OperacaoUtil.ehEmailValido(estudante.email)) {
+                throw new EstudanteException(MensagemUtil.VALIDACAO_EMAIL_INVALIDO);
+            }
         }
     }
 
@@ -109,18 +121,18 @@ module.exports = class EstudanteServico {
     }
 
     static async buscarTodosPaginado(numeroPagina, itensPorPagina) {
-        const { count, rows } = await estudanteDao.buscarTodosPaginado(numeroPagina, itensPorPagina);
+        const {count, rows} = await estudanteDao.buscarTodosPaginado(numeroPagina, itensPorPagina);
         const totalPaginas = Math.ceil(count / itensPorPagina);
-    
+
         return {
-          data: rows,
-          pagination: {
-            totalItems: count,
-            totalPages: totalPaginas,
-            currentPage: numeroPagina,
-            itemsPerPage: itensPorPagina
-          }
+            data: rows,
+            pagination: {
+                totalItems: count,
+                totalPages: totalPaginas,
+                currentPage: numeroPagina,
+                itemsPerPage: itensPorPagina
+            }
         };
-      }
+    }
 }
 

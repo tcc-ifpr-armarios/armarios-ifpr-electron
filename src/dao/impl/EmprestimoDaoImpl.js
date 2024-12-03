@@ -79,10 +79,10 @@ class EmprestimoDaoImpl extends EmprestimoDao {
     }
   }
 
-  async buscarTodosPorRaDoEstudante(ra) {
+  async buscarTodosPorIdDoEstudante(id) {
     try {
       return await Emprestimo.findAll({
-        where: { raEstudante: ra }
+        where: { id: id }
       });
     } catch (error) {
       throw new Error(MensagemUtil.ERRO_BUSCAR_EMPRESTIMO);

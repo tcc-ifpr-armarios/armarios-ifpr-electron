@@ -1,6 +1,7 @@
 const Curso = require('../../models/Curso');
 const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
+const CursoDao = require('../CursoDao');
 
 class CursoDaoImpl extends CursoDao {
   async atualizar(curso) {
