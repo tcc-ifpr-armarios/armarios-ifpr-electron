@@ -174,7 +174,7 @@ describe('Teste Localização Serviço', () => {
 
         try {
             localizacao = await LocalizacaoServico.inserir(localizacao);
-            armario.idLocalizacao = localizacao.id;
+            armario.id_localizacao = localizacao.id;
             armario = await ArmarioServico.inserir(armario);
             await LocalizacaoServico.excluir(localizacao);
         } catch (error) {

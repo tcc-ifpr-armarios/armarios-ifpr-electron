@@ -14,6 +14,8 @@ module.exports = class MensagemUtil {
     static ARMARIO_VINCULADO_EMPRESTIMO = "Impossível excluir esse armário, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
     static ARMARIO_ESCOLHA_UM = "Nenhum armário selecionado";
     static ARMARIO_EMPRESTADO = "Consta o empréstimo do armário: ";
+    static ERRO_BUSCAR_ARMARIO = "Erro ao buscar armário!";
+    static ARMARIO_NAO_ENCONTRADO = "Armário não encontrado!";
 
     static CURSO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o curso";
     static CURSO_ATUALIZACAO_SUCESSO = "Curso Atualizado com Sucesso!";
@@ -28,6 +30,7 @@ module.exports = class MensagemUtil {
     static CURSO_REMOVIDO = "Não foi possível realizar essa operação! Este curso já foi removido!";
     static CURSO_VINCULADO_ESTUDANTE = "Impossível excluir esse curso, pois existem estudantes vinculados a ele!";
     static ERRO_BUSCAR_CURSO = "Erro ao buscar curso!";
+    static CURSO_NAO_ENCONTRADO = "Curso não encontrado!";
     static LOCALIZACAO_ERRO_BUSCANDO = "Não foi possível listar os cursos!";
 
     static BANCO_ERRO_CONFIGURACAO = "Não foi possível iniciar a aplicação!\nVerifique as configurações de conexão com o Banco de Dados!";
@@ -49,6 +52,8 @@ module.exports = class MensagemUtil {
     static EMPRESTIMO_REMOVIDO = "Não foi possível realizar essa operação! Este empréstimo já foi removido!";
     static EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR = "Confirma a devolução da chave do armario ";
     static EMPRESTIMO_NAO_REALIZADO_ERRO = "Erro ao realizar o empréstimo";
+    static ERRO_BUSCAR_EMPRESTIMO = "Erro ao buscar o empréstimo";
+    static EMPRESTIMO_CAMPO_OBRIGATORIO = "Todos os campos obrigatórios (*) devem ser preenchidos!";
 
     static CONCESSAO_CONCEDIDA = "Concessão concedida";
     static CONCESSAO_SERVIDOR_ERRO = "Erro ao salvar a concessão: Servidor não informado";
@@ -68,6 +73,11 @@ module.exports = class MensagemUtil {
     static ESTUDANTE_VINCULADO_EMPRESTIMO = "Impossível excluir esse estudante, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
     static ESTUDANTE_RA_DUPLICADA = "Ra do estudante duplicado";
     static ESTUDANTE_JA_CADASTRADO = "Estudante já cadastrado!";
+    static VALIDACAO_TELEFONE_INVALIDO = "Telefone inválido!";
+    static VALIDACAO_EMAIL_INVALIDO = "Email inválido!";
+    static ERRO_BUSCAR_ESTUDANTE = "Erro ao buscar estudante!";
+    static ESTUDANTE_VINCULADO_EMPRESTIMO = "Impossível excluir esse estudante, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+    static ESTUDANTE_NAO_ENCONTRADO = "Estudante já cadastrado!";
 
     static LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
     static LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";

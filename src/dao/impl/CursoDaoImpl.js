@@ -1,6 +1,7 @@
 const Curso = require('../../models/Curso');
 const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
+const CursoDao = require('../CursoDao');
 
 class CursoDaoImpl extends CursoDao {
   async atualizar(curso) {
@@ -12,7 +13,7 @@ class CursoDaoImpl extends CursoDao {
           },
           { where: { id: curso.id } }
       );
-      return numAffectedRows;
+      return curso;
     } catch (error) {
       console.log(error);
       throw new Error(MensagemUtil.CURSO_ATUALIZACAO_ERRO_PADRAO);
