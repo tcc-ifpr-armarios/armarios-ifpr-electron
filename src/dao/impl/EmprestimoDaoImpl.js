@@ -22,12 +22,11 @@ class EmprestimoDaoImpl extends EmprestimoDao {
     }
   }
 
-  async buscarAtivoPorRaDoEstudante(ra) {
+  async buscarAtivoPorIdDoEstudante(id) {
     try {
       return await Emprestimo.findOne({
         where: {
-          raEstudante: ra,
-          ativo: true
+          id_estudante: id
         }
       });
     } catch (error) {
@@ -39,8 +38,7 @@ class EmprestimoDaoImpl extends EmprestimoDao {
     try {
       return await Emprestimo.findOne({
         where: {
-          idArmario,
-          ativo: true
+          id_armario: idArmario
         }
       });
     } catch (error) {
@@ -79,10 +77,10 @@ class EmprestimoDaoImpl extends EmprestimoDao {
     }
   }
 
-  async buscarTodosPorIdDoEstudante(id) {
+  async buscarTodosPorIdDoEstudante(id_estudante) {
     try {
       return await Emprestimo.findAll({
-        where: { id: id }
+        where: { id_estudante: id_estudante }
       });
     } catch (error) {
       throw new Error(MensagemUtil.ERRO_BUSCAR_EMPRESTIMO);
@@ -92,7 +90,9 @@ class EmprestimoDaoImpl extends EmprestimoDao {
   async buscarTodosPorIdArmario(idArmario) {
     try {
       return await Emprestimo.findAll({
-        where: { idArmario }
+        where: {
+          id_armario: idArmario
+        }
       });
     } catch (error) {
       throw new Error(MensagemUtil.ERRO_BUSCAR_EMPRESTIMO);

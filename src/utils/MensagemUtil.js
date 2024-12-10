@@ -14,6 +14,8 @@ module.exports = class MensagemUtil {
     static ARMARIO_VINCULADO_EMPRESTIMO = "Impossível excluir esse armário, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
     static ARMARIO_ESCOLHA_UM = "Nenhum armário selecionado";
     static ARMARIO_EMPRESTADO = "Consta o empréstimo do armário: ";
+    static ERRO_BUSCAR_ARMARIO = "Erro ao buscar armário!";
+    static ARMARIO_NAO_ENCONTRADO = "Armário não encontrado!";
 
     static CURSO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar o curso";
     static CURSO_ATUALIZACAO_SUCESSO = "Curso Atualizado com Sucesso!";
@@ -51,6 +53,7 @@ module.exports = class MensagemUtil {
     static EMPRESTIMO_CONFIRMA_DEVOLUCAO_SERVIDOR = "Confirma a devolução da chave do armario ";
     static EMPRESTIMO_NAO_REALIZADO_ERRO = "Erro ao realizar o empréstimo";
     static ERRO_BUSCAR_EMPRESTIMO = "Erro ao buscar o empréstimo";
+    static EMPRESTIMO_CAMPO_OBRIGATORIO = "Todos os campos obrigatórios (*) devem ser preenchidos!";
 
     static CONCESSAO_CONCEDIDA = "Concessão concedida";
     static CONCESSAO_SERVIDOR_ERRO = "Erro ao salvar a concessão: Servidor não informado";
@@ -74,6 +77,7 @@ module.exports = class MensagemUtil {
     static VALIDACAO_EMAIL_INVALIDO = "Email inválido!";
     static ERRO_BUSCAR_ESTUDANTE = "Erro ao buscar estudante!";
     static ESTUDANTE_VINCULADO_EMPRESTIMO = "Impossível excluir esse estudante, pois existem empréstimos (ativos ou inativos) vinculados a ele!";
+    static ESTUDANTE_NAO_ENCONTRADO = "Estudante já cadastrado!";
 
     static LOCALIZACAO_ATUALIZACAO_ERRO_PADRAO = "Erro não identificado ao atualizar a localização";
     static LOCALIZACAO_ATUALIZACAO_SUCESSO = "Localização Atualizada com Sucesso!";
