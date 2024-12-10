@@ -11,15 +11,15 @@ const cursoDao = new CursoDaoImpl();
 
 module.exports = class EstudanteServico {
 
-    async buscarTodos() {
+    static async buscarTodos() {
         return await estudanteDao.buscarTodos();
     }
 
-    async buscarUnicoPorId(id) {
+    static async buscarUnicoPorId(id) {
         return await estudanteDao.buscarUnicoPorId(id);
     }
 
-    async inserir(estudante) {
+    static async inserir(estudante) {
         this.verificaCamposObrigatorios(estudante);
         this.validaCamposRegex(estudante);
 
@@ -36,7 +36,7 @@ module.exports = class EstudanteServico {
         return await estudanteDao.inserir(estudante);
     }
 
-    async atualizar(estudante) {
+    static async atualizar(estudante) {
         this.verificaCamposObrigatorios(estudante);
         this.validaCamposRegex(estudante);
 
@@ -48,7 +48,7 @@ module.exports = class EstudanteServico {
         return await estudanteDao.atualizar(estudante);
     }
 
-    async excluir(estudante) {
+    static async excluir(estudante) {
         const c = await estudanteDao.buscarUnicoPorId(estudante.id);
         if (!c) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_REMOVIDO);
@@ -62,23 +62,23 @@ module.exports = class EstudanteServico {
         return await estudanteDao.excluir(estudante);
     }
 
-    async buscarTodosPorNome(nome) {
+    static async buscarTodosPorNome(nome) {
         return await estudanteDao.buscarTodosPorNome(nome);
     }
 
-    async buscarUnicoPorRa(ra) {
+    static async buscarUnicoPorRa(ra) {
         return await estudanteDao.buscarUnicoPorRa(ra);
     }
 
-    async buscarEstudantesPorRa(ra) {
+    static async buscarEstudantesPorRa(ra) {
         return await estudanteDao.buscarEstudantesPorRa(ra);
     }
 
-    async buscarUnicoPorEmail(email) {
+    static async buscarUnicoPorEmail(email) {
         return await estudanteDao.buscarUnicoPorEmail(email);
     }
 
-    verificaCamposObrigatorios(estudante) {
+    static verificaCamposObrigatorios(estudante) {
         if (!estudante.nome) {
             throw new EstudanteException(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
         }
@@ -102,7 +102,7 @@ module.exports = class EstudanteServico {
         }
     }
 
-    validaCamposRegex(estudante) {
+    static validaCamposRegex(estudante) {
         if (estudante.telefone != null) {
             if (!OperacaoUtil.ehTelefoneValido(estudante.telefone)) {
                 throw new EstudanteException(MensagemUtil.VALIDACAO_TELEFONE_INVALIDO);
@@ -116,7 +116,7 @@ module.exports = class EstudanteServico {
         }
     }
 
-    async buscarAtivos() {
+    static async buscarAtivos() {
         return await estudanteDao.buscarAtivos();
     }
 

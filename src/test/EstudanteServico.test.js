@@ -3,7 +3,7 @@
 const ArmarioServico = require("../service/ArmarioServico");
 const EstudanteServico = require("../service/estudanteServico");
 const LocalizacaoServico = require("../service/localizacaoServico");
-// const EmprestimoServico = require("../service/emprestimoServico");
+const EmprestimoServico = require("../service/emprestimoServico");
 const MensagemUtil = require("../utils/MensagemUtil");
 const statusArmario = require("../models/StatusArmario");
 const { initModels } = require("../models");
@@ -14,43 +14,17 @@ const Estudante = require('../models/Estudante');
 describe('Teste Estudante Serviço', () => {
     let RA = "111";
     let id = "1";
-    let id_localizacao = "1";
-    let id_armario = "1";
-    let id_emprestimo = "1";
     let estudante;
-    let estudanteServico;
-    let localizacaoServico;
-    let armarioServico;
-    let emprestimoServico;
     let transaction;
     sequelize.models.tb_estudante = Estudante;
     let ultimoEstudante;
-    let ultimaLocalizacao;
-    let ultimoArmario;
-    let ultimoEmprestimo;
 
     beforeAll(async () => {
         await initModels();
-        estudanteServico = new EstudanteServico();
-        localizacaoServico = new LocalizacaoServico();
-        armarioServico = new ArmarioServico();
-        // emprestimoServico = new EmprestimoServico();
         ultimoEstudante = await sequelize.models.tb_estudante.findOne({
             order: [['id_estudante', 'DESC']]
         });
-        // ultimaLocalizacao = await sequelize.models.tb_localizacao.findOne({
-        //     order: [['id_localizacao', 'DESC']]
-        // });
-        // ultimoArmario = await sequelize.models.tb_armario.findOne({
-        //     order: [['id_armario', 'DESC']]
-        // });
-        // ultimoEmprestimo = await sequelize.models.tb_emprestimo.findOne({
-        //     order: [['id_emprestimo', 'DESC']]
-        // });
         id = ultimoEstudante ? ultimoEstudante.id + 1 : 1;
-        id_localizacao = ultimaLocalizacao ? ultimaLocalizacao.id + 1 : 1;
-        id_armario = ultimoArmario ? ultimoArmario.id + 1 : 1;
-        // id_emprestimo = ultimoEmprestimo ? ultimoEmprestimo.id + 1 : 1;
     });
 
     beforeEach(async () => {
@@ -80,7 +54,7 @@ describe('Teste Estudante Serviço', () => {
 
 
     test('Deve inserir um novo estudante', async () => {
-        const estudanteInserido = await estudanteServico.inserir(estudante, { transaction });
+        const estudanteInserido = await EstudanteServico.inserir(estudante, { transaction });
         expect(estudanteInserido.nome).toBe(estudante.nome);
         expect(estudanteInserido.ativo).toBe(true);
     });
@@ -90,7 +64,7 @@ describe('Teste Estudante Serviço', () => {
         let message = '';
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -100,7 +74,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.nome = null;
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -113,7 +87,7 @@ describe('Teste Estudante Serviço', () => {
         let message = '';
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -123,7 +97,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.sobrenome = null;
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -136,7 +110,7 @@ describe('Teste Estudante Serviço', () => {
         let message = '';
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -146,7 +120,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.email = "";
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -156,7 +130,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.email = null;
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -169,7 +143,7 @@ describe('Teste Estudante Serviço', () => {
         let message = '';
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -179,7 +153,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.senha = null;
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -192,7 +166,7 @@ describe('Teste Estudante Serviço', () => {
         let message = '';
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -202,7 +176,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.telefone = null;
 
         try {
-            await estudanteServico.inserir(estudante, { transaction });
+            await EstudanteServico.inserir(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -211,11 +185,11 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve inserir estudante com RA duplicado', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
 
         let message = '';
         try {
-            await estudanteServico.inserir({ ...estudante, email: "novo@example.com" });
+            await EstudanteServico.inserir({ ...estudante, email: "novo@example.com" });
         } catch (error) {
             message = error.message;
         }
@@ -224,37 +198,37 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Deve listar ao menos um estudante', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
-        const resultado = await estudanteServico.buscarTodos();
+        await EstudanteServico.inserir(estudante, { transaction });
+        const resultado = await EstudanteServico.buscarTodos();
         expect(resultado).not.toBeNull();
         expect(resultado.length).toBeGreaterThan(0);
     });
 
     test('Deve encontrar o estudante com id inserido', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
-        const resultado = await estudanteServico.buscarUnicoPorId(estudante.id); // Atualizado para `id`
+        await EstudanteServico.inserir(estudante, { transaction });
+        const resultado = await EstudanteServico.buscarUnicoPorId(estudante.id); // Atualizado para `id`
         expect(resultado.id).toBe(estudante.id);  // Atualizado para `id`
     });
 
     test('Não deve encontrar o estudante com id', async () => {
-        const resultado = await estudanteServico.buscarUnicoPorId(-1);
+        const resultado = await EstudanteServico.buscarUnicoPorId(-1);
         expect(resultado).toBe(null);
     });
 
     test('Deve excluir o estudante com id inserido', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
-        await estudanteServico.excluir(estudante);
-        const resultado = await estudanteServico.buscarUnicoPorId(estudante.id);
+        await EstudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.excluir(estudante);
+        const resultado = await EstudanteServico.buscarUnicoPorId(estudante.id);
         expect(resultado).toBe(null);
     });
 
     test('Não deve excluir estudante já removido', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
-        await estudanteServico.excluir(estudante);
+        await EstudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.excluir(estudante);
 
         let message = '';
         try {
-            await estudanteServico.excluir(estudante);
+            await EstudanteServico.excluir(estudante);
         } catch (error) {
             message = error.message;
         }
@@ -263,30 +237,30 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Deve atualizar o estudante com id inserido', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.nome = "Teste";
         estudante.ativo = false;
-        const estudanteAtualizado = await estudanteServico.atualizar(estudante);
+        const estudanteAtualizado = await EstudanteServico.atualizar(estudante);
         expect(estudanteAtualizado.nome).toBe(estudante.nome);
         expect(estudanteAtualizado.ativo).toBe(estudante.ativo);
     });
 
     test('Deve atualizar mudando somente um atributo', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.nome = "Teste";
         estudante.ativo = false;
-        const estudanteAtualizado = await estudanteServico.atualizar(estudante);
+        const estudanteAtualizado = await EstudanteServico.atualizar(estudante);
         expect(estudanteAtualizado.nome).toBe(estudante.nome);
         expect(estudanteAtualizado.ativo).toBe(estudante.ativo);
     });
 
     test('Não deve atualizar para nome vazio ou nulo', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.nome = "";
         let message;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -296,7 +270,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.nome = null;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -305,12 +279,12 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve atualizar para sobrenome vazio ou nulo', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.sobrenome = "";
         let message;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -320,7 +294,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.sobrenome = null;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -329,12 +303,12 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve atualizar para email vazio ou nulo', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.email = "";
         let message;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -344,7 +318,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.email = null;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -353,12 +327,12 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve atualizar para senha vazia ou nula', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.senha = "";
         let message;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -368,7 +342,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.senha = null;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -377,12 +351,12 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve atualizar para telefone vazio ou nulo', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.telefone = "";
         let message;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -392,7 +366,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.telefone = null;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -401,12 +375,12 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve atualizar para ra vazio ou nulo', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.ra = "";
         let message;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -416,7 +390,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.ra = null;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -425,12 +399,12 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve atualizar para ra vazio ou nulo', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
         estudante.ra = "";
         let message;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -440,7 +414,7 @@ describe('Teste Estudante Serviço', () => {
         estudante.ra = null;
 
         try {
-            await estudanteServico.atualizar(estudante, { transaction });
+            await EstudanteServico.atualizar(estudante, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -449,7 +423,7 @@ describe('Teste Estudante Serviço', () => {
     });
 
     test('Não deve atualizar para ra duplicado', async () => {
-        estudante = await estudanteServico.inserir(estudante, { transaction });
+        estudante = await EstudanteServico.inserir(estudante, { transaction });
         ultimoEstudante = await sequelize.models.tb_estudante.findOne({
             order: [['id_estudante', 'DESC']]
         });
@@ -464,12 +438,12 @@ describe('Teste Estudante Serviço', () => {
             ativo: true,
             id_curso: 1
         };
-        estudanteAtualizacao = await estudanteServico.inserir(estudanteAtualizacao, { transaction });
+        estudanteAtualizacao = await EstudanteServico.inserir(estudanteAtualizacao, { transaction });
         let message;
 
         try {
             estudanteAtualizacao.ra = RA;
-            await estudanteServico.atualizar(estudanteAtualizacao, { transaction });
+            await EstudanteServico.atualizar(estudanteAtualizacao, { transaction });
         } catch (error) {
             message = error.message;
         }
@@ -478,46 +452,47 @@ describe('Teste Estudante Serviço', () => {
     });
 
 
-    // test('Não deve excluir estudante vinculada a armário ativo', async () => {
-    //     const estudanteInserido = await estudanteServico.inserir(estudante, { transaction });
-    //     let localizacao = {
-    //         id_localizacao: id_localizacao,
-    //         nome: 'Bloco 1',
-    //         ativo: true
-    //     };
-    //     localizacao = await localizacaoServico.inserir(localizacao, { transaction });
-    //
-    //     let armario = {
-    //         id_armario: id_armario,
-    //         numero: 'ARM-01',
-    //         status: statusArmario.ATIVO,
-    //         id_localizacao: id_localizacao
-    //     };
-    //     armario = await armarioServico.inserir(armario);
-    //
-    //     let emprestimo = {
-    //         id_emprestimo: id_emprestimo,
-    //         data_emprestimo: new Date(),
-    //         data_devolucao: new Date(),
-    //         id_armario: armario.id_armario,
-    //         id_estudante: estudanteInserido.id
-    //     };
-    //     emprestimo = await emprestimoServico.inserir(emprestimo);
-    //
-    //     let message = '';
-    //     try {
-    //         await estudanteServico.excluir(estudanteInserido);
-    //     } catch (error) {
-    //         message = error.message;
-    //     }
-    //
-    //     expect(message).toBe(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
-    // });
+    test('Não deve excluir estudante vinculada a armário ativo', async () => {
+        const estudanteInserido = await EstudanteServico.inserir(estudante, { transaction });
+        let localizacao = {
+            descricao: 'Bloco 3',
+            ativo: true
+        };
+        localizacao = await LocalizacaoServico.inserir(localizacao, { transaction });
+
+        let armario = {
+            numero: 'ARM-03',
+            status: statusArmario.ATIVO,
+            id_localizacao: localizacao.id
+        };
+        armario = await ArmarioServico.inserir(armario, { transaction });
+
+        let emprestimo = {
+            dataEmprestimo: new Date(),
+            dataDevolucao: null,
+            id_armario: armario.id,
+            id_estudante: estudante.id
+        };
+        emprestimo = await EmprestimoServico.inserir(emprestimo);
+
+        let message = '';
+        try {
+            await EstudanteServico.excluir(estudanteInserido);
+        } catch (error) {
+            message = error.message;
+        }
+
+        expect(message).toBe(MensagemUtil.ESTUDANTE_VINCULADO_EMPRESTIMO);
+
+        await EmprestimoServico.excluir(emprestimo);
+        await ArmarioServico.excluir(armario);
+        await LocalizacaoServico.excluir(localizacao);
+    });
 
     test('Deve buscar estudantes ativos', async () => {
-        await estudanteServico.inserir(estudante, { transaction });
+        await EstudanteServico.inserir(estudante, { transaction });
 
-        const ativos = await estudanteServico.buscarAtivos();
+        const ativos = await EstudanteServico.buscarAtivos();
         expect(ativos.length).toBeGreaterThan(0);
         expect(ativos[0].ativo).toBe(true);
     });

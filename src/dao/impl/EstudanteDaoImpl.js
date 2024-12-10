@@ -51,7 +51,7 @@ class EstudanteDaoImpl extends EstudanteDao {
   async buscarTodosPorIdCurso(idCurso) {
     try {
       return await Estudante.findAll({
-        where: { cursoId: idCurso },
+        where: { id_curso: idCurso },
         order: [['nome', 'ASC']],
       });
     } catch (error) {
@@ -138,7 +138,7 @@ class EstudanteDaoImpl extends EstudanteDao {
 
   async buscarEstudantesPorRa(ra) {
     try {
-      return await Estudante.findAll({
+      return await Estudante.findOne({
         where: { ra },
       });
     } catch (error) {
