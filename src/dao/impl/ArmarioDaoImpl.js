@@ -2,6 +2,7 @@ const Armario = require('../../models/Armario');
 const ArmarioDao = require('../ArmarioDao');
 const MensagemUtil = require('../../utils/mensagemUtil');
 const { Op } = require('sequelize');
+const Curso = require("../../models/Curso");
 
 class ArmarioDaoImpl extends ArmarioDao {
   async excluir(armario) {
@@ -30,6 +31,64 @@ class ArmarioDaoImpl extends ArmarioDao {
     });
     return armarios;
   }
+
+  async buscarTodos() {
+    try {
+      return await Armario.findAll();
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ARMARIO);
+    }
+  }
+
+  async buscarPorStatus(status) {
+    try {
+      return await Armario.findAll({
+        where: { status: status },
+        order: [['numero', 'ASC']]
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ARMARIO);
+    }
+  }
+
+  async buscarUnicoPorId(id) {
+    try {
+      return await Armario.findByPk(id);
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ARMARIO);
+    }
+  }
+
+  async buscarUnicoPorNumeroELocalizacaoComIdDiferente(id_localizacao, numero, id) {
+    try {
+      return await Armario.findOne({
+        where: {
+          id: { [Op.not]: id },
+          numero: numero,
+          id_localizacao: id_localizacao
+        },
+      });
+    } catch (error) {
+      throw new Error(MensagemUtil.ERRO_BUSCAR_ARMARIO);
+    }
+  }
+
+  async atualizar(armario) {
+    try {
+      const [numAffectedRows] = await Armario.update(
+          {
+            nome: armario.numero,
+            ativo: armario.status,
+            id_localizacao: armario.id_localizacao
+          },
+          { where: { id: armario.id } }
+      );
+      return armario;
+    } catch (error) {
+      throw new Error(MensagemUtil.ARMARIO_ATUALIZACAO_ERRO_PADRAO);
+    }
+  }
+
 }
 
 

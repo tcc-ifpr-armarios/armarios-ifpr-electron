@@ -28,8 +28,8 @@ class ArmarioDao {
     throw new Error('Método buscarUnicoPorId() deve ser implementado');
   }
 
-  buscarUnicoPorNumeroELocalizacao(dLocalizacao, numero) {
-    throw new Error('Método buscarUnicoPorNumeroELocalizacao() deve ser implementado');
+  buscarUnicoPorNumeroELocalizacaoComIdDiferente(idLocalizacao, numero, id) {
+    throw new Error('Método buscarUnicoPorNumeroELocalizacaoComIdDiferente() deve ser implementado');
   }
 
   buscarUnicoPorNumeroELocalizacaoComIdDiferente(idLocalizacao, numero, idArmario) {
