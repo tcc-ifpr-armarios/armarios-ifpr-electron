@@ -13,7 +13,7 @@ class CursoDaoImpl extends CursoDao {
           },
           { where: { id: curso.id } }
       );
-      return numAffectedRows;
+      return curso;
     } catch (error) {
       console.log(error);
       throw new Error(MensagemUtil.CURSO_ATUALIZACAO_ERRO_PADRAO);

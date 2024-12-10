@@ -40,7 +40,7 @@ module.exports = class cursoServico {
 
   static verificaCamposObrigatorios(curso) {
     if (!curso || !curso.nome || curso.nome.trim() === '') {
-      throw new cursoException(MensagemUtil.CURSO_NOME_OBRIGATORIO);
+      throw new cursoException(MensagemUtil.CURSO_CAMPO_OBRIGATORIO);
     }
   }
   static async verificaDadosDuplicados(curso) {
@@ -51,7 +51,6 @@ module.exports = class cursoServico {
   }
 
   static async verificaSeFoiRemovido(curso) {
-    console.log(curso)
     let l = await cursoDao.buscarUnicoPorId(curso.id);
     if (l == null) {
       throw new cursoException(MensagemUtil.CURSO_REMOVIDO);
