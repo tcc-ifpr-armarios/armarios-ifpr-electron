@@ -161,7 +161,7 @@ describe('Teste Estudante Serviço', () => {
         expect(message).toBe(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
     });
 
-    test('Não deve inserir estudante com sobrenome vazio ou nulo', async () => {
+    test('Não deve inserir estudante com telefone vazio ou nulo', async () => {
         estudante.telefone = "";
         let message = '';
 
