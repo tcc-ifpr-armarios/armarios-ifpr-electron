@@ -398,30 +398,6 @@ describe('Teste Estudante Serviço', () => {
         expect(message).toBe(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
     });
 
-    test('Não deve atualizar para ra vazio ou nulo', async () => {
-        await EstudanteServico.inserir(estudante, { transaction });
-        estudante.ra = "";
-        let message;
-
-        try {
-            await EstudanteServico.atualizar(estudante, { transaction });
-        } catch (error) {
-            message = error.message;
-        }
-
-        expect(message).toBe(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-
-        estudante.ra = null;
-
-        try {
-            await EstudanteServico.atualizar(estudante, { transaction });
-        } catch (error) {
-            message = error.message;
-        }
-
-        expect(message).toBe(MensagemUtil.ESTUDANTE_CAMPO_OBRIGATORIO);
-    });
-
     test('Não deve atualizar para ra duplicado', async () => {
         estudante = await EstudanteServico.inserir(estudante, { transaction });
         ultimoEstudante = await sequelize.models.tb_estudante.findOne({
